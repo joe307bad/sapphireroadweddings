@@ -1,4 +1,3 @@
-# sapphireroadweddings
-Sapphire Road Weddings
+# Sapphire Road Weddings
 
 Branding site for Sapphire Road Weddings 
