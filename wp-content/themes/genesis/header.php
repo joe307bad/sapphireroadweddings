@@ -11,31 +11,37 @@
  * @link    http://my.studiopress.com/themes/genesis/
  */
 
-do_action( 'genesis_doctype' );
-do_action( 'genesis_title' );
-do_action( 'genesis_meta' );
+do_action('genesis_doctype');
+do_action('genesis_title');
+do_action('genesis_meta');
 
 wp_head(); // We need this for plugins.
 ?>
-</head>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <link rel="stylesheet" type='text/css' href="<?php echo get_template_directory_uri(); ?>/css/app/Rentals.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
+    </head>
 <?php
-genesis_markup( array(
-	'open'   => '<body %s>',
-	'context' => 'body',
-) );
-do_action( 'genesis_before' );
+genesis_markup(array(
+    'open' => '<body %s>',
+    'context' => 'body',
+));
+do_action('genesis_before');
 
-genesis_markup( array(
-	'open'   => '<div %s>',
-	'context' => 'site-container',
-) );
+genesis_markup(array(
+    'open' => '<div %s>',
+    'context' => 'site-container',
+));
 
-do_action( 'genesis_before_header' );
-do_action( 'genesis_header' );
-do_action( 'genesis_after_header' );
+do_action('genesis_before_header');
+do_action('genesis_header');
+do_action('genesis_after_header');
 
-genesis_markup( array(
-	'open'   => '<div %s>',
-	'context' => 'site-inner',
-) );
-genesis_structural_wrap( 'site-inner' );
+genesis_markup(array(
+    'open' => '<div %s>',
+    'context' => 'site-inner',
+));
+genesis_structural_wrap('site-inner');

@@ -1,0 +1,51 @@
+#rental-container {
+    margin: 0 auto;
+}
+
+#rental-container .rental {
+    margin: 0 auto;
+    width: 200px;
+    display:block;
+}
+
+#rental-container .rental img {
+    width: 100%;
+}
+
+#rental-container .rental h3 {
+    text-align: center;
+    font-size: 20px;
+}
+
+#rental-container .thumbnail-container{
+    overflow:hidden;
+    margin-bottom: 10px;
+    height:110px;
+}
+
+.swiper-container{
+    width: 50%;
+    height: 300px;
+    float: left;
+}
+
+.swiper-pagination{
+    background-color: white;
+    bottom: 0 !important;
+}
+
+.swiper{
+    display: block;
+    margin: 0 auto;
+}
+
+.swiper-slide img{
+    height: 100%;
+    max-width: none;
+}
+
+.rental-details{
+    float: right;
+    width: calc(50% - 20px);
+    padding-left: 20px;
+}

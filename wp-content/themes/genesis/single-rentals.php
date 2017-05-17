@@ -8,19 +8,54 @@
  * @package Genesis\Templates
  * @author  StudioPress
  * @license GPL-2.0+
- * @link    http://my.studiopress.com/themes/genesis/
+ * @link    http://my.studiopress.com/themes/genesis/F
  */
 
 // This file handles single entries, but only exists for the sake of child theme forward compatibility.
 
-    get_header();
- 
-    do_action( 'genesis_before_content_sidebar_wrap' );
-    ?>
-    
-<h1>hey</h1>
-    <?php
-    do_action( 'genesis_after_content_sidebar_wrap' );
- get_footer();
+get_header();
+$post = get_post();
+do_action('genesis_before_content_sidebar_wrap');
+?>
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <?php
+        //$author_id = get_the_author_meta('ID');
+        //$images = get_field('gallery', 'user_'. $author_id );
+        $images = get_field('rental_gallery');
+        if ($images):
+            foreach ($images as $image): ?>
+                <div class="swiper-slide"><img src="<?php echo $image['sizes']['large']; ?>"
+                                               alt="<?php echo $image['alt']; ?>"/></div>
+            <?php endforeach;
+        endif; ?>
+
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+<div class="rental-details">
+    <h1><?php echo $post->post_title ?></h1>
+    <p><?php echo $post->post_content ?></p>
+    <table>
+        <?php
+        if( have_rows('rental_attributes') ):
+            while ( have_rows('rental_attributes') ) : the_row();
+        ?>
+                <tr>
+                    <td><?php the_sub_field('attribute_name'); ?></td>
+                    <td><?php the_sub_field('attribute_value'); ?></td>
+                </tr>
+        <?php
+            endwhile;
+        else :
+        endif;
+        ?>
+    </table>
+</div>
+<?php
+do_action('genesis_after_content_sidebar_wrap');
+get_footer();
 ?>
 

@@ -35,4 +35,5 @@ genesis_markup( array(
 ) );
 
 ?>
+<script type='text/javascript' src="<?php echo get_template_directory_uri(); ?>/scripts/app/Rentals.js"></script>
 </html>
