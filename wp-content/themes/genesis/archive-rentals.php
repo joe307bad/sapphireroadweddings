@@ -18,10 +18,14 @@ get_header();
 do_action('genesis_before_content_sidebar_wrap');
 
 ?>
+<div><img class="aligncenter wp-image-198 size-full" src="http://sapphireroadweddings.com/wp-content/uploads/2016/04/inventory.jpg" width="1600" height="600" />
+    <img class="aligncenter wp-image-314" src="http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-300x47.jpg" alt="n_inventory" width="598" height="93" srcset="http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-300x47.jpg 300w, http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-768x119.jpg 768w, http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-1024x159.jpg 1024w" sizes="(max-width: 598px) 100vw, 598px">
+    In addition to wedding and event planning services, Sapphire Road offers furniture and decor rentals to complete your wedding, event or photoshoot with personality and style.  From modern loveseats to vintage Victorian sofas, or custom built bars to tabletop decor, our rental inventory can be tailored to any venue or theme and will transform your day into a one-of-a-kind affair.</div>
+<div style="text-align: center;"><strong>   </strong></div>
 <div id="rental-container">
     <?php while (have_posts()) : the_post();
         $post = get_post(); ?>
-        <a href="<?php echo get_permalink( $post->ID ); ?>" class='rental'>
+        <a href="<?php echo get_permalink( $post->ID ); ?>" class='rental hvr-grow'>
             <div class="thumbnail-container">
                 <img src="<?php echo wp_get_attachment_image_url(get_post_thumbnail_id($post), 'post-thumbnail') ?>"/>
             </div>

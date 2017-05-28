@@ -32,12 +32,17 @@ do_action('genesis_before_content_sidebar_wrap');
         endif; ?>
 
     </div>
-    <!-- If we need pagination -->
+
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
     <div class="swiper-pagination"></div>
 </div>
 <div class="rental-details">
     <h1><?php echo $post->post_title ?></h1>
-    <p><?php echo $post->post_content ?></p>
+    <div id="rental-content">
+        <?php the_content(); ?>
+    </div>
     <table>
         <?php
         if( have_rows('rental_attributes') ):

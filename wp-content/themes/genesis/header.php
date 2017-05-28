@@ -20,6 +20,7 @@ wp_head(); // We need this for plugins.
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
     <link rel="stylesheet" type='text/css' href="<?php echo get_template_directory_uri(); ?>/css/app/Rentals.css">
+    <link rel="stylesheet" type='text/css' href="<?php echo get_template_directory_uri(); ?>/css/lib/animate.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
