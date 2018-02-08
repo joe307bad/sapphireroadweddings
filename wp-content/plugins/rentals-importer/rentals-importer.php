@@ -5,17 +5,29 @@ Description: Rentals Importer
 Author: Joe Badaczewski
 Version: 1.0
 */
+require_once
+    plugin_dir_path( __FILE__ ) . '/rentals-parser/rentals-parser.php';
+
 class RentalsImporter {
     public $Name = "Rentals Importer";
     public $MenuTitle = "Rentals Importer";
     public $Capability = "manage_options";
-    public $MenuSlug = "test-plugin";
-    public $Function = "render_ui";
+    public $MenuSlug = "rentals-importer";
 
-    public function ___construct(){
+    public $rentalsParser;
+    public $files;
+
+    public function __construct(){
+        $this->rentalsParser = new RentalsParser;
     }
 
     public function render(){
+        $this->files = $this->rentalsParser->getRentalsInfo();
+
+        foreach($this->files as $name => $Regex){
+            echo "$name\n";
+        }
+
         echo "<h1>Hello World!</h1>";
     }
 
@@ -44,7 +56,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 function run_rental_importer() {
 
-    $ri = new RentalsImporter();
+    $ri = new RentalsImporter;
     $ri->run();
 
 }
