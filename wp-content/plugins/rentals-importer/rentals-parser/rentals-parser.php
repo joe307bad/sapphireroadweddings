@@ -1,43 +1,109 @@
 <?php
 
+require_once
+    plugin_dir_path(__FILE__) . '../bottomline/bottomline.php';
+require_once
+    plugin_dir_path(__FILE__) . '../models/category.php';
+require_once
+    plugin_dir_path(__FILE__) . '../models/rental.php';
+
 class RentalsParser
 {
     public $rentalsDirectory;
+    public $categories;
     public $files = [];
 
-    public function __construct()
+    private $rentalModel;
+
+    public function __construct($dir)
     {
-        $this->rentalsDirectory =
-            str_replace(
-                '\\',
-                '/',
-                getcwd()
-                . '\\..\\wp-content\\plugins\\rentals-importer\\rentals\\'); //plugin_dir_path( __FILE__ ) . '\*.php';
+        $this->rentalsDirectory = $dir;
+
+        $categoryClass = new ReflectionClass('Category');
+        $this->categories = $categoryClass->getConstants();
     }
 
     public function getRentalsInfo()
     {
-        return $this->glob_recursive($this->rentalsDirectory);
+        $photos = $this->getAllRentalPhotos($this->rentalsDirectory);
+        return $this->getListOfRentalModels($photos);
     }
 
-    function glob_recursive($dir)
+    function getAllRentalPhotos($dir)
     {
-        $it =
-            new RecursiveIteratorIterator(
-                new RecursiveDirectoryIterator($dir));
+        $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir));
 
-        $files = [];
+        $files = array();
 
-        while ($it->valid()) {
+        foreach ($rii as $file) {
 
-            $file = $it->current();
-            array_push($files, $file->pathName);
+            if ($file->isDir()) {
+                continue;
+            }
 
-            $it->next();
+            $files[] = $file->getPathname();
+
         }
 
         return $files;
-
     }
 
+    function getListOfRentalModels($photos)
+    {
+
+        $rentalModels = [];
+
+        foreach ($photos as $rentalPhotoFilePath) {
+            $addRentalModels =
+                $this->makeRentalModel($rentalPhotoFilePath, $rentalModels);
+
+            if ($addRentalModels !== false) {
+                $rentalModels = $addRentalModels;
+            }
+        }
+
+        return $rentalModels;
+    }
+
+    function makeRentalModel($rentalPhotoFilePath, $rentalModels)
+    {
+
+        $rentalPhotoFileName = pathinfo($rentalPhotoFilePath)['filename'];
+        $hasUnderscore = strpos($rentalPhotoFileName, '_') !== false;
+        $rentalName = $hasUnderscore
+            ? substr($rentalPhotoFileName, 0,
+                strpos($rentalPhotoFileName, "_", true))
+            : $rentalPhotoFileName;
+
+        if (strpos($rentalName, '.') !== false)
+            return false;
+
+        $categories = $this->categories;
+        $categoryName = "";
+
+        foreach ($categories as $id => $label) {
+            if (strpos($rentalPhotoFilePath, $label) !== false) {
+                $categoryName = $label;
+                break;
+            }
+        }
+
+        $this->rentalModel = new Rental;
+        $this->rentalModel->categoryName = $categoryName;
+        $this->rentalModel->name = $rentalName;
+        $this->rentalModel->photos[] = $rentalPhotoFilePath;
+
+        $rentalExists = __::filter($rentalModels, function ($rental) {
+            return $rental->name === $this->rentalModel->name;
+        });
+
+        if(!__::isEmpty($rentalExists)){
+            $existingRental = __::first($rentalExists);
+            $existingRental->photos[] = $rentalPhotoFilePath;
+            return false;
+        }
+
+        $rentalModels[] = $this->rentalModel;
+        return $rentalModels;
+    }
 }
