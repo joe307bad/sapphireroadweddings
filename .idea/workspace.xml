@@ -2,143 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77e618b5-23a3-4fab-80c0-b51f1e3a384a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Joseph.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/admin/admin.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/admin/rentals-importer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/models/category.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/models/rental.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/._Alice_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/._Alice_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Alice_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Alice_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Alice_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Anniston_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Anniston_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Bridget_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Bridget_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Catherine_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Catherine_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Catherine_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Chloe_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Chloe_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Chloe_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Delilah_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Delilah_top.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Dexter_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Dexter_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Eloise_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Eloise_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Henry_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Henry_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Henry_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Margot_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Margot_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Margot_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Sable_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Sable_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Sable_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Simon_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Simon_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/01  Upholstered Seating/Simon_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Asher.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Ava_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Ava_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Blanche.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Charlie_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Charlie_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Charlie_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Drew_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Drew_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Drew_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Jefferson_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Jefferson_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Joseph_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Lillian.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Lincoln_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Lincoln_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Lincoln_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Marie_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Marie_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Marie_top.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Mary.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Millie_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/02  Furniture/Millie_back.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/03  Bars/1 Bradley_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/03  Bars/2. Caroline_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/03  Bars/3. Barrel Bar_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/._Dawson_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Cheyenne_corner.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Cheyenne_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Cheyenne_top.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Dawson_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Dawson_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Hadley_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Hadley_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Hayes_no photo.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Hayes_photo.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Hudson font_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Hudson_corner.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Hudson_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Hudson_top.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Phoebe_corner.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Phoebe_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Phoebe_top.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Quinn_corner.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Quinn_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Quinn_top.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Tucker_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/04  Signage/Tucker_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/05  Vessels/01  Vases/Frances.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/05  Vessels/01  Vases/Nora.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/05  Vessels/01  Vases/Sara.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/05  Vessels/02  Crates/Assorted Crates.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/05  Vessels/02  Crates/Dane.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/06  Serving/._Bailey.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/06  Serving/Bailey.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/06  Serving/Carter.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/06  Serving/Leon_detail.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/06  Serving/Leon_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/06  Serving/Sophia_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/06  Serving/Sophia_top.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/06  Serving/Stella.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/07  Architectural Details/Alexander.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/08  Games/Bocce_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/08  Games/Bocce_top.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/08  Games/Giant Jenga_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/08  Games/Giant Jenga_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/08  Games/Herringbone Corn Hole Set.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/08  Games/Ladder Golf_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/08  Games/Ladder Golf_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/08  Games/Plank Corn Hole Set.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/09  Lighting/01  Lights/Samson_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/09  Lighting/01  Lights/Samson_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/09  Lighting/02  Candles/Adela.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/09  Lighting/02  Candles/Daphne.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/09  Lighting/02  Candles/Julia.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/09  Lighting/03  Lanterns/Ann_combo.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/09  Lighting/03  Lanterns/Ann_lrg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/09  Lighting/03  Lanterns/Ann_sm.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/09  Lighting/03  Lanterns/Dean_lrg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/09  Lighting/03  Lanterns/Dean_sm.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/09  Lighting/03  Lanterns/Rue.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/11  Small Detials/Berkshire.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/11  Small Detials/Samantha.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/11  Small Detials/Silas.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/12  Large Details/Box Leaf Greenery.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/12  Large Details/Ellis_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/12  Large Details/Ellis_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/12  Large Details/Ellis_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/12  Large Details/Jacob_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/12  Large Details/Jacob_top.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/12  Large Details/Taylor_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/12  Large Details/Taylor_front.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/12  Large Details/Taylor_side.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/12  Large Details/Vivienne_angle.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals/12  Large Details/Vivienne_front.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php" afterPath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php" afterPath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-parser/rentals-parser.php" afterPath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-parser/rentals-parser.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -165,8 +30,8 @@
       <file leaf-file-name="rentals-parser.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-parser/rentals-parser.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2052">
-              <caret line="97" column="11" lean-forward="false" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
+            <state relative-caret-position="1008">
+              <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="97" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -175,10 +40,10 @@
       <file leaf-file-name="rentals-importer.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="35" column="44" lean-forward="false" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="44" />
+            <state relative-caret-position="1890">
+              <caret line="70" column="1" lean-forward="true" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
               <folding>
-                <marker date="1518379185030" expanded="true" signature="748:902" ph="..." />
+                <marker date="1518391308655" expanded="true" signature="754:908" ph="..." />
               </folding>
             </state>
           </provider>
@@ -188,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/admin/rentals-importer.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="972">
-              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -197,8 +62,31 @@
       <file leaf-file-name="importer.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+            <state relative-caret-position="530">
+              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <folding>
+                <marker date="1518400178278" expanded="true" signature="2093:2193" ph="SELECT ID FR... ${$wpdb-&gt;posts}" />
+                <marker date="1518400178278" expanded="true" signature="4646:4715" ph="SELECT COUNT... $" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="post.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-includes/post.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="2968" column="0" lean-forward="false" selection-start-line="2968" selection-start-column="0" selection-end-line="2968" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="load.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/bottomline/src/__/load.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -207,7 +95,7 @@
       <file leaf-file-name="admin.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/admin/admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
+            <state relative-caret-position="54">
               <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
               <folding />
             </state>
@@ -270,10 +158,10 @@
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-parser/rental.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/models/category.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/models/rental.php" />
-        <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/admin/rentals-importer.js" />
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-parser/rentals-parser.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/admin/admin.php" />
+        <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php" />
       </list>
     </option>
@@ -291,10 +179,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1586" />
+    <option name="x" value="-11" />
     <option name="y" value="-11" />
-    <option name="width" value="1597" />
-    <option name="height" value="2542" />
+    <option name="width" value="2902" />
+    <option name="height" value="1822" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -605,12 +493,12 @@
       <workItem from="1518050227780" duration="478000" />
       <workItem from="1518050726815" duration="3091000" />
       <workItem from="1518053842004" duration="3819000" />
-      <workItem from="1518359918530" duration="20843000" />
+      <workItem from="1518359918530" duration="33827000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56286000" />
+    <option name="totallyTimeSpent" value="69270000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -622,10 +510,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1586" y="-11" width="1597" height="2542" extended-state="6" />
-    <editor active="true" />
+    <frame x="-11" y="-11" width="2902" height="1822" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21993355" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1177936" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3776164" sideWeight="0.5023256" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -634,7 +521,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297736" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3776164" sideWeight="0.4976744" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47378162" sideWeight="0.4976744" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -652,7 +539,19 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="124" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php</url>
+          <line>131</line>
+          <option name="timeStamp" value="144" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php</url>
+          <line>48</line>
+          <option name="timeStamp" value="146" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="147" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="admin.php">
@@ -662,13 +561,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/css/lib/animate.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1237,14 +1129,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/bottomline/src/__/load.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/models/rental.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
@@ -1253,45 +1137,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-parser/rentals-parser.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/admin/admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2052">
-          <caret line="97" column="11" lean-forward="false" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
+        <state relative-caret-position="54">
+          <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="35" column="44" lean-forward="false" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="44" />
-          <folding>
-            <marker date="1518379185030" expanded="true" signature="748:902" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/admin/rentals-importer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/admin/admin.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/bottomline/src/__/load.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        <state relative-caret-position="474">
+          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/post.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="2968" column="0" lean-forward="false" selection-start-line="2968" selection-start-column="0" selection-end-line="2968" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-parser/rentals-parser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1008">
+          <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="97" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="70" column="1" lean-forward="true" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
+          <folding>
+            <marker date="1518391308655" expanded="true" signature="754:908" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="530">
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <marker date="1518400178278" expanded="true" signature="2093:2193" ph="SELECT ID FR... ${$wpdb-&gt;posts}" />
+            <marker date="1518400178278" expanded="true" signature="4646:4715" ph="SELECT COUNT... $" />
+          </folding>
         </state>
       </provider>
     </entry>

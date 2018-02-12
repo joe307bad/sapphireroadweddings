@@ -8,7 +8,7 @@ Version: 1.0
 require_once
     plugin_dir_path(__FILE__) . '/rentals-parser/rentals-parser.php';
 
-class RentalsImporter
+class RentalsImporterPlugin
 {
     public $Name = "Rentals Importer";
     public $MenuTitle = "Rentals Importer";
@@ -65,7 +65,7 @@ if (!defined('WPINC')) {
 function run_rental_importer()
 {
 
-    $ri = new RentalsImporter;
+    $ri = new RentalsImporterPlugin;
     $ri->run();
 
 }
