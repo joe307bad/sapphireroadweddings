@@ -14,6 +14,7 @@ class RentalImporter
     public $rentals;
 
     private $rentalData;
+    private $newPhotoId;
 
     public function __construct($categories, $rentals)
     {
@@ -26,7 +27,9 @@ class RentalImporter
 
         $insertedCategories = get_terms("rental_category", array("hide_empty" => 0));
 
-        if (count($insertedCategories) === 11) {
+        $rentals = $this->rentals;
+
+        if (count($insertedCategories) <= count($this->categories)) {
             foreach ($this->categories as $category) {
                 wp_insert_term(
                     $category,
@@ -36,15 +39,29 @@ class RentalImporter
             $insertedCategories = get_terms("rental_category", array("hide_empty" => 0));
         }
 
-        $this->rentalData = $this->rentals[1];
+        foreach ($rentals as $rental) {
+            $newPostId = $this->insertRental($rental, $insertedCategories);
 
-        $rentalCategoryExists = __::filter($insertedCategories, function ($category) {
+            if ($newPostId > 0 && $rental['photos']) {
+                foreach ($rental['photos'] as $rentalPhotoPath) {
+                    $this->uploadAndAssociateRentalPhoto($newPostId, $rentalPhotoPath);
+                }
+            }
+        }
+
+        echo true;
+    }
+
+    private function insertRental($rental, $categories)
+    {
+        $this->rentalData = $rental; //$this->rentals[1];
+        $newPostId = 0;
+
+        $rentalCategoryExists = __::filter($categories, function ($category) {
             return $category->name === $this->rentalData['categoryName'];
         });
 
         $existingRental = $this->rentalExists($this->rentalData['name']);
-
-        $postMeta = get_post_meta($existingRental[0]->ID);
 
         if (count($existingRental) === 0) {
 
@@ -55,17 +72,54 @@ class RentalImporter
                 'post_content' => '',
                 'post_status' => 'publish',
                 'post_author' => 1,
-                'post_type' => 'rental'
+                'post_type' => 'rentals'
             );
 
-            $id = wp_insert_post($rental);
+            $newPostId = wp_insert_post($rental);
 
-            $rel = wp_set_object_terms($id, array($rentalCategory->term_id), 'rental_category');
+            $addPostToCategory = wp_set_object_terms($newPostId, array($rentalCategory->term_id), 'rental_category');
         }
 
-        $uploadedPhoto = $this->uploadFile($this->rentalData['photos'][0]);
+        return $newPostId;
+    }
 
-        echo "";
+    private function uploadAndAssociateRentalPhoto($postId, $rentalPhotoPath)
+    {
+        $uploadedPhoto = $this->uploadFile($rentalPhotoPath);
+
+        $photoId = $uploadedPhoto["attachment_id"];//"958";
+        $this->newPhotoId = $photoId;
+        $photoName = $uploadedPhoto["fileName"];;
+
+        $encodedAttachments = get_post_meta($postId, 'attachments', true);
+        $attachments = json_decode($encodedAttachments);
+        $attachmentsExist = $attachments->my_attachments !== null;
+        $newAttachments = new stdClass();
+
+        if ($attachmentsExist) {
+            $newAttachments->my_attachments = $attachments->my_attachments;
+        } else {
+            $newAttachments->my_attachments = array();
+        }
+
+        $newPhoto = new stdClass();
+        $newPhoto->id = $photoId;
+        $newPhoto->fields->title = $photoName;
+        $newPhoto->fields->caption = '';
+
+        $newPhotoExists = __::filter($newAttachments->my_attachments, function ($attachment) {
+            return $attachment->id === $this->newPhotoId;
+        });
+
+        if (count($newPhotoExists) === 0) {
+            $newAttachments->my_attachments[] = $newPhoto;
+
+            if ($attachmentsExist) {
+                $updatedMeta = update_post_meta($postId, 'attachments', json_encode($newAttachments));
+            } else {
+                $addMeta = add_post_meta($postId, 'attachments', json_encode($newAttachments));
+            }
+        }
     }
 
     private function rentalExists($title)
@@ -74,7 +128,7 @@ class RentalImporter
         $query = $wpdb->prepare(
             'SELECT ID FROM ' . $wpdb->posts . '
         WHERE post_title = %s
-        AND post_type = \'rental\'',
+        AND post_type = \'rentals\'',
             $title
         );
         //$wpdb->query($query);
@@ -90,9 +144,9 @@ class RentalImporter
         $filename_no_ext = pathinfo($path, PATHINFO_FILENAME);
         $mediaExists = $this->mediaExists($filename_no_ext);
 
-        if($mediaExists){
-            return array('error' => 'File does not exist.');
-        }
+//        if ($mediaExists) {
+//            return array('error' => 'File exists in DB');
+//        }
 
         $extension = pathinfo($path, PATHINFO_EXTENSION);
         // Simulate uploading a file through $_FILES. We need a temporary file for this.
@@ -129,14 +183,15 @@ class RentalImporter
                 wp_update_attachment_metadata($result['attachment_id'], $attach_data);
             }
         }
+        $result['fileName'] = $filename_no_ext;
         return $result;
     }
 
     private function mediaExists($filename)
     {
         global $wpdb;
-        $query = "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_title LIKE '$filename'";
-        return ($wpdb->get_var($query)  > 0) ;
+        $query = "SELECT ID FROM {$wpdb->posts} WHERE post_title LIKE '$filename'";
+        return ($wpdb->get_var($query) > 0);
     }
 }
 

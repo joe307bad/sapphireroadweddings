@@ -20,3 +20,12 @@
  * components immediately.
  */
 require_once( dirname( __FILE__ ) . '/lib/init.php' );
+
+require_once( dirname( __FILE__ ) . '/lib/attachments.php' );
+
+function wpsites_query( $query ) {
+    if ( $query->is_archive() && $query->is_main_query() && !is_admin() ) {
+        $query->set( 'posts_per_page', 100 );
+    }
+}
+add_action( 'pre_get_posts', 'wpsites_query' );
