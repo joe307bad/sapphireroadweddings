@@ -18,26 +18,41 @@ get_header();
 do_action('genesis_before_content_sidebar_wrap');
 
 ?>
-<div><img class="aligncenter wp-image-198 size-full" src="http://sapphireroadweddings.com/wp-content/uploads/2016/04/inventory.jpg" width="1600" height="600" />
-    <img class="aligncenter wp-image-314" src="http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-300x47.jpg" alt="n_inventory" width="598" height="93" srcset="http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-300x47.jpg 300w, http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-768x119.jpg 768w, http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-1024x159.jpg 1024w" sizes="(max-width: 598px) 100vw, 598px">
-    In addition to wedding and event planning services, Sapphire Road offers furniture and decor rentals to complete your wedding, event or photoshoot with personality and style.  From modern loveseats to vintage Victorian sofas, or custom built bars to tabletop decor, our rental inventory can be tailored to any venue or theme and will transform your day into a one-of-a-kind affair.</div>
+<div><img class="aligncenter wp-image-198 size-full"
+          src="http://sapphireroadweddings.com/wp-content/uploads/2016/04/inventory.jpg" width="1600" height="600"/>
+    <img class="aligncenter wp-image-314"
+         src="http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-300x47.jpg" alt="n_inventory"
+         width="598" height="93"
+         srcset="http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-300x47.jpg 300w, http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-768x119.jpg 768w, http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-1024x159.jpg 1024w"
+         sizes="(max-width: 598px) 100vw, 598px">
+    In addition to wedding and event planning services, Sapphire Road offers furniture and decor rentals to complete
+    your wedding, event or photoshoot with personality and style.  From modern loveseats to vintage Victorian sofas,
+    or custom built bars to tabletop decor, our rental inventory can be tailored to any venue or theme and will
+    transform your day into a one-of-a-kind affair.
+</div>
 <div style="text-align: center;"><strong>   </strong></div>
 <div id="rental-container">
-    <?php while (have_posts()) : the_post();
-        $post = get_post();
-        $attachments = get_post_meta($post->ID, 'attachments', true);
-        $firstAttachmentId = $attachments !== null ? json_decode($attachments)->my_attachments[0]->id : 0;
-        ?>
-        <a href="<?php echo get_permalink( $post->ID ); ?>" class='rental hvr-grow'>
-            <div class="thumbnail-container">
-                <img src="<?php echo wp_get_attachment_url($firstAttachmentId); ?>"/>
-            </div>
-            <h3><?php echo $post->post_title; ?></h3>
-        </a>
-    <?php endwhile; ?>
+    <?php
+    $categories = get_terms("rental_category", array("hide_empty" => 0));
+    $taxonomy_images = get_option( 'taxonomy_image_plugin' );
+    if (count($categories) > 0) :
+        foreach ($categories as $category) :// Get the array of Term ID/Image ID pairs
+
+            $attachment_id = $taxonomy_images[$category->term_id]; // Image ID
+            $image = wp_get_attachment_image( $attachment_id );
+            ?>
+            <a href="<?php echo get_term_link($category->term_id); ?>" class='rental hvr-grow'>
+                <div class="thumbnail-container">
+                    <img src="<?php echo $image; ?>" />
+                </div>
+                <h3><?php echo $category->name; ?></h3>
+            </a>
+            <?php
+        endforeach;
+    endif;
+    ?>
 </div>
 <?php
 do_action('genesis_after_content_sidebar_wrap');
 get_footer();
 ?>
-

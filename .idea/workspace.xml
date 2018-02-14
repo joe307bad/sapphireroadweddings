@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77e618b5-23a3-4fab-80c0-b51f1e3a384a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wp-content/themes/genesis/lib/attachments.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wp-content/themes/genesis/taxonomy-rental_category.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php" afterPath="$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php" afterPath="$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/genesis/functions.php" afterPath="$PROJECT_DIR$/wp-content/themes/genesis/functions.php" />
     </list>
@@ -30,13 +29,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="rentals-parser.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rentals-parser.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-parser/rentals-parser.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-208">
-              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="702">
+              <caret line="108" column="1" lean-forward="false" selection-start-line="108" selection-start-column="1" selection-end-line="108" selection-end-column="1" />
               <folding>
+                <element signature="n#__construct#0;n#RentalsParser#0;n#!!top" expanded="false" />
+                <element signature="n#getRentalsInfo#0;n#RentalsParser#0;n#!!top" expanded="false" />
                 <element signature="n#getAllRentalPhotos#0;n#RentalsParser#0;n#!!top" expanded="false" />
+                <element signature="n#getListOfRentalModels#0;n#RentalsParser#0;n#!!top" expanded="false" />
+                <element signature="n#makeRentalModel#0;n#RentalsParser#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -55,8 +58,8 @@
       <file leaf-file-name="rentals-importer.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="648">
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding>
                 <element signature="n#render#0;n#RentalsImporterPlugin#0;n#!!top" expanded="false" />
                 <element signature="n#createAdminPage#0;n#RentalsImporterPlugin#0;n#!!top" expanded="false" />
@@ -72,10 +75,9 @@
       <file leaf-file-name="importer.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="702">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="85" />
               <folding>
-                <element signature="n#run#0;n#RentalImporter#0;n#!!top" expanded="false" />
                 <element signature="n#insertRental#0;n#RentalImporter#0;n#!!top" expanded="false" />
                 <element signature="n#uploadAndAssociateRentalPhoto#0;n#RentalImporter#0;n#!!top" expanded="false" />
                 <element signature="n#rentalExists#0;n#RentalImporter#0;n#!!top" expanded="false" />
@@ -91,8 +93,30 @@
       <file leaf-file-name="archive-rentals.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
+            <state relative-caret-position="367">
+              <caret line="38" column="51" lean-forward="false" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="taxonomy-rental_category.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/taxonomy-rental_category.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="439">
+              <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+              <folding>
+                <element signature="n#style#0;n#h1#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wp-config.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="567">
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -101,8 +125,8 @@
       <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+            <state relative-caret-position="567">
+              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,57 +138,6 @@
             <state relative-caret-position="576">
               <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="init.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/lib/init.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3645">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-includes/post.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="2968" column="0" lean-forward="false" selection-start-line="2968" selection-start-column="0" selection-end-line="2968" selection-end-column="0" />
-              <folding>
-                <marker date="1493692172668" expanded="true" signature="57509:57525" ph="Insert into post... " />
-                <marker date="1493692172668" expanded="true" signature="57535:57551" ph="Insert into page... " />
-                <marker date="1493692172668" expanded="true" signature="83259:83343" ph="SELECT post_... $" />
-                <marker date="1493692172668" expanded="true" signature="85279:85430" ph="SELECT post_... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="85600:85693" ph="SELECT COUNT... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="91421:91461" ph="SELECT * FRO... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="92868:92936" ph="SELECT * FRO... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="93261:93338" ph="SELECT ID FR... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="93790:93855" ph="SELECT comme... ${$wpdb-&gt;comments}" />
-                <marker date="1493692172668" expanded="true" signature="94048:94102" ph="SELECT meta_... ${$wpdb-&gt;postmeta}" />
-                <marker date="1493692172668" expanded="true" signature="98690:98773" ph="SELECT comme... ${$wpdb-&gt;comments}" />
-                <marker date="1493692172668" expanded="true" signature="100695:100778" ph="UPDATE ${$wp... " />
-                <marker date="1493692172668" expanded="true" signature="120641:120682" ph="SELECT ID FR... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="132181:132257" ph="SELECT post_... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="133330:133465" ph="SELECT post_... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="134583:134678" ph="SELECT post_... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="148833:148885" ph="SELECT ID FR... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="151469:151609" ph="SELECT ID, p... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="153426:153524" ph="SELECT ID FR... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="153585:153662" ph="SELECT ID FR... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="165719:165777" ph="SELECT * FRO... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="170187:170227" ph="SELECT * FRO... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="171345:171410" ph="SELECT comme... ${$wpdb-&gt;comments}" />
-                <marker date="1493692172668" expanded="true" signature="171604:171658" ph="SELECT meta_... ${$wpdb-&gt;postmeta}" />
-                <marker date="1493692172668" expanded="true" signature="172229:172348" ph="SELECT meta_... ${$wpdb-&gt;postmeta}" />
-                <marker date="1493692172668" expanded="true" signature="194507:194652" ph="SELECT post_... " />
-                <marker date="1493692172668" expanded="true" signature="194708:194849" ph="SELECT post_... " />
-                <marker date="1493692172668" expanded="true" signature="194945:195139" ph="SELECT DATE_... " />
-                <marker date="1493692172668" expanded="true" signature="205863:205973" ph="SELECT ID FR... ${$wpdb-&gt;posts}" />
-                <marker date="1493692172668" expanded="true" signature="208494:208550" ph="SELECT ${$wp... ${$wpdb-&gt;posts}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -230,9 +203,11 @@
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/admin/admin.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/genesis/lib/attachments.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/genesis/functions.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/genesis/functions.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/genesis/archive-rental_category.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/genesis/taxonomy-rental_category.php" />
       </list>
     </option>
   </component>
@@ -269,6 +244,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -349,32 +326,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="genesis" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sapphireroadsweddings" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sapphireroadsweddings" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="plugins" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -398,91 +349,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="rentals-importer" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sapphireroadsweddings" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sapphireroadsweddings" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rentals-importer" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rentals-parser" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sapphireroadsweddings" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sapphireroadsweddings" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rentals-importer" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sapphireroadsweddings" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sapphireroadsweddings" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rentals-importer" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="importer" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -603,12 +474,13 @@
       <workItem from="1518050227780" duration="478000" />
       <workItem from="1518050726815" duration="3091000" />
       <workItem from="1518053842004" duration="3819000" />
-      <workItem from="1518359918530" duration="44470000" />
+      <workItem from="1518359918530" duration="44534000" />
+      <workItem from="1518563915249" duration="7270000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79913000" />
+    <option name="totallyTimeSpent" value="87247000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -620,19 +492,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="2902" height="1822" extended-state="6" />
+    <frame x="-11" y="-11" width="2902" height="1822" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1177936" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11921708" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3776164" sideWeight="0.5023256" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297736" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36212215" sideWeight="0.4976744" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -653,24 +525,19 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="176" />
+      <option name="time" value="184" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="admin.php">
         <watch expression="$GLOBALS" />
         <watch expression="$rentalModels[0]" />
       </configuration>
+      <configuration name="index.php">
+        <watch expression="$_genesis_formatting_allowedtags" />
+      </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/scripts/app/Rentals.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/header.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
@@ -704,7 +571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1075">
           <caret line="43" column="20" lean-forward="false" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -712,7 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -757,7 +622,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -787,7 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1075">
           <caret line="43" column="20" lean-forward="false" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -802,7 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="24" column="9" lean-forward="true" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -832,7 +694,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1075">
           <caret line="43" column="20" lean-forward="false" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -882,10 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1323">
           <caret line="59" column="17" lean-forward="false" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
-          <folding>
-            <marker date="1493696999780" expanded="true" signature="22290:22299" ph="..." />
-            <marker date="1493696999780" expanded="true" signature="22856:22865" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -909,7 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="25" column="49" lean-forward="false" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -926,7 +782,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3105">
           <caret line="115" column="21" lean-forward="false" selection-start-line="115" selection-start-column="21" selection-end-line="115" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1185,19 +1040,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="891">
-          <caret line="50" column="3" lean-forward="false" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/admin/admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1205,7 +1051,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1217,41 +1062,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/models/category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="48" lean-forward="false" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/lib/init.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3645">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/lib/attachments.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-includes/post.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
+        <state relative-caret-position="80001">
           <caret line="2968" column="0" lean-forward="false" selection-start-line="2968" selection-start-column="0" selection-end-line="2968" selection-end-column="0" />
           <folding>
             <marker date="1493692172668" expanded="true" signature="57509:57525" ph="Insert into post... " />
@@ -1288,14 +1109,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/models/rental.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
@@ -1306,10 +1119,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="702">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="85" />
           <folding>
-            <element signature="n#run#0;n#RentalImporter#0;n#!!top" expanded="false" />
             <element signature="n#insertRental#0;n#RentalImporter#0;n#!!top" expanded="false" />
             <element signature="n#uploadAndAssociateRentalPhoto#0;n#RentalImporter#0;n#!!top" expanded="false" />
             <element signature="n#rentalExists#0;n#RentalImporter#0;n#!!top" expanded="false" />
@@ -1323,8 +1135,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="648">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
             <element signature="n#render#0;n#RentalsImporterPlugin#0;n#!!top" expanded="false" />
             <element signature="n#createAdminPage#0;n#RentalsImporterPlugin#0;n#!!top" expanded="false" />
@@ -1336,12 +1148,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/models/category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="48" lean-forward="false" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-parser/rentals-parser.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-208">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="702">
+          <caret line="108" column="1" lean-forward="false" selection-start-line="108" selection-start-column="1" selection-end-line="108" selection-end-column="1" />
           <folding>
+            <element signature="n#__construct#0;n#RentalsParser#0;n#!!top" expanded="false" />
+            <element signature="n#getRentalsInfo#0;n#RentalsParser#0;n#!!top" expanded="false" />
             <element signature="n#getAllRentalPhotos#0;n#RentalsParser#0;n#!!top" expanded="false" />
+            <element signature="n#getListOfRentalModels#0;n#RentalsParser#0;n#!!top" expanded="false" />
+            <element signature="n#makeRentalModel#0;n#RentalsParser#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/lib/attachments.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="38" column="51" lean-forward="false" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/taxonomy-rental_category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

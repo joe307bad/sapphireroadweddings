@@ -29,3 +29,4 @@ function wpsites_query( $query ) {
     }
 }
 add_action( 'pre_get_posts', 'wpsites_query' );
+apply_filters( 'taxonomy-images-get-terms', '' );
