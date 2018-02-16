@@ -25,7 +25,7 @@ require_once(dirname(__FILE__).'/../boot.php');
         <div class="modal-footer">
             <button type="button" data-dismiss="modal" id="sgDontAskAgain" class="btn sg-btn-grey"><?php echo _backupGuardT('Don\'t ask again')?></button>
             <button type="button" data-dismiss="modal" id="sgAskLater" class="btn sg-btn-grey"><?php echo _backupGuardT('Ask me later')?></button>
-            <button type="button" data-dismiss="modal" id="sgLeaveReview" class="btn btn-success" data-review-url="<?php echo SG_REVIEW_URL; ?>"><?php echo _backupGuardT('Leave a review')?></button>
+            <button type="button" data-dismiss="modal" id="sgLeaveReview" class="btn btn-success" data-review-url="<?php echo SG_BACKUP_GUARD_REVIEW_URL; ?>"><?php echo _backupGuardT('Leave a review')?></button>
         </div>
     </div>
 </div>

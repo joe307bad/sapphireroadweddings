@@ -11,7 +11,6 @@ jQuery(document).on('change', '.btn-file :file', function() {
 
 jQuery(document).ready( function() {
     sgBackup.initTablePagination();
-    sgBackup.initRestore();
     sgBackup.initActiveAction();
     sgBackup.initBackupDeletion();
     sgBackup.toggleMultiDeleteButton();
@@ -122,6 +121,11 @@ sgBackup.manualBackup = function(){
         if(typeof response.success === 'undefined') {
             var sgAlert = sgBackup.alertGenerator(response, 'alert-danger');
             jQuery('#sg-modal .modal-header').prepend(sgAlert);
+
+            if (response === 0 || response === false || response === '0' || response === 'false') {
+                response = "Something went wrong. Please try again.";
+            }
+
             alert(response);
             location.reload();
             return false;
@@ -132,10 +136,7 @@ sgBackup.manualBackup = function(){
     resetStatusHandler.run();
 };
 
-sgBackup.cancelDonwload = function() {
-    var target = jQuery('input[name="select-archive-to-download"]:checked');
-    var name = target.attr('file-name');
-
+sgBackup.cancelDonwload = function(name) {
     var cancelDonwloadHandler = new sgRequestHandler('cancelDownload', {name: name});
     cancelDonwloadHandler.callback = function(response){
         sgBackup.hideAjaxSpinner();
@@ -156,10 +157,11 @@ sgBackup.listStorage = function(importFrom){
                 e.preventDefault();
                 return false;
             }
+            var target = jQuery('input[name="select-archive-to-download"]:checked');
+            var name = target.attr('file-name');
 
-            sgBackup.cancelDonwload();
+            sgBackup.cancelDonwload(name);
         }
-
     });
 
     listStorage.callback = function(response, error) {
@@ -194,25 +196,10 @@ sgBackup.convertBytesToMegabytes = function ($bytes) {
 
 //Init file upload
 sgBackup.initFileUpload = function(){
-    var isFileSelected = false;
-    jQuery('.btn-file :file').off('fileselect').on('fileselect', function(event, numFiles, label){
-        var input = jQuery(this).parents('.input-group').find(':text'),
-            log = numFiles > 1 ? numFiles + ' files selected' : label;
-
-        if (input.length) {
-            input.val(log);
-            isFileSelected = true;
-        }
-        else {
-            if(log) alert(log);
-        }
-    });
+    sgBackup.downloadFromPC();
 
     jQuery('#uploadSgbpFile').click(function(){
-        if(jQuery('#modal-import-2').is(":visible")){
-            sgBackup.downloadFromPC(this, isFileSelected);
-        }
-        else{
+        if(jQuery('#modal-import-3').is(":visible")) {
             var target = jQuery('input[name="select-archive-to-download"]:checked');
             var path = target.val();
             var name = target.attr('file-name');
@@ -236,7 +223,18 @@ sgBackup.nextPage = function(){
             sgBackup.toggleDownloadFromPCPage();
         }
         else {
-            sgBackup.listStorage(importFrom);
+            var isFeatureAvailable = new sgRequestHandler('isFeatureAvailable', {sgFeature: "DOWNLOAD_FROM_CLOUD"});
+            isFeatureAvailable.callback = function(response) {
+                if (typeof response.success !== 'undefined') {
+                    sgBackup.listStorage(importFrom);
+                }
+                else {
+                    var alert = sgBackup.alertGenerator(response.error, 'alert-danger');
+                    jQuery('#sg-modal .modal-header').prepend(alert);
+                }
+            }
+
+            isFeatureAvailable.run();
         }
     }
 }
@@ -316,55 +314,46 @@ sgBackup.downloadFromCloud = function (path, name, storage, size) {
     sgBackup.fileDownloadProgress(name, size);
 }
 
-sgBackup.downloadFromPC =  function(target, isFileSelected){
-    jQuery('.alert').remove();
-    if(!isFileSelected){
-        var alert = sgBackup.alertGenerator('Please select a file.', 'alert-danger');
-        jQuery('#sg-modal .modal-header').prepend(alert);
-        return false;
-    }
-
-    var sguploadFile = new FormData(),
-    url = jQuery(target).attr('data-remote'),
-    sgAllowedFileSize = jQuery('.sg-backup-upload-input').attr('data-max-file-size'),
-    sgFile = jQuery('input[name=sgbpFile]')[0].files[0];
-    sguploadFile.append('sgbpFile', sgFile);
-    if(sgFile.size > sgAllowedFileSize){
-        var alert = sgBackup.alertGenerator('File is too large.', 'alert-danger');
-        jQuery('#sg-modal .modal-header').prepend(alert);
-        return false;
-    }
-    jQuery('#uploadSgbpFile').attr('disabled','disabled');
-    jQuery('#uploadSgbpFile').html('Importing please wait...');
-
-    var ajaxHandler = new sgRequestHandler(url, sguploadFile, {
-        contentType: false,
-        cache: false,
-        xhr: function() {  // Custom XMLHttpRequest
-            var myXhr = jQuery.ajaxSettings.xhr();
-            if(myXhr.upload){ // Check if upload property exists
-                myXhr.upload.addEventListener('progress',sgBackup.fileUploadProgress, false); // For handling the progress of the upload
+sgBackup.downloadFromPC =  function(){
+    var sgData = null;
+    jQuery('#sg-modal').off('hide.bs.modal').on('hide.bs.modal', function(e){
+        if (SG_ACTIVE_DOWNLOAD_AJAX) {
+            if (!confirm('Are you sure you want to cancel import?')) {
+                e.preventDefault();
+                return false;
             }
-            return myXhr;
-        },
-        processData: false
+
+            sgData.abort();
+            sgBackup.cancelDonwload(sgData.files[0].name);
+        }
     });
 
-    ajaxHandler.callback = function(response, error){
-        jQuery('.alert').remove();
-        if(typeof response.success !== 'undefined'){
+    jQuery('.sg-backup-upload-input').fileupload({
+        dataType: 'json',
+        maxChunkSize: 2000000,
+        add: function (e, data) {
+            jQuery('#uploadSgbpFile').click(function(){
+                if(jQuery('#modal-import-2').is(":visible")) {
+                    sgData = data;
+                    SG_ACTIVE_DOWNLOAD_AJAX = true;
+                    jQuery('#uploadSgbpFile').attr('disabled','disabled');
+                    jQuery('#switch-modal-import-pages-back').hide();
+                    jQuery('#uploadSgbpFile').html('Importing please wait...');
+                    data.submit();
+                }
+            });
+        },
+        done: function (e, data) {
             location.reload();
+        },
+        progress: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            jQuery('#uploadSgbpFile').html('Importing ('+ Math.round(progress)+'%)');
         }
-        else{
-            //if error
-            var alert = sgBackup.alertGenerator(response, 'alert-danger');
-            jQuery('#sg-modal .modal-header').prepend(alert);
-
-            jQuery('#uploadSgbpFile').removeAttr('disabled');
-            jQuery('#uploadSgbpFile').html('Import');
-        }
-    };
-    SG_CURRENT_ACTIVE_AJAX = ajaxHandler.run();
+    }).on('fileuploadfail', function (e, data) {
+        var alert = sgBackup.alertGenerator('File upload failed.', 'alert-danger');
+        jQuery('#sg-modal .modal-header').prepend(alert);
+    });
 }
 
 sgBackup.fileDownloadProgress = function(file, size){
@@ -415,42 +404,105 @@ sgBackup.initManulBackupRadioInputs = function(){
     jQuery('input[type=radio][name=backupType]').off('change').on('change', function(){
         jQuery('.sg-custom-backup').fadeToggle();
     });
-    jQuery('input[type=checkbox][name=backupFiles], input[type=checkbox][name=backupCloud]').off('change').on('change', function(){
+	jQuery('input[type=radio][name=restoreType]').off('change').on('change', function(){
+		if(jQuery('input[type=radio][name=restoreType]:checked').val() == "files"){
+		    jQuery('.sg-restore-files-options').fadeIn();
+        }else{
+			jQuery('.sg-restore-files-options').fadeOut();
+        }
+	});
+
+	jQuery('input[type=radio][name=restoreFilesType]').off('change').on('change', function(){
+		jQuery('.sg-file-selective-restore').fadeToggle();
+	});
+
+    jQuery('input[type=checkbox][name=backupFiles], input[type=checkbox][name=backupDatabase], input[type=checkbox][name=backupCloud]').off('change').on('change', function(){
         var sgCheckBoxWrapper = jQuery(this).closest('.checkbox').find('.sg-checkbox');
         sgCheckBoxWrapper.fadeToggle();
         if(jQuery(this).attr('name') == 'backupFiles') {
             sgCheckBoxWrapper.find('input[type=checkbox]').attr('checked', 'checked');
         }
     });
+    jQuery('input[type=radio][name=backupDBType]').off('change').on('change',function(){
+		var sgCheckBoxWrapper = jQuery(this).closest('.checkbox').find('.sg-custom-backup-tables');
+		if(jQuery('input[type=radio][name=backupDBType]:checked').val() == '2'){
+			sgCheckBoxWrapper.find('input[type=checkbox]').not("[disabled]").prop('checked', true)
+			sgCheckBoxWrapper.fadeIn();
+        }else{
+			sgCheckBoxWrapper.fadeOut();
+			sgCheckBoxWrapper.find('input[type=checkbox][current="true"]').not("[disabled]").prop('checked', true)
+			sgCheckBoxWrapper.find('input[type=checkbox][current="false"]').prop('checked', false)
+        }
+    })
+};
+
+sgBackup.initImportTooltips = function () {
+    jQuery('a[data-toggle=tooltip]').tooltip();
 };
 
 sgBackup.initManualBackupTooltips = function(){
     jQuery('[for=cloud-ftp]').tooltip();
     jQuery('[for=cloud-dropbox]').tooltip();
     jQuery('[for=cloud-gdrive]').tooltip();
+    jQuery('[for=cloud-one-drive]').tooltip();
     jQuery('[for=cloud-amazon]').tooltip();
+
+    jQuery('a[data-toggle=tooltip]').tooltip();
 };
 
-sgBackup.initRestore = function(){
-    jQuery('.sg-restore').click(function(){
-        var bname = jQuery(this).attr('data-restore-name');
-        if (confirm('Are you sure?')){
-            sgBackup.showAjaxSpinner('#sg-content-wrapper');
-            var resetStatusHandler = new sgRequestHandler('resetStatus');
-            resetStatusHandler.callback = function(response) {
-                //If error
-                if(typeof response.success === 'undefined') {
-                    alert(response);
-                    location.reload();
-                    return false;
-                }
-                var restoreHandler = new sgRequestHandler('restore',{bname: bname});
-                restoreHandler.run();
-                sgBackup.checkRestoreCreation();
-            };
-            resetStatusHandler.run();
+sgBackup.startRestore = function(bname) {
+
+	jQuery('.alert').remove();
+	var type = jQuery('input[type=radio][name=restoreType]:checked').val();
+	var restoreFilesType = jQuery('input[type=radio][name=restoreFilesType]:checked').val() || "0";
+    var paths = restoreFilesType == "0"? "/" : jQuery("#fileSystemTreeContainer").jstree("get_selected");
+	var checkPHPVersionCompatibility = new sgRequestHandler('checkPHPVersionCompatibility',{bname: bname});
+
+	checkPHPVersionCompatibility.callback = function(response) {
+		if (typeof response.error != 'undefined') {
+			alert(response.error);
+			return false;
+		}
+		else if (typeof response.warning != 'undefined') {
+			if (!confirm(response.warning)) {
+				return false;
+			}
+		}
+
+		sgBackup.showAjaxSpinner('#sg-content-wrapper');
+		var resetStatusHandler = new sgRequestHandler('resetStatus');
+		resetStatusHandler.callback = function(response) {
+			//If error
+			if(typeof response.success === 'undefined') {
+				alert(response);
+				location.reload();
+				return false;
+			}
+			var restoreHandler = new sgRequestHandler('restore',{bname: bname, type:type, paths:paths});
+			restoreHandler.run();
+			sgBackup.checkRestoreCreation();
+		};
+		resetStatusHandler.run();
+	};
+
+    if (type == "files" && restoreFilesType == 1) {
+        var isFeatureAvailable = new sgRequestHandler('isFeatureAvailable', {sgFeature: "SLECTIVE_RESTORE"});
+        isFeatureAvailable.callback = function (response) {
+            if (typeof response.success != 'undefined') {
+                checkPHPVersionCompatibility.run();
+            }
+            else {
+                var alert = sgBackup.alertGenerator(response.error, 'alert-warning');
+                jQuery('#sg-modal .modal-header').prepend(alert);
+                return false;
+            }
         }
-    });
+
+        isFeatureAvailable.run();
+    }
+    else {
+        checkPHPVersionCompatibility.run();
+    }
 };
 
 sgBackup.initActiveAction = function(){

@@ -6,11 +6,32 @@ SG_NOTICE_MIGRATION_ERROR = 'migration_error';
 SG_NOTICE_NOT_WRITABLE_ERROR = 'restore_notwritable_error';
 
 jQuery(window).load(function() {
-	sgBackup.showReviewModal();
+	if (jQuery('.sg-active-action-id').length == 0) {
+		sgBackup.showReviewModal();
+	}
 });
 
 jQuery(document).ready( function() {
+	jQuery('span[data-toggle=tooltip]').tooltip();
+
 	sgBackup.init();
+
+	jQuery('.sg-badge-warning').on('click', function () {
+		var url = jQuery(this).attr('target-url');
+		if (url) {
+			window.open(url, '_blank');
+		}
+	});
+
+	jQuery("#rateYo").rateYo({
+        rating: 5,
+        fullStar: true,
+        spacing: "3px",
+        starWidth: "16px",
+        starHeight: "16px",
+        rating: 4.5
+    });
+
 	if (typeof SG_AJAX_REQUEST_FREQUENCY === 'undefined'){
 		SG_AJAX_REQUEST_FREQUENCY = 2000;
 	}
@@ -50,6 +71,7 @@ sgBackup.init = function(){
 
 //SG Modal popup logic
 sgBackup.initModals = function(){
+
 	jQuery('[data-toggle="modal"][href], [data-toggle="modal"][data-remote]').off('click').on('click', function(e) {
 		var param = '';
 		if (typeof jQuery(this).attr('data-sgbp-params') !== 'undefined'){
@@ -94,9 +116,33 @@ sgBackup.initModals = function(){
 			modal.one('hidden.bs.modal', function() {
 				modal.html('');
 			}).modal('show');
-			sgBackup.didOpenModal(modalName);
+			sgBackup.didOpenModal(modalName, param);
 		};
-		ajaxHandler.run();
+
+		if (modalName == 'ftp-settings' || modalName == 'amazon-settings') {
+			var storage = 'FTP';
+			if (modalName == 'amazon-settings') {
+				storage = 'AMAZON';
+			}
+			error = false;
+			var isFeatureAvailable = new sgRequestHandler('isFeatureAvailable', {sgFeature: storage});
+			isFeatureAvailable.callback = function(response) {
+				if (typeof response.error !== 'undefined') {
+					var alert = sgBackup.alertGenerator(response.error, 'alert-warning');
+					jQuery('.sg-cloud-container legend').after(alert);
+					that.bootstrapSwitch('state', false);
+					sgBackup.hideAjaxSpinner();
+				}
+				else {
+					ajaxHandler.run();
+				}
+			}
+
+			isFeatureAvailable.run();
+		}
+		else {
+			ajaxHandler.run();
+		}
 	});
 };
 
@@ -126,12 +172,41 @@ sgBackup.toggleNeededFtpFields = function(connectioType) {
 	}
 }
 
-sgBackup.didOpenModal = function(modalName){
-	if(modalName == 'manual-backup'){
+sgBackup.didOpenModal = function(modalName, param){
+	if(modalName == 'manual-backup' || modalName == 'manual-restore'){
 		sgBackup.initManulBackupRadioInputs();
 		sgBackup.initManualBackupTooltips();
+		jQuery('#fileSystemTreeContainer').jstree({ 'core' : {
+
+			'data' : {
+				'url' : function (node) {
+					return getAjaxUrl();
+				},
+				'data' : function (node) {
+					var path = node.id;
+					return { action:"backup_guard_getBackupContent", path:path, backupName:param };
+				}
+			}
+		},
+			"plugins" : ["wholerow", "checkbox", "types"],
+			"checkbox" : {
+				"keep_selected_style" : false
+			},
+			"types": {
+				"file": {
+					"icon": "bg-file-icon"
+				},
+				"folder": {
+					"icon": "bg-folder-icon"
+				},
+				"default":{
+					"icon": "bg-no-icon"
+				}
+			}
+		});
 	}
 	else if(modalName == 'import'){
+		sgBackup.initImportTooltips();
 		jQuery('#modal-import-2').hide();
 		jQuery('#modal-import-3').hide();
 		jQuery('#switch-modal-import-pages-back').hide();
@@ -159,43 +234,29 @@ sgBackup.didOpenModal = function(modalName){
 			}
 		})
 
-		var custom_uploader;
-		jQuery('#sg-choose-key-file').click(function(e) {
-			e.preventDefault();
-
-			/* If the uploader object has already been created, reopen the dialog */
-			if (custom_uploader) {
-				custom_uploader.open();
-				return;
-			}
-			/* Extend the wp.media object */
-			custom_uploader = wp.media.frames.file_frame = wp.media({
-				titleFF: 'Browse',
-				button: {
-					text: 'Browse'
-				},
-				multiple: false
-			});
-			/* When a file is selected, grab the URL and set it as the text field's value */
-			custom_uploader.on('select', function() {
-				attachment = custom_uploader.state().get('selection').first().toJSON();
-				jQuery("#sg-key-file").val(attachment.url);
-			});
-			/* Open the uploader dialog */
-			custom_uploader.open();
-		});
+		sgBackup.initSFTPKeyFileSelection();
 
 		jQuery('#sg-modal').on('hidden.bs.modal', function () {
 			if(sgBackup.isFtpConnected != true) {
-				jQuery('input[data-storage=ftp]').bootstrapSwitch('state', false);
+				jQuery('input[data-storage=FTP]').bootstrapSwitch('state', false);
 			}
 		})
 	}
 	else if(modalName == 'amazon-settings') {
 		jQuery('#sg-modal').on('hidden.bs.modal', function () {
 			if(sgBackup.isAmazonConnected != true) {
-				jQuery('input[data-storage=amazon]').bootstrapSwitch('state', false);
+				jQuery('input[data-storage=AMAZON]').bootstrapSwitch('state', false);
 			}
+		});
+		jQuery("#bucketType").on("change", function(){
+			jQuery("#bucketType option").each(function()
+			{
+				var name = jQuery(this).val();
+				jQuery(".form-group-"+name).css("display","none");
+				// Add $(this).val() to your list
+			});
+			var selected = jQuery("#bucketType").val();
+			jQuery(".form-group-"+selected).css("display","block");
 		})
 	}
 	else if(modalName == 'manual-review'){
@@ -387,3 +448,12 @@ sgBackup.initTablePagination = function(){
 	};
 	jQuery('table.paginated').sgTablePagination({pagerSelector:'.pagination',showPrevNext:true,hidePageNumbers:false,perPage:7});
 };
+
+sgBackup.logout = function()
+{
+	var ajaxHandler = new sgRequestHandler('logout', {});
+	ajaxHandler.callback = function(response){
+		location.reload();
+	};
+	ajaxHandler.run();
+}

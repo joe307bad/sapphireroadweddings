@@ -14,10 +14,21 @@ class SGFileState extends SGState
 	private $numberOfEntries = 0;
 
 	private $progressCursor = 0;
+	private $cdrCursor = 0;
 
 	function __construct()
 	{
 		$this->type = SG_STATE_TYPE_FILE;
+	}
+
+	public function setCdrCursor($cdrCursor)
+	{
+		$this->cdrCursor = $cdrCursor;
+	}
+
+	public function getCdrCursor()
+	{
+		return $this->cdrCursor;
 	}
 
 	public function getProgressCursor()
@@ -131,6 +142,9 @@ class SGFileState extends SGState
 		$this->rangeCursor = $stateJson['rangeCursor'];
 		$this->fileOffsetInArchive = $stateJson['fileOffsetInArchive'];
 		$this->progressCursor = $stateJson['progressCursor'];
+		$this->cdrCursor = $stateJson['cdrCursor'];
+		$this->restoreMode = $stateJson['restoreMode'];
+		$this->restoreFiles = $stateJson['restoreFiles'];
 
 		return $this;
 	}
@@ -158,7 +172,10 @@ class SGFileState extends SGState
 			'cursor' => $this->cursor,
 			'rangeCursor' => $this->rangeCursor,
 			'fileOffsetInArchive' => $this->fileOffsetInArchive,
-			'progressCursor' => $this->progressCursor
+			'progressCursor' => $this->progressCursor,
+			'cdrCursor' => $this->cdrCursor,
+			'restoreMode' => $this->restoreMode,
+			'restoreFiles' => $this->restoreFiles
 		)));
 	}
 }

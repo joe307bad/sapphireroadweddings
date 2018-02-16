@@ -32,7 +32,8 @@ class SGExternalRestoreWordpress extends SGExternalRestore
 			'DB_USER' => DB_USER,
 			'DB_PASSWORD' => DB_PASSWORD,
 			'DB_HOST' => DB_HOST,
-			'DB_CHARSET' => DB_CHARSET
+			'DB_CHARSET' => DB_CHARSET,
+			'DB_COLLATE' => DB_COLLATE
 		);
 	}
 
@@ -50,11 +51,24 @@ class SGExternalRestoreWordpress extends SGExternalRestore
 	{
 		$path .= 'bg_test.php';
 		$url .= 'bg_test.php';
+
 		if (@file_put_contents($path, '<?php echo "ok"; ?>')) {
-			$headers = @get_headers($url);
-			if (!empty($headers) && strpos($headers[0], '200')!==false) {
+			$headers = @wp_remote_get($url, array(
+				'sslverify'   => false
+			));
+			if (!empty($headers) && $headers['response']['code'] == '200') {
 				@unlink($path);
 				return true;
+			}
+			else {
+				$headers = @wp_remote_get($url, array(
+					'sslverify'   => false,
+					'stream'	  => true
+				));
+				if (!empty($headers) && $headers['response']['code'] == '200') {
+					@unlink($path);
+					return true;
+				}
 			}
 			@unlink($path);
 		}

@@ -69,7 +69,7 @@ class NF_Abstracts_ModelFactory
 
         $form_cache = get_option( 'nf_form_' . $id, false );
 
-        if( $form_cache ){
+        if( $form_cache && isset ( $form_cache[ 'settings' ] ) ){
             $this->_object->update_settings( $form_cache[ 'settings' ] );
         }
 
@@ -124,15 +124,28 @@ class NF_Abstracts_ModelFactory
      * A wrapper for the Form Model import method.
      *
      * @param $import
+     * @param $decode_utf8
+     * @param $id
+     * @param $is_conversion
      */
-    public function import_form( $import, $id = FALSE, $is_conversion = FALSE )
+    public function import_form( $import, $decode_utf8 = TRUE, $id = FALSE,
+		$is_conversion = FALSE )
     {
+        
         if( ! is_array( $import ) ){
-
-            $data = WPN_Helper::utf8_decode( json_decode( html_entity_decode( $import ), true ) );
+			// Check to see if user turned off UTF-8 encoding
+        	if( $decode_utf8 ) {
+		        $data = WPN_Helper::utf8_decode( json_decode( WPN_Helper::json_cleanup( html_entity_decode( $import ) ), true ) );
+	        } else {
+		        $data = json_decode( WPN_Helper::json_cleanup( html_entity_decode( $import ) ), true );
+	        }
 
             if( ! is_array( $data ) ) {
-                $data = WPN_Helper::utf8_decode( json_decode(  $import , true ) );
+	            if( $decode_utf8 ) {
+		            $data = WPN_Helper::utf8_decode( json_decode( WPN_Helper::json_cleanup( $import ), true ) );
+	            } else {
+		            $data = json_decode( WPN_Helper::json_cleanup( $import ), true );
+	            }
             }
 
             if( ! is_array( $data ) ){

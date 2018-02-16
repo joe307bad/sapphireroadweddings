@@ -581,12 +581,13 @@ class SGMysqldump
             $stmt .= " WHERE {$this->dumpSettings['where']}";
         }
 
-        $limit = SG_BACKUP_DATABASE_INSERT_LIMIT;
+        $limit = SGConfig::get('SG_BACKUP_DATABASE_INSERT_LIMIT')?SGConfig::get('SG_BACKUP_DATABASE_INSERT_LIMIT'):SG_BACKUP_DATABASE_INSERT_LIMIT;
 
         while (true) {
             $st = $this->dbHandler->exec($stmt.' LIMIT '.$offset.','.$limit);
 
             $row = $this->dbHandler->fetch($st);
+
             $this->inprogress = true;
             if (!$row) {
                 $this->inprogress = false;

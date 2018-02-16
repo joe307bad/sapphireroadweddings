@@ -6,9 +6,9 @@ if (@$_GET['k'] != BG_RESTORE_KEY) {
 	die('Invalid key');
 }
 
-define('WP_CONTENT_DIR', ABSPATH.'wp-content');
+// define('WP_CONTENT_DIR', ABSPATH.'wp-content');
 define('WP_PLUGIN_DIR', WP_CONTENT_DIR.'/plugins');
-define('SG_APP_ROOT_DIRECTORY', ABSPATH);
+define('SG_APP_ROOT_DIRECTORY', dirname(WP_CONTENT_DIR)."/");
 define('SG_ENV_WORDPRESS', 'Wordpress');
 define('SG_ENV_ADAPTER', SG_ENV_WORDPRESS);
 define('SG_DB_ADAPTER', SG_ENV_ADAPTER);
@@ -44,27 +44,6 @@ if ($action == 'finalize') { //finalize action needs WordPress functions to work
 		activate_plugin($freePluginFile);
 	}
 }
-else {
-	//require anything we need for only wpdb to run
-	require_once(ABSPATH.'wp-includes/plugin.php');
-	require_once(ABSPATH.'wp-includes/class-wp-error.php');
-
-	//starting from WordPress 4.7.1 is_wp_error() has been moved to another location
-	//wpdb needs it, so we create it here
-	if (!function_exists('is_wp_error')) {
-		function is_wp_error($thing) {
-			return ($thing instanceof WP_Error);
-		}
-	}
-
-	require_once(ABSPATH.'wp-includes/wp-db.php');
-	global $wpdb;
-	$wpdb = new wpdb(DB_USER, DB_PASSWORD, DB_NAME, DB_HOST);
-	$wpdb->db_connect();
-}
-
-//the mysql version is needed for the charset handler
-define('SG_MYSQL_VERSION', $wpdb->db_version());
 
 $dbCharset = 'utf8';
 if (@constant("DB_CHARSET")) {
@@ -124,9 +103,9 @@ if ($action == 'finalize') {
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="<?=SG_PUBLIC_URL?>css/spinner.css">
-	<link rel="stylesheet" type="text/css" href="<?=SG_PUBLIC_URL?>css/bgstyle.less.css">
-	<link rel="stylesheet" type="text/css" href="<?=SG_PUBLIC_URL?>css/main.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo SG_PUBLIC_URL; ?>css/spinner.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo SG_PUBLIC_URL; ?>css/bgstyle.less.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo SG_PUBLIC_URL; ?>css/main.css">
 	<style>
 	body {
 		background-color: #fff;
@@ -161,7 +140,7 @@ if ($action == 'finalize') {
 		<div class="sg-wrapper">
 			<div class="sg-box-center">
 				<div class="sg-logo">
-					<img width="172px" src="<?=SG_PUBLIC_URL?>img/sglogo.png">
+					<img width="172px" src="<?php echo SG_PUBLIC_URL; ?>img/sglogo.png">
 				</div>
 				<div class="sg-progress-box">
 					<p>Restoring <span id="progressItem">files</span>: <span id="progressTxt">0%</span></p>
@@ -206,7 +185,7 @@ if ($action == 'finalize') {
 	function awake() {
 		if (awakeRunning) return;
 		awakeRunning = true;
-		bgRunAjax("<?=BG_RESTORE_URL?>&action=awake", function() {
+		bgRunAjax("<?php echo BG_RESTORE_URL; ?>&action=awake", function() {
 			awakeRunning = false;
 		}, "");
 	}
@@ -215,15 +194,15 @@ if ($action == 'finalize') {
 	function getAction() {
 		if (getActionRunning) return;
 		getActionRunning = true;
-		bgRunAjax("<?=BG_RESTORE_URL?>&action=getAction", function(response) {
+		bgRunAjax("<?php echo BG_RESTORE_URL; ?>&action=getAction", function(response) {
 			try {
 				var response = eval('('+response.responseText+')');
 				if (response === 1) {
 					clearInterval(getActionTimer);
 					clearInterval(awakeTimer);
-					bgRunAjax("<?=BG_RESTORE_URL?>&action=finalize", function(response) {
+					bgRunAjax("<?php echo BG_RESTORE_URL; ?>&action=finalize", function(response) {
 						bgUpdateProgress(100);
-						location.href = '<?=BG_PLUGIN_URL?>';
+						location.href = '<?php echo BG_PLUGIN_URL; ?>';
 					}, "");
 					return;
 				}
@@ -231,12 +210,12 @@ if ($action == 'finalize') {
 					clearInterval(getActionTimer);
 					clearInterval(awakeTimer);
 					bgUpdateProgress(100);
-					location.href = '<?=BG_PLUGIN_URL?>';
+					location.href = '<?php echo BG_PLUGIN_URL; ?>';
 					return;
 				}
 				else if (typeof response === 'object') {
 					bgUpdateProgress(response.progress);
-					if (response.status==<?=SG_ACTION_STATUS_IN_PROGRESS_FILES?>) {
+					if (response.status==<?php echo SG_ACTION_STATUS_IN_PROGRESS_FILES; ?>) {
 						progressItem.innerHTML = 'files';
 					}
 					else {

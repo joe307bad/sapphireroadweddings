@@ -10,7 +10,10 @@
 }
 .centered-text {
     display: table-cell !important;
-    vertical-align: middle !important;    
+    vertical-align: middle !important;
+}
+.centered-text p, .wcp-caption-image {
+    margin: 0;
 }
 .wcp-caption-plugin .image-caption-box img {  
     position: relative;
@@ -23,12 +26,16 @@
     vertical-align: -webkit-baseline-middle;
     display: block;
 } 
-
+.wcp-caption-image {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
 .wcp-caption-plugin .image-caption-box .caption {  
     background-color: rgba(0,0,0,0.5);  
     position: absolute;  
     color: #fff;  
-    z-index: 100;  
+    z-index: 2;
     -webkit-transition: all 1s ease-out;  
     -moz-transition: all 1s ease-out;  
     -o-transition: all 1s ease-out;  

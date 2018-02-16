@@ -2,7 +2,7 @@
 
 final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 {
-    public $page_title = 'Forms';
+    public $page_title = 'Ninja Forms';
 
     public $menu_slug = 'ninja-forms';
 
@@ -18,11 +18,23 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             add_action('current_screen', array($this, 'admin_init'));
             add_action( 'current_screen', array( 'NF_Admin_AllFormsTable', 'process_bulk_action' ) );
         }
+
+        add_action( 'admin_body_class', array( $this, 'body_class' ) );
+    }
+
+    public function body_class( $classes )
+    {
+        // Add class for the builder.
+        if( isset( $_GET['page'] ) && isset( $_GET[ 'form_id' ] ) && $_GET['page'] == $this->menu_slug ) {
+            $classes = "$classes ninja-forms-app";
+        }
+
+        return $classes;
     }
 
     public function get_page_title()
     {
-        return __( 'Forms', 'ninja-forms' );
+        return __( 'Ninja Forms', 'ninja-forms' );
     }
 
     public function admin_init()
@@ -34,13 +46,22 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             return false;
         }
 
+        /*
+         * Database Table Check
+         * If the nf3_ database tables do not exist, then re-run activation.
+         */
+        if ( ! ninja_forms_three_table_exists() ) {
+            Ninja_Forms()->activation();
+        }
+
         if( isset( $_GET[ 'form_id' ] ) && ! is_numeric( $_GET[ 'form_id' ] ) && 'new' != $_GET[ 'form_id' ] ) {
             if( current_user_can( apply_filters( 'ninja_forms_admin_import_template_capabilities', 'manage_options' ) ) ) {
                 $this->import_from_template();
             }
         }
 
-        $this->table = new NF_Admin_AllFormsTable();
+        /* DISABLE OLD FORMS TABLE IN FAVOR OF NEW DASHBOARD */
+//        $this->table = new NF_Admin_AllFormsTable();
     }
 
     public function display()
@@ -79,15 +100,41 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
             /*
              * ALL FORMS TABLE
+             * - DISABLE IN FAVOR OF NEW DASHBOARD.
              */
 
-            $this->table->prepare_items();
+//            $this->table->prepare_items();
+//
+//            Ninja_Forms::template( 'admin-menu-all-forms.html.php', array(
+//                'table' => $this->table,
+//                'add_new_url' => admin_url( 'admin.php?page=ninja-forms&form_id=new' ),
+//                'add_new_text' => __( 'Add New Form', 'ninja-forms' )
+//            ) );
 
-            Ninja_Forms::template( 'admin-menu-all-forms.html.php', array(
-                'table' => $this->table,
-                'add_new_url' => admin_url( 'admin.php?page=ninja-forms&form_id=new' ),
-                'add_new_text' => __( 'Add New Form', 'ninja-forms' )
-            ) );
+            /*
+             * DASHBOARD
+             */
+            $dash_items = Ninja_Forms()->config('DashboardMenuItems');
+            ?>
+            <script>
+                var nfDashItems = <?php echo( json_encode( array_values( $dash_items ) ) ); ?>;
+            </script>
+            <?php
+
+            wp_enqueue_script( 'backbone-radio', Ninja_Forms::$url . 'assets/js/lib/backbone.radio.min.js', array( 'jquery', 'backbone' ) );
+            wp_enqueue_script( 'backbone-marionette-3', Ninja_Forms::$url . 'assets/js/lib/backbone.marionette3.min.js', array( 'jquery', 'backbone' ) );
+            wp_enqueue_script( 'nf-jbox', Ninja_Forms::$url . 'assets/js/lib/jBox.min.js', array( 'jquery' ) );
+            wp_enqueue_script( 'nf-moment', Ninja_Forms::$url . 'assets/js/lib/moment-with-locales.min.js', array( 'jquery', 'nf-dashboard' ) );
+            wp_enqueue_script( 'nf-dashboard', Ninja_Forms::$url . 'assets/js/min/dashboard.min.js', array( 'backbone-radio', 'backbone-marionette-3' ) );
+
+            wp_localize_script( 'nf-dashboard', 'nfi18n', Ninja_Forms::config( 'i18nDashboard' ) );
+
+            wp_enqueue_style( 'nf-builder', Ninja_Forms::$url . 'assets/css/builder.css' );
+            wp_enqueue_style( 'nf-dashboard', Ninja_Forms::$url . 'assets/css/dashboard.min.css' );
+            wp_enqueue_style( 'nf-jbox', Ninja_Forms::$url . 'assets/css/jBox.css' );
+            wp_enqueue_style( 'nf-font-awesome', Ninja_Forms::$url . 'assets/css/font-awesome.min.css' );
+
+            Ninja_Forms::template( 'admin-menu-dashboard.html.php' );
         }
     }
 
@@ -152,13 +199,13 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         wp_enqueue_script( 'jquery-perfect-scrollbar', Ninja_Forms::$url . 'assets/js/lib/perfect-scrollbar.jquery.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'jquery-hotkeys-new', Ninja_Forms::$url . 'assets/js/lib/jquery.hotkeys.min.js' );
         wp_enqueue_script( 'jBox', Ninja_Forms::$url . 'assets/js/lib/jBox.min.js' );
-        wp_enqueue_script( 'jquery-caret', Ninja_Forms::$url . 'assets/js/lib/jquery.caret.min.js' );
+        wp_enqueue_script( 'nf-jquery-caret', Ninja_Forms::$url . 'assets/js/lib/jquery.caret.min.js' );
         wp_enqueue_script( 'speakingurl', Ninja_Forms::$url . 'assets/js/lib/speakingurl.js' );
         wp_enqueue_script( 'jquery-slugify', Ninja_Forms::$url . 'assets/js/lib/slugify.min.js', array( 'jquery', 'speakingurl' ) );
         wp_enqueue_script( 'jquery-mobile-events', Ninja_Forms::$url . 'assets/js/lib/jquery.mobile-events.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'jquery-ui-touch-punch', Ninja_Forms::$url . 'assets/js/lib/jquery.ui.touch-punch.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'jquery-classy-wiggle', Ninja_Forms::$url . 'assets/js/lib/jquery.classywiggle.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'moment-with-locale', Ninja_Forms::$url . 'assets/js/lib/moment-with-locales.min.js', array( 'jquery' ) );
+        wp_enqueue_script( 'moment-with-locale', Ninja_Forms::$url . 'assets/js/lib/moment-with-locales.min.js', array( 'jquery', 'nf-builder' ) );
         wp_enqueue_script( 'pikaday', Ninja_Forms::$url . 'assets/js/lib/pikaday.min.js', array( 'moment-with-locale' ) );
         wp_enqueue_script( 'pikaday-responsive', Ninja_Forms::$url . 'assets/js/lib/pikaday-responsive.min.js', array( 'pikaday', 'modernizr' ) );
 
@@ -172,6 +219,8 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         wp_enqueue_script( 'nf-builder', Ninja_Forms::$url . 'assets/js/min/builder.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-draggable', 'jquery-ui-droppable', 'jquery-ui-sortable', 'jquery-effects-bounce', 'wp-color-picker' ) );
         wp_localize_script( 'nf-builder', 'nfi18n', Ninja_Forms::config( 'i18nBuilder' ) );
 
+        $home_url = parse_url( home_url() );
+
         wp_localize_script( 'nf-builder', 'nfAdmin', array(
             'ajaxNonce'         => wp_create_nonce( 'ninja_forms_builder_nonce' ),
             'requireBaseUrl'    => Ninja_Forms::$url . 'assets/js/',
@@ -180,7 +229,9 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             'editFormText'      => __( 'Edit Form', 'ninja-forms' ),
             'mobile'            => ( wp_is_mobile() ) ? 1: 0,
             'currencySymbols'   => array_merge( array( '' => Ninja_Forms()->get_setting( 'currency_symbol' ) ), Ninja_Forms::config( 'CurrencySymbol' ) ),
-            'dateFormat'        => Ninja_Forms()->get_setting( 'date_format' )
+            'dateFormat'        => Ninja_Forms()->get_setting( 'date_format' ),
+            'formID'            => isset( $_GET[ 'form_id' ] ) ? absint( $_GET[ 'form_id' ] ) : 0,
+            'home_url_host'     => $home_url[ 'host' ]
         ));
 
         do_action( 'nf_admin_enqueue_scripts' );
@@ -204,11 +255,6 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         }
 
         $fields_settings = array();
-
-        // echo "<pre>";
-        // print_r( $fields );
-        // echo "</pre>";
-        // die();
 
         if( ! empty( $fields ) ) {
 
@@ -260,10 +306,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
                 $settings = ( is_object( $field ) ) ? $field->get_settings() : $field[ 'settings' ];
                 $settings[ 'id' ] =  $field_id;
 
-
-//                foreach ($settings as $key => $setting) {
-//                    if (is_numeric($setting)) $settings[$key] = floatval($setting);
-//                }
+                $settings = $this->null_data_check( $settings );
 
                 $fields_settings[] = $settings;
             }
@@ -284,6 +327,8 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
                 $settings = $action->get_settings();
                 $settings['id'] = $action->get_id();
+
+                $settings = $this->null_data_check( $settings );
 
                 $actions_settings[] = $settings;
             }
@@ -314,6 +359,27 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             // console.log( preloadedFormData );
         </script>
         <?php
+    }
+
+    /**
+     * Null Data Check
+     * Accepts array of settings and removes null data the array.
+     *
+     * @param $settings - a key/value pair of settings.
+     * @return array
+     */
+    private function null_data_check( $settings )
+    {
+        // Loop over the settings we receive.
+        foreach ($settings as $key => $setting) {
+            // Check for null values in the settings array.
+            if ( null === $setting ) {
+                // Remove null settings from the array.
+                unset( $settings[ $key ] );
+                continue;
+            }
+        }
+        return $settings;
     }
 
     private function _localize_field_type_data()
@@ -500,6 +566,14 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         );
 
         foreach( Ninja_Forms()->merge_tags as $key => $group ){
+            /*
+             * If the merge tag group doesn't have a title, don't localise it.
+             * 
+             * This convention is used to allow merge tags to continue to function,
+             * even though they can't be added to new forms.
+             */
+            $title = $group->get_title();
+            if ( empty( $title ) ) continue;
 
             $merge_tags[ $key ] = array(
                 'id'    => $group->get_id(),
@@ -573,7 +647,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         foreach( $settings as $setting ){
 
             $name = ( isset( $setting[ 'name' ] ) ) ? $setting[ 'name' ] : '';
-            $default = ( isset( $setting[ 'value' ] ) ) ? $setting[ 'value' ] : '';
+            $default = ( isset( $setting[ 'value' ] ) ) ? $setting[ 'value' ] : null;
             $setting_defaults[ $name ] = $default;
         }
 

@@ -12,7 +12,7 @@ class Image_Caption_Hover_Widget extends WP_Widget {
      *
      * @return void
      **/
-    function Image_Caption_Hover_Widget() {
+    function __construct() {
         $widget_ops = array( 'classname' => 'wcp_caption', 'description' => 'Image with hover effects' );
         parent::__construct( 'wcp_caption', 'Image Caption Hover', $widget_ops );
     }
@@ -27,6 +27,9 @@ class Image_Caption_Hover_Widget extends WP_Widget {
     function widget( $args, $instance ) {
         extract( $args, EXTR_SKIP );
         extract($instance);
+		wp_enqueue_style( 'wcp-caption-styles', plugin_dir_url( __FILE__ ) .'css/style.css' );
+	    wp_enqueue_script( 'wcp-caption-scripts', plugin_dir_url( __FILE__ ) . 'js/script.js', array('jquery') );
+	    wp_localize_script( 'wcp-caption-scripts','wcp_all_settings', get_option( 'wcp_ich_admin_settings_all' ) );
 ?>
 
 	<div class="wcp-caption-plugin" id="<?php echo $widget_id; ?>" data-height="responsive">
@@ -187,8 +190,6 @@ class Image_Caption_Hover_Widget extends WP_Widget {
 add_action( 'widgets_init', create_function( '', "register_widget( 'Image_Caption_Hover_Widget' );" ) );
 
 add_action( 'admin_enqueue_scripts', 'enqueue_script_media_uploader' );
-add_action( 'wp_head', 'wcp_caption_styles' );
-
 /*
 *	Script for Media uploader
  */
@@ -199,10 +200,5 @@ function enqueue_script_media_uploader($hook){
     wp_enqueue_media();
     wp_enqueue_style( 'wp-color-picker' );
     wp_enqueue_script( 'wcp_uploader', plugin_dir_url( __FILE__ ) . 'js/admin.js', array('jquery','wp-color-picker') );
-}
-function wcp_caption_styles(){
-	wp_enqueue_style( 'wcp-caption-styles', plugin_dir_url( __FILE__ ) .'css/style.css' );
-    wp_enqueue_script( 'wcp-caption-scripts', plugin_dir_url( __FILE__ ) . 'js/script.js', array('jquery') );
-    wp_localize_script( 'wcp-caption-scripts','wcp_all_settings', get_option( 'wcp_ich_admin_settings_all' ) );
 }
 ?>

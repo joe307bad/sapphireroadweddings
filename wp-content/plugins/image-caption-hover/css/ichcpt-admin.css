@@ -33,5 +33,8 @@
     z-index: 99999999999999 !important;
 }
 .ich-settings-main-wrap .form-group {
-    margin-bottom: 5px !important;
+    margin-bottom: 17px !important;
+}
+.ich-settings-main-wrap label {
+    padding-top: 4px;
 }

@@ -1,5 +1,5 @@
 <h2>
-	Directory is not writable
+	<b>BackupGuard Error:</b>  Directory is not writable
 </h2>
 <p>
 	Backup directory is not writable. Please consider changing the permissions of the following directory:<br>

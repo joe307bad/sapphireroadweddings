@@ -37,6 +37,8 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
         } else {
             $form = Ninja_Forms()->form($form_data['id'])->get();
         }
+        
+        unset( $form_data[ 'settings' ][ '_seq_num' ] );
 
         $form->update_settings( $form_data[ 'settings' ] )->save();
 
@@ -51,7 +53,7 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
 
             foreach( $form_data[ 'deleted_fields' ] as  $deleted_field_id ){
 
-                $field = Ninja_Forms()->form()->get_field( $deleted_field_id );
+                $field = Ninja_Forms()->form( $form_data[ 'id' ])->get_field( $deleted_field_id );
                 $field->delete();
             }
         }

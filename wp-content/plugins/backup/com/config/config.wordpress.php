@@ -24,6 +24,10 @@ define('SG_MAIL_UPLOAD_TEMPLATE', 'mail_upload.php');
 //Notice
 define('SG_NOTICE_TEMPLATES_PATH', SG_APP_PATH.'../public/templates/notices/');
 
+//BackupGuard SDK
+define('SG_BACKUPGUARD_CLIENT_ID', 'wordpress');
+define('SG_BACKUPGUARD_CLIENT_SECRET', 'AAPQEgsyQrt6wqDBk7fpa24NP6W43evtayxXmUqS');
+
 //Backup
 $wpContent = basename(WP_CONTENT_DIR);
 $wpPlugins = basename(WP_PLUGIN_DIR);
@@ -53,14 +57,13 @@ if (is_multisite()) {
 
 define('SG_SITE_TYPE', $type);
 
-
 define('SG_PING_FILE_PATH', $upload_dir['basedir'].'/backup-guard/ping.json');
 
 //Symlink download
 define('SG_SYMLINK_PATH', $upload_dir['basedir'].'/sg_symlinks/');
 define('SG_SYMLINK_URL', $upload_dir['baseurl'].'/sg_symlinks/');
 
-define('SG_APP_ROOT_DIRECTORY', ABSPATH); //Wordpress Define
+define('SG_APP_ROOT_DIRECTORY', dirname(WP_CONTENT_DIR)."/"); //Wordpress Define
 
 $sgBackupFilePathsExclude = array(
 	$wpContent.'/'.$wpPlugins.'/backup/',
@@ -78,23 +81,35 @@ $sgBackupFilePathsExclude = array(
 	$wpContent.'/wpbackitup_backups/',
 	$wpContent.'/wpbackitup_restore/',
 	$wpContent.'/backups/',
+	$wpContent.'/cache/',
 	$wpContent.'/'.$wpUploads.'/wp-clone/',
 	$wpContent.'/'.$wpUploads.'/wp-staging/',
 	$wpContent.'/'.$wpUploads.'/wp-migrate-db/',
 	$wpContent.'/'.$wpUploads.'/db-backup/',
 	$wpContent.'/'.$wpPlugins.'/wordpress-move/backup/',
 	$wpContent.'/as3b_backups/',
-	$wpContent.'/'.$wpUploads.'/backupbuddy_backups/'
+	$wpContent.'/'.$wpUploads.'/backupbuddy_backups/',
+	$wpContent.'/backups-dup-pro/',
+	$wpContent.'/managewp/backups/',
+	$wpContent.'/'.$wpUploads.'/backupbuddy_temp/',
+	$wpContent.'/'.$wpUploads.'/pb_backupbuddy/',
+	$wpContent.'/'.$wpUploads.'/snapshots/'
 );
 
 define('SG_BACKUP_FILE_PATHS_EXCLUDE', implode(',', $sgBackupFilePathsExclude));
 define('SG_BACKUP_DIRECTORY', $upload_dir['basedir'].'/backup-guard/'); //backups will be stored here
+define('SG_BACKUP_DIRECTORY_URL', SG_UPLOAD_URL.'/backup-guard/');
 
 //Storage
 define('SG_STORAGE_UPLOAD_CRON', '');
 
 define('SG_BACKUP_FILE_PATHS', $wpContent.','.$wpContent.'/'.$wpPlugins.','.$wpContent.'/'.$wpThemes.','.$wpContent.'/'.$wpUploads);
 
-define('SG_MISC_MIGRATABLE_VALUES', 'user_roles,capabilities,user_level,dashboard_quick_press_last_post_id,user-settings,user-settings-time');
+define('SG_WP_OPTIONS_MIGRATABLE_VALUES', 'user_roles');
+define('SG_WP_USERMETA_MIGRATABLE_VALUES', 'capabilities,user_level,dashboard_quick_press_last_post_id,user-settings,user-settings-time');
 define('SG_MISC_MIGRATABLE_TABLES', SG_ENV_DB_PREFIX.'options,'.SG_ENV_DB_PREFIX.'usermeta');
 define('SG_MULTISITE_TABLES_TO_MIGRATE', SG_ENV_DB_PREFIX.'blogs,'.SG_ENV_DB_PREFIX.'site');
+define('SG_SUBDOMAIN_INSTALL', defined('SUBDOMAIN_INSTALL')?SUBDOMAIN_INSTALL:false);
+
+
+define('SG_BACKUP_PRODUCTS_URL', 'https://backup-guard.com/admin/products/view');

@@ -5,5 +5,5 @@ require_once(SG_LIB_PATH.'SGReloader.php');
 
 @session_write_close();
 
-SGReloader::awake();
+SGReloader::awake($method);
 exit();

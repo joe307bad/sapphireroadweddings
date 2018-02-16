@@ -148,7 +148,7 @@ class Image_Caption_Hover_CPT
                 <li><?php _e( 'Borders and Frames', 'image-caption-hover' ); ?></li>
                 <li><?php _e( 'Your existing Images and Captions will remain saved', 'image-caption-hover' ); ?></li>
             </ol>
-            <a style="width: 100%; text-align:center;" target="_blank" class="button button-primary button-hero" href="http://webcodingplace.com/wordpress-pro-plugins/image-caption-hover-pro-wordpress-plugin/">
+            <a style="width: 100%; text-align:center;" target="_blank" class="button button-primary button-hero" href="https://webcodingplace.com/image-caption-hover-pro-wordpress-plugin">
                 <?php _e( 'Unlock Pro Features', 'image-caption-hover' ); ?>
             </a>
         <?php
@@ -179,6 +179,7 @@ class Image_Caption_Hover_CPT
 
         $wcp_images = $_POST['ich_cpt'];
         $wcp_settings = $_POST['ichcpt_settings'];
+        $wcp_images = array_values($wcp_images);
 
         update_post_meta($post_id,'ich_cpt',$wcp_images);
         update_post_meta($post_id,'ichcpt_settings',$wcp_settings);
@@ -273,9 +274,40 @@ class Image_Caption_Hover_CPT
             ),
 
             array(
+                'type' => 'hovereffects',
+                'name' => 'hovereffect',
+                'title' => __( 'Hover Effect', 'image-caption-hover' ),
+                'help' => __( 'Choose hover style', 'image-caption-hover' ),
+            ),            
+
+            array(
+                'type' => 'color',
+                'name' => 'titlecolor',
+                'title' => __( 'Title Text Color', 'image-caption-hover' ),
+                'help' => __( 'Choose text color for title. Only for Square and Circle Effects', 'image-caption-hover' ),
+                'c_class' => 'if-square-circle',
+            ),
+
+            array(
+                'type' => 'color', 
+                'name' => 'title_bg_color', 
+                'title' => __( 'Title Background Color', 'image-caption-hover' ),
+                'help' => __( 'Background color for title. Only for Square and Circle Effects', 'image-caption-hover' ), 
+                'c_class' => 'if-square-circle',
+            ),
+
+            array(
+                'type' => 'text', 
+                'name' => 'title_font_size', 
+                'title' => __( 'Title Font Size', 'image-caption-hover' ),
+                'help' => __( 'Size of title in px Eg: 20px. Only for Square and Circle Effects', 'image-caption-hover' ), 
+                'c_class' => 'if-square-circle',
+            ),            
+
+            array(
                 'type' => 'color',
                 'name' => 'captioncolor',
-                'title' => __( 'Text Color', 'image-caption-hover' ),
+                'title' => __( 'Caption Text Color', 'image-caption-hover' ),
                 'help' => __( 'Choose text color for caption', 'image-caption-hover' ),
             ),
 
@@ -323,13 +355,6 @@ class Image_Caption_Hover_CPT
                 'name' => 'lightbox',
                 'title' => __( 'LightBox', 'image-caption-hover' ),
                 'help' => __( 'It will open above link in popup on clicking (available in pro version)', 'image-caption-hover' ),
-            ),
-
-            array(
-                'type' => 'hovereffects',
-                'name' => 'hovereffect',
-                'title' => __( 'Hover Effect', 'image-caption-hover' ),
-                'help' => __( 'Choose hover style', 'image-caption-hover' ),
             ),
 
             array(
@@ -419,9 +444,10 @@ class Image_Caption_Hover_CPT
 
                 case 'image': ?>
 
-                    <div class="form-group">
+                    <div class="form-group <?php echo (isset($field['c_class'])) ? $field['c_class'] : '' ; ?>">
                         <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label">
                             <?php echo $field['title']; ?>
+                            <span title="<?php echo $field['help']; ?>" class="glyphicon glyphicon-question-sign"></span>
                         </label>
                         <div class="col-sm-9">
                             <div class="input-group">
@@ -432,40 +458,46 @@ class Image_Caption_Hover_CPT
                                         <?php _e( 'Media', 'image-caption-hover' ); ?></button>
                                 </span>
                             </div>
-                            <span class="help-block"><?php echo $field['help']; ?></span>
                         </div>
                     </div>
                     <?php break;
 
                 case 'text': ?>
 
-                    <div class="form-group">
-                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label"><?php echo $field['title']; ?></label>
+                    <div class="form-group <?php echo (isset($field['c_class'])) ? $field['c_class'] : '' ; ?>">
+                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label">
+                            <?php echo $field['title']; ?>
+                            <span title="<?php echo $field['help']; ?>" class="glyphicon glyphicon-question-sign"></span>
+                        </label>
                         <div class="col-sm-9">
                             <input type="text" <?php echo $disabled; ?> name="<?php echo $field_name; ?>" class="form-control input-sm" id="<?php echo $field_id; ?>" value="<?php echo $field_value; ?>">
-                            <span class="help-block"><?php echo $field['help']; ?></span>
                         </div>
                     </div>
                     <?php break;
 
                 case 'caption': ?>
 
-                    <div class="form-group">
-                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label"><?php echo $field['title']; ?></label>
+                    <div class="form-group <?php echo (isset($field['c_class'])) ? $field['c_class'] : '' ; ?>">
+                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label">
+                            <?php echo $field['title']; ?>
+                            <span title="<?php echo $field['help']; ?>" class="glyphicon glyphicon-question-sign"></span>
+                        </label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <textarea id="<?php echo $field_id; ?>" name="<?php echo $field_name; ?>" class="form-control custom-control" rows="2" style="resize:none"><?php echo stripcslashes($field_value); ?></textarea>     
                                 <span class="input-group-addon btn btn-info ich-open-editor"><?php _e( 'Editor', 'image-caption-hover' ); ?></span>
-                            </div>                            
-                            <span class="help-block"><?php echo $field['help']; ?></span>
+                            </div>
                         </div>
                     </div>
                     <?php break;
 
                 case 'select': ?>
 
-                    <div class="form-group">
-                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label"><?php echo $field['title']; ?></label>
+                    <div class="form-group <?php echo (isset($field['c_class'])) ? $field['c_class'] : '' ; ?>">
+                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label">
+                            <?php echo $field['title']; ?>
+                            <span title="<?php echo $field['help']; ?>" class="glyphicon glyphicon-question-sign"></span>
+                        </label>
                         <div class="col-sm-9">
                             <select name="<?php echo $field_name; ?>" id="<?php echo $field_id; ?>" class="form-control input-sm">
                                 <?php
@@ -479,35 +511,38 @@ class Image_Caption_Hover_CPT
                                 }
                                 ?>
                             </select>
-                            <span class="help-block"><?php echo $field['help']; ?></span>
                         </div>
                     </div>
                     <?php break;
 
                 case 'color': ?>
 
-                    <div class="form-group">
-                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label"><?php echo $field['title']; ?></label>
+                    <div class="form-group <?php echo (isset($field['c_class'])) ? $field['c_class'] : '' ; ?>">
+                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label">
+                            <?php echo $field['title']; ?>
+                            <span title="<?php echo $field['help']; ?>" class="glyphicon glyphicon-question-sign"></span>
+                        </label>
                         <div class="col-sm-9">
                             <span class="wcp-color-wrap">
                                 <input type="text" name="<?php echo $field_name; ?>" id="<?php echo $field_id; ?>" value="<?php echo $field_value; ?>" class="colorpicker" data-alpha="true">
                             </span>
-                            <span class="help-block"><?php echo $field['help']; ?></span>
                         </div>
                     </div>
                     <?php break;
 
                 case 'checkbox': ?>
 
-                    <div class="form-group">
-                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label"><?php echo $field['title']; ?></label>
+                    <div class="form-group <?php echo (isset($field['c_class'])) ? $field['c_class'] : '' ; ?>">
+                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label">
+                            <?php echo $field['title']; ?>
+                            <span title="<?php echo $field['help']; ?>" class="glyphicon glyphicon-question-sign"></span>
+                        </label>
                         <div class="col-sm-9">
                             <div class="checkbox">
                                 <label>
                                     <?php $checked = ($field_value != '') ? 'checked' : '' ; ?>
                                     <input type="checkbox" disabled name="<?php echo $field_name; ?>" id="<?php echo $field_id; ?>" <?php echo $checked; ?>> <?php _e( 'Enable', 'image-caption-hover' ); ?>
                                 </label>
-                                <span class="help-block"><?php echo $field['help']; ?></span>
                             </div>                            
                         </div>
                     </div>
@@ -515,10 +550,13 @@ class Image_Caption_Hover_CPT
 
                 case 'hovereffects': ?>
 
-                    <div class="form-group">
-                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label"><?php echo $field['title']; ?></label>
+                    <div class="form-group <?php echo (isset($field['c_class'])) ? $field['c_class'] : '' ; ?>">
+                        <label for="<?php echo $field_id; ?>" class="col-sm-3 control-label">
+                            <?php echo $field['title']; ?>
+                            <span title="<?php echo $field['help']; ?>" class="glyphicon glyphicon-question-sign"></span>
+                        </label>
                         <div class="col-sm-9">
-                            <select name="<?php echo $field_name; ?>" id="<?php echo $field_id; ?>" class="form-control input-sm">
+                            <select name="<?php echo $field_name; ?>" id="<?php echo $field_id; ?>" class="form-control input-sm choose-hover-effect">
                                 <?php
                                 $free_hovers = $this->get_free_effects();
                                 foreach ($free_hovers as $className) {
@@ -532,9 +570,6 @@ class Image_Caption_Hover_CPT
                                 <?php }
                                 ?>
                             </select>
-                            <span class="help-block">
-                                <?php echo $field['help']; ?>
-                            </span>
                         </div>
                     </div>
                     <?php break;

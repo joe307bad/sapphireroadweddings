@@ -11,22 +11,6 @@ function _backupGuardT($key, $return = false)
     }
 }
 
-//check to display discount npotice or not
-function backupGuardShouldeDisplayDiscountNotice()
-{
-    $discountNoticeInfoJson = SGConfig::get('SG_HIDE_DISCOUNT_NOTICE');
-    $discountNoticeInfo = json_decode($discountNoticeInfoJson, true);
-    $now = time();
-    $noticeDisplayMinInterval = 86400; // 24 hours
-
-    if (SG_FEATURE_STORAGE || $discountNoticeInfo['dissmissCount'] > 2 || ($now-$discountNoticeInfo['lastDismiss']) <= $noticeDisplayMinInterval) {
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
 function backupGuardIsAjax()
 {
     return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
@@ -125,6 +109,7 @@ function backupGuardFilterStatusesByActionType($currentBackup, $currentOptions)
         if ($currentOptions['dropbox']) $filteredStatuses[] = $currentOptions['dropbox'];
         if ($currentOptions['gdrive']) $filteredStatuses[] = $currentOptions['gdrive'];
         if ($currentOptions['amazon']) $filteredStatuses[] = $currentOptions['amazon'];
+        if ($currentOptions['oneDrive']) $filteredStatuses[] = $currentOptions['oneDrive'];
     }
     return $filteredStatuses;
 }
@@ -140,6 +125,7 @@ function backupGuardActiveOptionToType($activeOption)
     $activeOptions['dropbox'] = 0;
     $activeOptions['gdrive'] = 0;
     $activeOptions['amazon'] = 0;
+    $activeOptions['oneDrive'] = 0;
     foreach ($storages as $key => $storage) {
         switch ($storage) {
             case SG_STORAGE_FTP:
@@ -153,6 +139,9 @@ function backupGuardActiveOptionToType($activeOption)
                 break;
             case SG_STORAGE_AMAZON:
                 $activeOptions['amazon'] = SG_ACTION_TYPE_UPLOAD.SG_STORAGE_AMAZON;
+                break;
+            case SG_STORAGE_ONE_DRIVE:
+                $activeOptions['oneDrive'] = SG_ACTION_TYPE_UPLOAD.SG_STORAGE_ONE_DRIVE;
                 break;
         }
     }
@@ -190,14 +179,41 @@ function backupGuardGetRunningActions()
 
 function backupGuardShouldUpdate()
 {
-    $shouldUpdateDB = false;
-
     $currentVersion = SG_BACKUP_GUARD_VERSION;
     $oldVersion = SGConfig::get('SG_BACKUP_GUARD_VERSION', true);
 
-    if ($currentVersion !== $oldVersion) {
-        $shouldUpdateDB = true;
+    if (!$oldVersion) {
+        return true;
     }
 
-    return $shouldUpdateDB;
+    if ($currentVersion !== $oldVersion) {
+        SGConfig::set('SG_BACKUP_GUARD_VERSION', $currentVersion, true);
+        SGBoot::didUpdatePluginVersion();
+        return SG_FORCE_DB_TABLES_RESET;
+    }
+
+    return false;
+}
+
+function backupGuardLoggedMessage()
+{
+    if (!SGBoot::isFeatureAvailable('SCHEDULE')) {
+        return '';
+    }
+
+    $user = SGConfig::get('SG_LOGGED_USER');
+    if (!$user) {
+        return '';
+    }
+
+    $user = unserialize($user);
+    if (!$user || empty($user['firstname'])) {
+        return '';
+    }
+
+    $html = '<span class="bg-logged-msg-container">';
+    $html .= 'Package: '.backupGuardGetProductName();
+    $html .= ' | Welcome, <b>'.$user['firstname'].'</b>! ';
+    $html .= '(<a href="javascript:void(0)" onclick="sgBackup.logout()">Log Out</a>)</span>';
+    return $html;
 }

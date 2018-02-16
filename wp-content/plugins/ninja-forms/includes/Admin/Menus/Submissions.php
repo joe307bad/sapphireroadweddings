@@ -97,9 +97,9 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
             if ( $field->get_setting( 'admin_label' ) ) {
                 $cols[ 'field_' . $field->get_id() ] = $field->get_setting( 'admin_label' );
             } else {
-                $cols[ 'field_' . $field->get_id() ] = $field->get_setting( 'label' );  
+                $cols[ 'field_' . $field->get_id() ] = $field->get_setting( 'label' );
             }
-            
+
         }
 
         $cols[ 'sub_date' ] = __( 'Date', 'ninja-forms' );
@@ -162,6 +162,7 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
             $form_options[ $form->get_id() ] = $form->get_setting( 'title' );
         }
         $form_options = apply_filters( 'ninja_forms_submission_filter_form_options', $form_options );
+        asort($form_options);
 
         if( isset( $_GET[ 'form_id' ] ) ) {
             $form_selected = $_GET[ 'form_id' ];
@@ -211,6 +212,7 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
             global $wpdb;
 
             $keywords = explode(' ', get_query_var('s'));
+
             $query = "";
 
             foreach ($keywords as $word) {
@@ -219,14 +221,17 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
             }
 
             if (!empty($query)) {
-                // add to where clause
-                $pieces['where'] = str_replace("((({$wpdb->posts}.post_title LIKE '%", "( {$query} (({$wpdb->posts}.post_title LIKE '%", $pieces['where']);
+                // Escape place holders for the where clause.
+                $pieces[ 'where' ] = $wpdb->remove_placeholder_escape( $pieces[ 'where' ] );
 
-                $pieces['join'] = $pieces['join'] . " INNER JOIN {$wpdb->postmeta} AS mypm1 ON ({$wpdb->posts}.ID = mypm1.post_id)";
+                // add to where clause
+                $pieces[ 'where' ] = str_replace("((({$wpdb->posts}.post_title LIKE '%", "({$query}(({$wpdb->posts}.post_title LIKE '%", $pieces[ 'where' ]);
+
+                $pieces[ 'join' ] = $pieces[ 'join' ] . " INNER JOIN {$wpdb->postmeta} AS mypm1 ON ({$wpdb->posts}.ID = mypm1.post_id)";
 
             }
         }
-        return ($pieces);
+        return ( $pieces );
     }
 
     public function remove_bulk_edit( $actions ) {
@@ -244,8 +249,8 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
             ?>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
-                    jQuery('<option>').val('export').text('<?php _e('Export')?>').appendTo("select[name='action']");
-                    jQuery('<option>').val('export').text('<?php _e('Export')?>').appendTo("select[name='action2']");
+                    jQuery('<option>').val('export').text('<?php _e('Export', 'ninja-forms')?>').appendTo("select[name='action']");
+                    jQuery('<option>').val('export').text('<?php _e('Export', 'ninja-forms')?>').appendTo("select[name='action2']");
                     <?php
                     if ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'export' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'export' ) ) {
                         ?>
@@ -298,7 +303,10 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
 
         if ((isset ($_REQUEST['action']) && $_REQUEST['action'] == 'export') || (isset ($_REQUEST['action2']) && $_REQUEST['action2'] == 'export')) {
 
-            $sub_ids = WPN_Helper::esc_html($_REQUEST['post']);
+            $sub_ids = array();
+            if (isset($_REQUEST['post'])) {
+              $sub_ids = WPN_Helper::esc_html($_REQUEST['post']);
+            }
 
             Ninja_Forms()->form( $_REQUEST['form_id'] )->export_subs( $sub_ids );
         }
@@ -346,7 +354,7 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
             ( isset( $_GET[ 'post_type' ] ) && 'nf_sub' == $_GET[ 'post_type'] ) ||
             'nf_sub' == get_post_type()
         ){
-            echo '<style type="text/css">.page-title-action{display: none;}</style>';
+            echo '<style type="text/css">.page-title-action, .subsubsub, .view-mode{display: none;}</style>';
         }
     }
 
@@ -373,7 +381,12 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
      */
     private function custom_columns_sub_date( $sub )
     {
-        return $sub->get_sub_date();
+        // Grab the date and time format options
+        $date_format = get_option( 'date_format' );
+        $time_format = get_option( 'time_format' );
+
+        // Get the sub dates using the date and time formats.
+        return $sub->get_sub_date( $date_format . ' ' . $time_format );
     }
 
     /**
@@ -414,17 +427,15 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
         $begin_date = $_GET[ 'begin_date' ];
         $end_date = $_GET[ 'end_date' ];
 
-        if( $begin_date > $end_date ){
-            $temp_date = $begin_date;
-            $begin_date = $end_date;
-            $end_date = $temp_date;
-        }
+        // Include submissions on the end_date.
+        $end_date = date( 'm/d/Y', strtotime( '+1 day', strtotime( $end_date ) ) );
 
         if ( ! isset ( $vars['date_query'] ) ) {
 
             $vars['date_query'] = array(
                 'after' => $begin_date,
-                'before' => $end_date
+                'before' => $end_date,
+                'inclusive' => true,
             );
         }
 

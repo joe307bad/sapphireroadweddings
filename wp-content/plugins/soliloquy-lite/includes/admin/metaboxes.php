@@ -145,20 +145,6 @@ class Soliloquy_Metaboxes_Lite {
 	            'post' => $post_id,
 	        ) );
 	     //   add_filter( 'plupload_init', array( $this, 'plupload_init' ) );
-	        wp_register_script( $this->base->plugin_slug . '-media-upload', plugins_url( 'assets/js/media-upload.js', $this->base->file ), array( 'jquery' ), $this->base->version, true );
-	        wp_enqueue_script( $this->base->plugin_slug . '-media-upload' );
-	        wp_localize_script(
-	            $this->base->plugin_slug . '-media-upload',
-	            'soliloquy_media_uploader',
-	            array(
-	                'ajax'           => admin_url( 'admin-ajax.php' ),
-	                'id'             => $post_id,
-	                'uploader_files_computer'	=> __( 'Select Files from Your Computer', 'soliloquy' ),
-	                'uploader_info_text'		=> __( 'Drag and Drop Files to Upload', 'soliloquy' ),
-	                'load_image'     => wp_create_nonce( 'soliloquy-load-image' ),
-	                'media_position' => get_option( 'soliloquy_slide_position' ),
-	            )
-	        );
 
 	        // Load necessary metabox scripts.
 	        wp_enqueue_script( 'plupload-handlers' );
@@ -179,8 +165,22 @@ class Soliloquy_Metaboxes_Lite {
 	        wp_register_script( 'jquery-form-conditionals', plugins_url( 'assets/js/min/jquery.form-conditionals-min.js', $this->base->file ), array( 'jquery', 'plupload-handlers', 'quicktags', 'jquery-ui-sortable', $this->base->plugin_slug . '-codemirror' ), $this->base->version, true );
 	        wp_enqueue_script( 'jquery-form-conditionals' );
 
-        wp_register_script( $this->base->plugin_slug . '-metabox-script', plugins_url( 'assets/js/min/metabox-min.js', $this->base->file ), array( 'jquery', 'plupload-handlers', 'quicktags', 'jquery-ui-sortable' ), $this->base->version, true );
-        wp_enqueue_script( $this->base->plugin_slug . '-metabox-script' );
+			wp_register_script( $this->base->plugin_slug . '-metabox-script', plugins_url( 'assets/js/min/metabox-min.js', $this->base->file ), array( 'jquery', 'plupload-handlers', 'quicktags', 'jquery-ui-sortable' ), $this->base->version, true );
+			wp_enqueue_script( $this->base->plugin_slug . '-metabox-script' );
+ 
+	        wp_localize_script(
+	            $this->base->plugin_slug . '-metabox-script',
+	            'soliloquy_media_uploader',
+	            array(
+	                'ajax'           => admin_url( 'admin-ajax.php' ),
+	                'id'             => $post_id,
+	                'uploader_files_computer'	=> __( 'Select Files from Your Computer', 'soliloquy' ),
+	                'uploader_info_text'		=> __( 'Drag and Drop Files to Upload', 'soliloquy' ),
+	                'load_image'     => wp_create_nonce( 'soliloquy-load-image' ),
+	                'media_position' => get_option( 'soliloquy_slide_position' ),
+	            )
+	        );
+
         wp_localize_script(
             $this->base->plugin_slug . '-metabox-script',
             'soliloquy_metabox',

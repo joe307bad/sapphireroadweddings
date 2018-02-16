@@ -1,8 +1,30 @@
 jQuery(document).ready(function($) {
 
+    // Handling for Square and Circle Fields
+    $('.wcp-main-wrap .panel-default').each(function(index, el) {
+        var ac_panel = $(this);
+        var hover_effect = ac_panel.find('select[id^="hovereffect"]').val();
+        if (hover_effect.indexOf("circle") == -1 && hover_effect.indexOf("square") == -1){
+            ac_panel.find('.if-square-circle').hide();
+        } else {
+            ac_panel.find('.if-square-circle').show();
+        }
+    });
+
+    $('select[id^="hovereffect"]').change(function(event) {
+        var hover_effect = $(this).val();
+        var ac_panel = $(this).closest('.panel-default');
+        if (hover_effect.indexOf("circle") == -1 && hover_effect.indexOf("square") == -1){
+            ac_panel.find('.if-square-circle').hide();
+        } else {
+            ac_panel.find('.if-square-circle').show();
+        }
+    });
     
+    // Apply Color Picker
     $('.colorpicker').wpColorPicker();
 
+    // Sorting and Panels
     var active = false,
         sorting = false;
     
@@ -46,6 +68,7 @@ jQuery(document).ready(function($) {
         }
     });
 
+    // Total IMages
     var count = $('.wcp-main-wrap .group:last-child').attr('id');
     
     $('.wcp-main-wrap .group').each(function(index, el) {
@@ -53,24 +76,26 @@ jQuery(document).ready(function($) {
     		count = $(this).attr('id');
     	};
     });
-    
+   
+    // Insert New Image
     $(".add").click(function(event) {
         event.preventDefault();
         count = parseInt(count) + 1;
-        var clone_this = $('.wcp-main-wrap div#1').clone(true);
+        var clone_this = $('.wcp-main-wrap div#0').clone(true);
         $(clone_this).attr('id', count);
         $(clone_this).find('input, select, textarea').each(function(index, el) {
-
+            var new_name = '';
             if ($(this).attr('name') !== undefined) {
                 var old_name = $(this).attr('name');
                 // console.log(old_name);
-                var new_name = old_name.replace(/[0-9]/g, count);
+                new_name = old_name.replace(/[0-9]/g, count);
                 $(this).attr('name', new_name);
+                $(this).val('');
             }
 
             if ($(this).hasClass('colorpicker')) {
                 var c_wrap = $(this).closest('.wcp-color-wrap');
-                console.log(c_wrap);
+                // console.log(c_wrap);
                 c_wrap.html('<input name="'+new_name+'" type="text" class="colorpicker" data-alpha="true">');
                 c_wrap.find('.colorpicker').wpColorPicker();
             }
@@ -78,10 +103,50 @@ jQuery(document).ready(function($) {
         $(clone_this).appendTo('.wcp-main-wrap').hide().fadeIn('slow');
     });
 
+    // Duplicate Last Image
+    $(".duplicate").click(function(event) {
+        event.preventDefault();
+        count = parseInt(count) + 1;
+
+        var selected_values = [];
+        $('.wcp-main-wrap .group:last-child select').each(function(index, el) {
+            var sele_id = $(this).attr('id');
+            var sele_val = $(this).val();
+            selected_values[sele_id] = sele_val;
+        });
+        var clone_this = $('.wcp-main-wrap .group:last-child').clone(true);
+        $(clone_this).attr('id', count);
+        $(clone_this).find('input, select, textarea').each(function(index, el) {
+            var new_name = '';
+            if ($(this).attr('name') !== undefined) {
+                var old_name = $(this).attr('name');
+                // console.log(old_name);
+                new_name = old_name.replace(/[0-9]/g, count);
+                $(this).attr('name', new_name);
+            }
+
+            var this_input_id = $(this).attr('id');
+            if (this_input_id in selected_values) {
+                $(this).val(selected_values[this_input_id]);
+            }
+
+            if ($(this).hasClass('colorpicker')) {
+                var c_val = $(this).val();
+                var c_wrap = $(this).closest('.wcp-color-wrap');
+                // console.log(c_wrap);
+                c_wrap.html('<input value="'+c_val+'" name="'+new_name+'" type="text" class="colorpicker" data-alpha="true">');
+                c_wrap.find('.colorpicker').wpColorPicker();
+            }
+        });
+        $(clone_this).appendTo('.wcp-main-wrap').hide().fadeIn('slow');
+    });
+
+
+
     $(".wcp-main-wrap").on('click', '.button-delete', function(event) {
         event.preventDefault();
         var this_col = $(this).closest('.group').attr('id');
-        if (this_col == '1' || this_col == 1) {
+        if (this_col == '0' || this_col == 0) {
             alert('Sorry, you can not delete first Column!');
         } else {
             $(this).closest('.group').fadeOut('slow', function() {
@@ -139,7 +204,12 @@ jQuery(document).ready(function($) {
 
         current_textarea = $(this).closest('.input-group').find('textarea');
         var curr_contents = $(this).closest('.input-group').find('textarea').val();
-        tinyMCE.get('ichricheditor').setContent(curr_contents);
+
+        if (jQuery("#wp-ichricheditor-wrap").hasClass("tmce-active")){
+            tinyMCE.get('ichricheditor').setContent(curr_contents);
+        }else{
+            $('#ichricheditor').val(curr_contents);
+        }        
         // console.log(curr_contents);
 
         win_scroll = $(window).scrollTop();
@@ -150,7 +220,12 @@ jQuery(document).ready(function($) {
 
     $('.ich-rich-editor-wrap').on('click', '.ich-editor-insert', function(event) {
         event.preventDefault();
-        var content = tinyMCE.get('ichricheditor').getContent();
+        var content = '';
+        if (jQuery("#wp-ichricheditor-wrap").hasClass("tmce-active")){
+            content = tinyMCE.get('ichricheditor').getContent();
+        }else{
+            content = $('#ichricheditor').val();
+        }        
         $(current_textarea).val(content);
         $('.caption-settings-wrap').show();
         $('.ich-rich-editor-wrap').hide();

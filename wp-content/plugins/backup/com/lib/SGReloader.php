@@ -7,11 +7,13 @@ require_once(SG_LIB_PATH.'SGCallback.php');
 
 class SGReloader
 {
-	public static function awake()
+	public static function awake($method = null)
 	{
 		$reloaderState = SGReloaderState::loadState();
 		if ($reloaderState['callback'] != "" && $reloaderState['state'] == SG_RELOADER_STATUS_IDLE) {
+
 			$callbackJson = json_decode($reloaderState['callback']);
+			$callbackJson->params['method'] = $method;
 			$callback = new SGCallback($callbackJson->class, $callbackJson->method, $callbackJson->params);
 
 			if ($callback->canPerform()) {

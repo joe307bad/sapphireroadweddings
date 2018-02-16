@@ -88,6 +88,9 @@ class NF_Admin_CPT_DownloadAllSubmissions extends NF_Step_Processing {
                 $sub_ids[] = $result->ID;
             }
             $export .= NF_Database_Models_Submission::export( $this->args['form_id'], $sub_ids, TRUE );
+            if( 1 < $this->step ) {
+                $export = substr( $export, strpos( $export, PHP_EOL ) + 1 );
+            }
 
             fwrite( $myfile, $export );
             fclose( $myfile );
@@ -152,7 +155,7 @@ class NF_Admin_CPT_DownloadAllSubmissions extends NF_Step_Processing {
                     if ( isset ( $_REQUEST['form_id'] ) && ! empty ( $_REQUEST['form_id'] ) ) {
                     $redirect = urlencode( remove_query_arg( array( 'download_all', 'download_file' ) ) );
                     $url = admin_url( 'admin.php?page=nf-processing&action=download_all_subs&form_id=' . absint( $_REQUEST['form_id'] ) . '&redirect=' . $redirect );
-                    $url = esc_url( $url );
+                    $url = esc_url( apply_filters( 'ninja_forms_download_all_submissions_url', $url, absint( $_REQUEST['form_id'] ) ) );
                     ?>
                     var button = '<a href="<?php echo $url; ?>" class="button-secondary nf-download-all"><?php echo __( 'Download All Submissions', 'ninja-forms' ); ?></a>';
                     jQuery( '#doaction2' ).after( button );

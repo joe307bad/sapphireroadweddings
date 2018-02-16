@@ -90,10 +90,6 @@ class Image_Caption_Hover
 		include 'includes/settings.php';
 	}
 
-	function render_other_plugins(){
-		include 'includes/plugins.php';
-	}
-
 	function render_more_plugins_page(){
 		include 'includes/more_plugins.php';
 	}
@@ -172,6 +168,10 @@ class Image_Caption_Hover
 	}
 
 	function render_all_shortcodes($atts, $content, $the_shortcode){
+
+		wp_enqueue_style( 'wcp-caption-styles', plugin_dir_url( __FILE__ ) .'css/style.css' );
+	    wp_enqueue_script( 'wcp-caption-scripts', plugin_dir_url( __FILE__ ) . 'js/script.js', array('jquery') );
+	    wp_localize_script( 'wcp-caption-scripts','wcp_all_settings', get_option( 'wcp_ich_admin_settings_all' ) );		
 
 		$allCaptions = get_option('wcp_ich_plugin');
 		// print_r($allCaptions);

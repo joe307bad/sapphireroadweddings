@@ -3,6 +3,7 @@
 require_once(SG_LIB_PATH.'SGFileState.php');
 require_once(SG_LIB_PATH.'SGDBState.php');
 require_once(SG_LIB_PATH.'SGUploadState.php');
+require_once(SG_LIB_PATH.'SGMigrateState.php');
 
 class SGState
 {
@@ -17,7 +18,8 @@ class SGState
 	public $progress = 0;
 	public $warningsFound = false;
 	public $pendingStorageUploads = array();
-
+	public $restoreMode = '';
+	public $restoreFiles = array();
 	public $offset = 0;
 
 	function __construct()
@@ -74,9 +76,22 @@ class SGState
 		$this->warningsFound = $warningsFound;
 	}
 
+	public function setRestoreFiles($restoreFiles)
+	{
+		$this->restoreFiles = $restoreFiles;
+	}
+
 	public function setPendingStorageUploads($pendingStorageUploads)
 	{
 		$this->pendingStorageUploads = $pendingStorageUploads;
+	}
+
+	public function setRestoreMode($mode){
+		$this->restoreMode = $mode;
+	}
+
+	public function getRestoreMode(){
+		return $this->restoreMode;
 	}
 
 	public function getInprogress()
@@ -129,6 +144,11 @@ class SGState
 		return $this->warningsFound;
 	}
 
+	public function getRestoreFiles()
+	{
+		return $this->restoreFiles;
+	}
+
 	public function getPendingStorageUploads()
 	{
 		return $this->pendingStorageUploads;
@@ -155,6 +175,9 @@ class SGState
 		}
 		else if ($type == SG_STATE_TYPE_UPLOAD) {
 			$sgState = new SGUploadState();
+		}
+		else if ($type == SG_STATE_TYPE_MIGRATE) {
+			$sgState = new SGMigrateState();
 		}
 		else {
 			$sgState = new SGDBState();

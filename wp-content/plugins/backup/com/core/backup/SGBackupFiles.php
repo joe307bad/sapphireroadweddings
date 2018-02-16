@@ -30,7 +30,7 @@ class SGBackupFiles implements SGArchiveDelegate
 
 	public function __construct()
 	{
-		$this->rootDirectory = realpath(SGConfig::get('SG_APP_ROOT_DIRECTORY')).'/';
+		$this->rootDirectory = rtrim(realpath(SGConfig::get('SG_APP_ROOT_DIRECTORY')), '/').'/';
 		$this->progressUpdateInterval = SGConfig::get('SG_ACTION_PROGRESS_UPDATE_INTERVAL');
 	}
 
@@ -118,7 +118,13 @@ class SGBackupFiles implements SGArchiveDelegate
 		}
 
 		if (strlen($options['SG_BACKUP_FILE_PATHS_EXCLUDE'])) {
-			$this->excludeFilePaths = explode(',', $options['SG_BACKUP_FILE_PATHS_EXCLUDE']);
+			$excludePaths = $options['SG_BACKUP_FILE_PATHS_EXCLUDE'];
+			$userCustomExcludes = SGConfig::get('SG_PATHS_TO_EXCLUDE');
+			if (!empty($userCustomExcludes)) {
+				$excludePaths .= ','.$userCustomExcludes;
+			}
+
+			$this->excludeFilePaths = explode(',', $excludePaths);
 		}
 		else{
 			$this->excludeFilePaths = array();
@@ -138,7 +144,6 @@ class SGBackupFiles implements SGArchiveDelegate
 			$this->resetProgress();
 			$this->prepareFileTree($allItems);
 
-			$this->warningsFound = false;
 			$this->saveStateData(SG_STATE_ACTION_LISTING_FILES, array(), 0, 0, false, 0);
 
 			SGBackupLog::write('Number of files to backup: '.$this->numberOfEntries);
@@ -309,7 +314,7 @@ class SGBackupFiles implements SGArchiveDelegate
 	{
 		$entries = array();
 		foreach ($allItems as $item) {
-			$path = $this->rootDirectory.$item;
+			$path = realpath($this->rootDirectory.$item);
 			$this->addDirectoryEntriesInFileTree($path, $entries);
 		}
 
@@ -331,8 +336,7 @@ class SGBackupFiles implements SGArchiveDelegate
 
 	private function shouldExcludeFile($path)
 	{
-		if (in_array($path, $this->dontExclude))
-		{
+		if (in_array($path, $this->dontExclude)) {
 			return false;
 		}
 
@@ -340,10 +344,10 @@ class SGBackupFiles implements SGArchiveDelegate
 		$file = $this->pathWithoutRootDirectory($path);
 
 		//check if file/directory must be excluded
-		foreach ($this->excludeFilePaths as $exPath)
-		{
-			if (strpos($file, $exPath)===0)
-			{
+		foreach ($this->excludeFilePaths as $exPath) {
+			$exPath = trim($exPath);
+			$exPath = trim($exPath, '/');
+			if (strpos($file, $exPath)===0) {
 				return true;
 			}
 		}
@@ -387,6 +391,9 @@ class SGBackupFiles implements SGArchiveDelegate
 					$this->addEntriesInFileTree($entries);
 					$entries = array();
 				}
+			}
+			else {
+				$this->warn('Path is not readable (skipping): '.$path);
 			}
 		}
 	}

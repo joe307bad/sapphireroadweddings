@@ -1,6 +1,14 @@
 <?php
+//check PHP version
+if (version_compare(PHP_VERSION, '5.3.3', '<')) {
+	die('PHP >=5.3.3 version required.');
+}
+
 require_once(SG_EXCEPTION_PATH.'SGException.php');
 require_once(SG_CORE_PATH.'functions.php');
+@include_once(SG_CORE_PATH.'functions.silver.php');
+@include_once(SG_CORE_PATH.'functions.gold.php');
+@include_once(SG_CORE_PATH.'functions.platinum.php');
 require_once(SG_CORE_PATH.'SGPing.php');
 require_once(SG_DATABASE_PATH.'SGDatabase.php');
 require_once(SG_CORE_PATH.'SGConfig.php');
@@ -45,6 +53,21 @@ class SGBoot
 		}
 	}
 
+	public static function didInstallForFirstTime()
+	{
+		self::setPluginInstallUpdateDate();
+	}
+
+	public static function didUpdatePluginVersion()
+	{
+		self::setPluginInstallUpdateDate();
+	}
+
+	public static function setPluginInstallUpdateDate()
+	{
+		SGConfig::set('SG_PLUGIN_INSTALL_UPDATE_DATE', time());
+	}
+
 	private static function installConfigTable($sgdb)
 	{
 		//drop config table
@@ -72,6 +95,7 @@ class SGBoot
 			('SG_BACKUP_WITH_RELOADINGS', '1'),
 			('SG_BACKUP_SYNCHRONOUS_STORAGE_UPLOAD','1'),
 			('SG_NOTIFICATIONS_ENABLED','0'),
+			('SG_SHOW_STATISTICS_WIDGET','1'),
 			('SG_NOTIFICATIONS_EMAIL_ADDRESS',''),
 			('SG_STORAGE_BACKUPS_FOLDER_NAME','sg_backups');"
 		);
@@ -247,11 +271,6 @@ class SGBoot
 
 	private static function checkMinimumRequirements()
 	{
-		//check PHP version
-		if (version_compare(PHP_VERSION, '5.3.3', '<')) {
-			die('PHP >=5.3.3 version required.');
-		}
-
 		//check ZLib library
 		if (!function_exists('gzdeflate')) {
 			throw new SGExceptionNotFound('ZLib extension is not loaded.');

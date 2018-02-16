@@ -1,8 +1,8 @@
 === Slider by Soliloquy - Responsive Image Slider for WordPress ===
-Contributors: griffinjt, smub
+Contributors: nathansingh
 Tags: slider, image slider, video slider, responsive slider, gallery slider, post slider, photo slider, youtube slider, wordpress slider, woocommerce slider, product slider, image carousel, carousel slider, pdf slider, fullscreen slider, mobile slider, best slider, content slider, wistia slider, slideshow, html5 slider, thumbnail slider, instagram slider, best responsive slider, testimonial slider, custom post types slider, javascript slider
 Requires at least: 4.0.0
-Tested up to: 4.7.1
+Tested up to: 4.9.0
 Stable tag: trunk
 License: GNU General Public License v2.0 or later
 
@@ -11,37 +11,174 @@ The best WordPress slider plugin. Drag & Drop responsive slider builder that hel
 
 == Description ==
 
-= WordPress Slider Plugin =
+= Slider by Soliloquy - Responsive WordPress Slider Plugin =
 
 Here at **Soliloquy Slider**, we believe that you shouldn't have to hire a developer to create a WordPress slider. That's why we built <a href="http://soliloquywp.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend" title="Envira Gallery">Soliloquy</a>, a drag & drop **image slider plugin** that's both EASY and POWERFUL.
 
 **Slider by Soliloquy** allows you to create beautiful responsive image sliders and video sliders for your WordPress site in minutes, not hours!
 
-At Soliloquy, user experience is our #1 priority. That's why we put in extra effort to ensure that Soliloquy is the best responsive **image slider** for WordPress. This means that your slider will always look great on all devices (mobile, tablet, laptop, and desktop).
+At Soliloquy slider, user experience is our #1 priority. That's why we put in extra effort to ensure that Soliloquy is the best responsive **image slider** for WordPress. This means that your slider will always look great on all devices (mobile, tablet, laptop, and desktop).
 
 Soliloquy slider is highly optimized for web and server performance because we understand the importance of speed when it comes to SEO and conversion. We can honestly say that Soliloquy is the **fastest WordPress slider plugin** in the market.
 
 > <strong>Soliloquy Slider Pro</strong><br />
 > This plugin is the lite version of the popular Soliloquy Slider plugin that comes with all the slider features you will ever need including slider templates, pdf slider, woocommerce slider, featured content slider, carousel slider, lightbox slider, dynamic slider, thumbnail navigation, instagram slider, image protection, and tons more. <a href="http://soliloquywp.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend" title="Envira Gallery">Click here to purchase the best premium WordPress slider plugin now!</a>
 
-**Slider by Soliloquy** has been downloaded over 1,000,000 times. Here's why smart photographers, designers, and developers love Soliloquy Sliders, and you will too!
+**Slider by Soliloquy** has been downloaded over 1,000,000 times. Here's why smart photographers, designers, and developers love Soliloquy slider, and you will too!
 
 https://www.youtube.com/watch?v=d1bhi_cZSmc
 
 = Drag & Drop Responsive Slider Builder =
 
-We were tired with the bloated and buggy slider plugins. That's why we built Soliloquy Slider to adapt to your workflow and allow you to create responsive WordPress sliders in minutes. By using our easy to use <a href="http://soliloquywp.com/features/drag-drop-builder/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">drag and drop builder</a>, you can upload your images, rearrange them, and basically create a slider in 5 minutes or less.
+We were tired of bloated and buggy slider plugins. That's why we built Soliloquy Slider to adapt to your workflow and allow you to create responsive WordPress sliders in minutes. By using our easy to use <a href="http://soliloquywp.com/features/drag-drop-builder/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">drag and drop slider builder</a>, you can upload your images, rearrange them, and basically create an image slider in 5 minutes or less.
 
 But don't just take our word. See what one of the WordPress experts are saying:
 
 > I used to custom build rotators for every project since I hadn't found a tool with the flexibility I needed. Now I have Soliloquy. It <strong>works great out of the box</strong>, has an easy-to-use interface, and gives you the power to customize everything with hooks and filters.<br>
 > Bill Erickson - WordPress Consultant
 
-= Mobile Ready, SEO Friendly and Optimized for Speed =
+= Responsive Slider, SEO Friendly and Optimized for Speed =
 
-Soliloquy Slider is 100% responsive and mobile-friendly by default. We also optimized every query on the front-end and the back-end to ensure maximum speed - Yes, Soliloquy is the fastest WordPress slider plugin.
+Soliloquy slider is 100% responsive and mobile-friendly by default. We also optimized every slider query on the front-end and the back-end to ensure maximum speed - Yes, Soliloquy is the fastest WordPress slider plugin.
 
-We also made Soliloquy the most SEO friendly slider plugin with proper HTML markup, fast speed, and google friendly display.
+We also made Soliloquy slider the most SEO friendly slider plugin with proper slider HTML markup, fast speed, and google friendly slider display.
+
+= Slider Themes =
+
+Don't like the default slider layout? No problem. 
+
+With Soliloquy slider, you can use the many pre-made slider templates to enhnace the look of your WordPress slider. 
+
+On top of our slider themes, you can use custom CSS to customize everything about your WordPress slider.
+
+See the demo of our <a href="http://soliloquywp.com/demo/slider-themes-demo/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">WordPress slider themes</a>.
+
+= WooCommerce Product Slider = 
+
+Looking to create product sliders for your WooCommerce store? Look no further.
+
+With Soliloquy Slider's WooCommerce addon, you can easily create product sliders with just a few clicks. 
+
+You can filter your product slider by category, price, availability, featured, or another criteria. 
+You can also include or exclude specific products from your product slider.
+
+Basically, you have all the slider control you want.
+
+Watch the <a href="http://soliloquywp.com/addons/woocommerce-addon/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">WooCommerce product slider video</a>.
+
+= Featured Content Slider =
+
+Want to create a featured content slider in WordPress? With Soliloquy slider, you can create sliders for posts, pages, and any other custom post type on your site.
+
+In other words, you can have a blog post slider, product slider, testimonials slider, photo gallery slider, and more.
+
+Basically you can create responsive sliders dynamically based on your website's content.
+
+Watch the <a href="http://soliloquywp.com/addons/featured-content/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">WooCommerce featured content slider video</a>.
+
+= Lightbox Slider = 
+
+Soliloquy slider makes it easy for you to create a lightbox slider for your images, photos, and galleries. 
+
+The lightbox slider addon opens your image slider in a full screen mode that's easy to browse on all devices.
+
+Yes, it's a 100% mobile friendly slider.
+
+See the <a href="http://soliloquywp.com/demo/lightbox-slider-demo/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">Lightbox slider demo</a>.
+
+= Carousel Slider =
+
+Want to add the carousel effect to your slider?
+
+That's exactly what our Carousel Slider addon does. 
+
+You can create a carousel image slider, video slider, or even complete gallery carousel slider.
+
+See the <a href="http://soliloquywp.com/demo/carousel-slider-demo/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">Carousel slider demo</a>.
+
+= Dynamic Slider = 
+
+Soliloquy Slider comes with a powerful dynamic slider addon that allows you to dynamically create sliders from blog post slider, testimonial slider, instagram image slider, and gallery sliders.
+
+Best part about the Dynamic slider addon is that you don't have to re-upload the images. It just grabs the content and creates the slider automtically.
+
+= Slider with Thumbnails =
+
+If you want to create a slider with thumbnail navigation, then we have a solution for you.
+
+Our thumbnail slider addon allows you to add thumbnail images as your slider navigation. 
+
+You can configure the size, position, and everything else on your image slider.
+
+See the <a href="http://soliloquywp.com/demo/slider-with-thumbnails-demo/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">Thumbnail slider demo</a>.
+
+= Instagram Slider =
+
+Want to add Instagram images in your slider?
+
+Soliloquy's Instagram slider addon automatically creates image sliders based on your Instagram photos, photos that you like, or even photo with specific tags.
+
+Your image slider can have as many photos that you like. You can display photo captions in your image slider.
+
+You can also randomize the order of photos in your image slider.
+
+See the <a href="http://soliloquywp.com/demo/instagram-slider-demo/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">Instagram slider demo</a>.
+
+= PDF Slider =
+
+Want to use a PDF to create a slider? Soliloqy's PDF Slider addon allows you to convert PDFs into an image slider.
+
+PDF sliders are great for showing your presentation slides as a slider on your website.
+
+See the <a href="http://soliloquywp.com/demo/pdf-slider-demo/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">PDF slider demo</a>.
+
+= Video Slider =
+
+Want to create a video slider? Look no further. 
+
+Soliloquy slider allows you to easily build a responsive video slider. 
+
+Your video slider can contain videos from multiple sources, so you can create a YouTube video slider, Vimeo video slider, Wistia video slider, and even custom self-hosted video slider.
+
+As all other sliders, Soliloquy's video sliders are 100% mobile responsive.
+
+See the <a href="http://soliloquywp.com/demo/video-slider-demo/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">Video slider demo</a>.
+
+= Custom HTML Slider =
+
+Want to create custom HTML sliders? Soliloquy slider lets you create HTML files to use as slides.
+
+With HTML sliders, there's really no limit to your sliders and customization.
+
+You can use it to create a quotes slider, mixed-content slider, or basically any type of slider.
+
+See the <a href="http://soliloquywp.com/demo/html-slider-demo/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">HTML slider demo</a>.
+
+= Slider Transition Effects =
+
+Soliloquy slider comes with numerous slider transitions that you can choose from. You can have a fade image slider transition, horizontal scroll image slider transition, vertical scroll image slider transition, ticker scroll image slider transition, and more.
+
+You can also auto play your sliders, control your slider transition speed, and more.
+
+= Schedule Slider Addon =
+
+Soliloquy slider comes with a schedule slider addon that allows you to schedule your WordPress slides.
+
+Scheduled sliders are great for holiday sales and special events.
+
+= Pinterest button on Slider =
+
+Soliloquy slider has a Pinterest addon that adds a Pinterest "Pin It" button on your slider. This allows users to easily share your image slider on Pinterest.
+
+The Pinterest slider addon gives you the choice to pick between the gray, red, and white Pinterest buttons. You can choose the placement on your image slider as well.
+
+See the <a href="http://soliloquywp.com/addons/pinterest/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion" rel="friend">Pinterest slider demo</a>.
+
+= Slider Defaults =
+
+Do you often create sliders on your website? Soliloquy slider comes with a Defaults addon that allows you to save your default slider settings, so you can save time when creating your slider.
+
+The slider defautls addon is a huge favorite.
 
 = Easy to Customize and Extend =
 
@@ -98,7 +235,6 @@ While Soliloquy offers tons of features, below are some of the most requested sl
 
 = Credits =
 
-Soliloquy Slider is created by <a href="https://thomasgriffin.io" rel="friend" title="Thomas Griffin">Thomas Griffin</a> and <a href="https://syedbalkhi.com/" rel="friend" title="Syed Balkhi">Syed Balkhi</a>.
 
 = What's Next =
 
@@ -107,6 +243,7 @@ If you like the Soliloquy Slider plugin, then consider checking out our other pr
 * <a href="http://optinmonster.com/" rel="friend" title="OptinMonster">OptinMonster</a> - Get More Email Subscribers
 * <a href="http://enviragallery.com/" rel="friend" title="Envira Gallery">Envira Gallery</a> - Best WordPress Gallery Plugin
 * <a href="https://wpforms.com/" rel="friend" title="WPForms">WPForms</a> - Drag & Drop WordPress Form Builder
+* <a href="https://www.monsterinsights.com" rel="friend" title="MonsterInsights"> MonsterInsights</a> - Best Google Analytics Plugin for WordPress
 
 Visit <a href="http://www.wpbeginner.com/" rel="friend" title="WPBeginner">WPBeginner</a> to learn from our <a href="http://www.wpbeginner.com/category/wp-tutorials/" rel="friend" title="WordPress Tutorials">WordPress Tutorials</a> and find out about other <a href="http://www.wpbeginner.com/category/plugins/" rel="friend" title="Best WordPress Plugins">best WordPress plugins</a>.
 
@@ -131,6 +268,30 @@ Soliloquy slider is perfect for photographers, designers, bloggers, and small bu
 
 Absolutely not. You can create and customize beautiful image and video sliders without any coding knowledge. We made it super easy.
 
+= Is Soliloquy slider responsive? =
+
+Yes, the Soliloquy slider is 100% responsive and mobile friendly.
+
+= Can I add Soliloquy slider anywhere on my website? =
+
+Yes, you can add Soliloquy slider inside your blog posts, pages, widgets, and anywhere else on your WordPress website with a slider shortcode.
+
+= Will Soliloquy slider slow down my website? =
+
+Absolutely not. Soliloquy slider is carefully built with performance in mind. We have tested Soliloquy slider on extremely high traffic websites to ensure that it scales without having any performance issues.
+
+= Is Soliloquy slider compatible with WordPress multisite? =
+
+Yes, Soliloquy slider works perfectly with WordPress multi-site.
+
+= Does Soliloquy slider work on WordPress.com? =
+
+No, Soliloquy slider does not work on WordPress.com. It only works with self-hosted WordPress. See the difference between <a href="www.wpbeginner.com/beginners-guide/self-hosted-wordpress-org-vs-free-wordpress-com-infograph/" rel="friend">WordPress.com vs WordPress.org</a>.
+
+= Is Soliloquy slider translation ready? =
+
+Yes, Soliloquy slider is 100% translation ready.
+
 == Screenshots ==
 
 1. Main Soliloquy screen.
@@ -149,6 +310,11 @@ In v2.0 of Soliloquy Slider Lite, it includes a big plugin architecture change. 
 The pro version of Soliloquy slider has many more features and enables you to do so much more than Soliloquy slider lite, such as add images from your Media Library and use your own custom videos from YouTube, Vimeo and Wistia!
 
 == Changelog ==
+
+
+= 2.5.2 =
+* Fix: Duplicate images showing in admin
+* Fix: Minor bug fixes
 
 = 2.5.1.3 =
 * Fix: Minor bug fixes

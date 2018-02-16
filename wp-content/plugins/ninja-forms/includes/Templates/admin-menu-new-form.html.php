@@ -32,7 +32,27 @@
     <div id="nf-menu-drawer"></div>
     <div id="nf-drawer"></div>
     <span class="merge-tags-content" style="display:none;"></span>
+    <div id="merge-tags-box"></div>
 </script>
+
+<!-- MERGE TAGS BOX TEMPLATES -->
+<script id="tmpl-nf-merge-tag-box" type="text/template">
+    <div class="merge-tag-filter"></div>
+    <div class="merge-tag-container">
+        <div class="merge-tag-sections"></div>
+        <div class="merge-tag-list"></div>
+    </div>
+</script>
+<script id="tmpl-nf-merge-tag-box-section" type="text/template">
+    {{{ data.label }}}
+</script>
+<script id="tmpl-nf-merge-tag-box-tag" type="text/template">
+    <span data-tag="{{{data.tag}}}">{{{ data.label }}} <small>{{{data.tag}}}</small></span>
+</script>
+<script id="tmpl-nf-merge-tag-box-filter" type="text/template">
+    <input type="text" placeholder="Search for merge tags" >
+</script>
+<!-- END: MERGE TAGS BOX TEMPLATES -->
 
 <script id="tmpl-nf-admin-header" type="text/template">
     <div id="nf-app-admin-header"></div>
@@ -83,7 +103,7 @@
 </script>
 
 <script id="tmpl-nf-app-header-publish-button" type="text/template">
-    <a href="#" {{{ data.publishWidth }}} class="nf-button primary {{{ data.maybeDisabled() }}} publish" title="<?php _e( 'Publish', 'ninja-forms' ); ?>"><?php _e( 'PUBLISH', 'ninja-forms' ); ?></a>
+    <a href="#" style="width:{{{ data.publishWidth }}} !important" class="nf-button primary {{{ data.maybeDisabled() }}} publish" title="<?php _e( 'Publish', 'ninja-forms' ); ?>"><?php _e( 'PUBLISH', 'ninja-forms' ); ?></a>
 </script>
 
 <script id="tmpl-nf-add-header-publish-loading" type="text/template">
@@ -125,10 +145,7 @@
 <script id="tmpl-nf-main-content-fields-empty" type="text/template">
     <div class="nf-fields-empty">
         <h3><?php _e( 'Add form fields', 'ninja-forms' ); ?></h3>
-        <p><?php _e( 'Get started by adding your first form field.', 'ninja-forms' ); ?> <a class="nf-open-drawer" title="<?php _e( 'Add New Field', 'ninja-forms' ); ?>" href="#" data-drawerid="addField"><?php _e( 'Just click here and select the fields you want.', 'ninja-forms' ); ?> </a><?php _e( "It's that easy. Or...", 'ninja-forms' ); ?>
-        <h3><?php _e( 'Start from a template', 'ninja-forms' ); ?></h3>
-        <?php Ninja_Forms::template( 'NewFormTemplates.html.php' ); ?>
-
+        <p><?php _e( 'Get started by adding your first form field.', 'ninja-forms' ); ?> <?php _e( "It's that easy.", 'ninja-forms' ); ?>
     </div>
 </script>
 
@@ -294,7 +311,7 @@
 </script>
 
 <script id="tmpl-nf-drawer-staged-field" type="text/template">
-     <span class="nf-item-dock" id="{{{ data.id }}}" data-id="{{{ data.slug }}}"><span class="fa fa-{{{ data.icon }}}"></span>{{{ data.nicename }}}<span class="dashicons dashicons-dismiss"></span>
+     <span class="nf-item-dock" id="{{{ data.id }}}" data-id="{{{ data.slug }}}"><span class="fa fa-{{{ data.icon }}}" data-id="{{{ data.slug }}}"></span>{{{ data.nicename }}}<span class="dashicons dashicons-dismiss"></span>
 </script>
 
 <script id="tmpl-nf-drawer-field-type-section" type="text/template">
@@ -306,7 +323,7 @@
 
 <script id="tmpl-nf-drawer-field-type-button" type="text/template">
     <div class="nf-field-type-button nf-field-type-draggable {{{ data.savedField() }}}" data-id="{{{ data.id }}}">
-        <div class="nf-item" data-id="{{{ data.id }}}" tabindex="0"><span class="fa fa-{{{ data.icon }}}"></span>{{{ data.nicename }}}</div>
+        <div class="nf-item" data-id="{{{ data.id }}}" tabindex="0"><span class="fa fa-{{{ data.icon }}}" data-id="{{{ data.id }}}"></span>{{{ data.nicename }}}</div>
     </div>
 </script>
 
@@ -319,7 +336,7 @@
 
 <script id="tmpl-nf-drawer-action-type-button" type="text/template">
     <div class="nf-one-third nf-action-type-draggable" data-type="{{{ data.id }}}">
-        <div class="{{{ data.renderClasses() }}}" {{{ data.renderStyle() }}}>{{{ data.nicename }}}</div>
+        <div class="{{{ data.renderClasses() }}}" style="{{{ data.renderStyle() }}}">{{{ data.nicename }}}</div>
     </div>
 </script>
 
@@ -368,7 +385,7 @@
 
 <script id="tmpl-nf-staged-fields-drag" type="text/template">
     <div class="nf-staged-fields-drag">
-        <div id="drag-item-1" class="nf-staged-fields-drag-wrap">{{{ data.num }}}<? _e( ' Fields', 'ninja-forms' ); ?></div>
+        <div id="drag-item-1" class="nf-staged-fields-drag-wrap">{{{ data.num }}}<?php _e( ' Fields', 'ninja-forms' ); ?></div>
         <div id="drag-item-2" class="nf-staged-fields-drag-wrap">&nbsp;</div>
         <div id="drag-item-3" class="nf-staged-fields-drag-wrap">&nbsp;</div>
     </div>
@@ -396,7 +413,7 @@
 <script id="tmpl-nf-edit-setting-wrap" type="text/template">
     <div class="{{{ data.renderClasses() }}}" {{{ data.renderVisible() }}}>
         {{{ data.renderSetting() }}}
-        <span class="nf-setting-error"></span>
+        <div class="nf-setting-error"></div>
     </div>
 </script>
 
@@ -426,26 +443,26 @@ Label Three, value-three, 3
 </script>
 
 <script id="tmpl-nf-edit-setting-error" type="text/template">
-    <div>{{{ data.error }}}</div>
+    <div>{{{ data.error || data.warning }}}</div>
 </script>
 
 <script id="tmpl-nf-edit-setting-textbox" type="text/template">
     <label for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}
-        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" {{{ data.renderPlaceholder() }}} />
+        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="{{{ data.placeholder }}}" />
         {{{ data.renderMergeTags() }}}
     </label>
 </script>
 
 <script id="tmpl-nf-edit-setting-media" type="text/template">
     <label for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}} has-merge-tags">{{{ data.label }}} {{{ data.renderTooltip() }}}
-        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" {{{ data.renderPlaceholder() }}} />
+        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="{{{ data.placeholder }}}" />
         <span class="extra open-media-manager dashicons dashicons-admin-media merge-tags"></span>
     </label>
 </script>
 
 <script id="tmpl-nf-edit-setting-datepicker" type="text/template">
     <label for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}
-        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" {{{ data.renderPlaceholder() }}} />
+        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="{{{ data.placeholder }}}" />
     </label>
 </script>
 
@@ -624,9 +641,16 @@ Label Three, value-three, 3
     <div>
         <span class="dashicons dashicons-menu handle"></span>
     </div>
-    <div>
-        <input type="text" class="setting" value="{{{ data.name }}}" data-id="name">
-        <span class="nf-option-error"></span>
+    <div class="calc-left">
+        <div>
+            <input type="text" class="setting" value="{{{ data.name }}}" data-id="name">
+            <span class="nf-option-error"></span>
+        </div>
+        <div><?php _e( 'Decimals', 'ninja-forms' ); ?></div>
+        <div>
+            <input type="text" class="setting" value="{{{ data.dec }}}" data-id="dec">
+            <span class="nf-option-error"></span>
+        </div>
     </div>
     <div>
         <textarea class="setting" data-id="eq">{{{ data.eq }}}</textarea>

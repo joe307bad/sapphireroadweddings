@@ -16,21 +16,23 @@
 get_header();
 $post = get_post();
 do_action('genesis_before_content_sidebar_wrap');
+
+$encodedAttachments = get_post_meta($post->ID, 'attachments', true);
+$attachments = json_decode($encodedAttachments);
+$attachmentsExist = $attachments->my_attachments !== null;
+
 ?>
 <div class="swiper-container">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
         <?php
-        //$author_id = get_the_author_meta('ID');
-        //$images = get_field('gallery', 'user_'. $author_id );
-        $images = get_field('rental_gallery');
-        if ($images):
-            foreach ($images as $image): ?>
-                <div class="swiper-slide"><img src="<?php echo $image['sizes']['large']; ?>"
-                                               alt="<?php echo $image['alt']; ?>"/></div>
+        if ($attachmentsExist):
+            foreach ($attachments->my_attachments as $image): ?>
+                <div class="swiper-slide">
+                   <?php echo wp_get_attachment_image(  $image->id, $size = 'large') ?>
+                </div>
             <?php endforeach;
         endif; ?>
-
     </div>
 
     <div class="swiper-button-prev"></div>

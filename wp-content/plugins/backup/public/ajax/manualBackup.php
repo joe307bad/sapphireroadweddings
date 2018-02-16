@@ -18,7 +18,7 @@ try {
 
 		$options = $_POST;
 		$error = array();
-		SGConfig::set("SG_BACKUP_TYPE", $options['backup-type']);
+		SGConfig::set("SG_BACKUP_TYPE", (int)$options['backup-type']);
 
 		$options = backupGuardGetBackupOptions($options);
 

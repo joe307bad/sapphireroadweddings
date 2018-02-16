@@ -1,10 +1,10 @@
 === Image Caption Hover ===
 Contributors: Rameez_Iqbal
-Donate link: https://www.2checkout.com/checkout/purchase?sid=202485641&quantity=1&product_id=1
+Donate link: https://www.paypal.me/webcodingplace
 Tags: image, caption, widget, hover, css3, responsive, theme, thumbnail, sidebar, easy, simple, footer, image caption, upload, library, styles, wpml, multi language, i10n, i18n, german, french, danish, spanish, portuguese, Persian, Russian, czech, greek, chinese, Norwegian, Hebrew
 Requires at least: 3.5
-Tested up to: 4.7
-Stable tag: 9.7
+Tested up to: 4.9
+Stable tag: 10.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,19 +22,35 @@ Image Caption Hover lets you to insert images in your site with cool and interac
 
 Your suggestions will make this plugin even better, so <a href="http://webcodingplace.com/plugin-feature-request/">let us know</a> if you need any assistance or help. 
 
+<h3>Free Version Demos</h3>
+<ul>
+	<li><a href="https://demos.webcodingplace.com/image-caption-hover-square-hover-effects/">Square Hover Effects</a></li>
+	<li><a href="https://demos.webcodingplace.com/image-caption-hover-circle-hover-effects/">Circle Hover Effects</a></li>
+	<li><a href="https://demos.webcodingplace.com/image-caption-hover-flip-zoom-effects/">Flip and Zoom Hover Effects</a></li>
+	<li><a href="https://demos.webcodingplace.com/image-caption-hover-free-hover-effects/">Other Hover Effects</a></li>
+	<li><a href="https://webcodingplace.com/create-modern-hover-effects-images-captions-wordpress/scroll-image-effect-with-visible-caption/">Image Scroll Vertically</a></li>
+</ul>
+
 <h3>Quick Links</h3>
 <ul>
-	<li><a href="http://demos.webcodingplace.com/image-caption-hover-demo-with-hover-effects/">Demo 1 (Features)</a></li>
-	<li><a href="http://demos.webcodingplace.com/image-caption-hover-demo-with-hover-effects-demo-2/">Demo 2 (Circle Hover Effects)</a></li>
-	<li><a href="http://demos.webcodingplace.com/image-caption-hover-demo-with-hover-effects-demo-3/">Demo 3 (Square Hover Effects)</a></li>
-	<li><a href="http://webcodingplace.com/image-caption-hover-demo/">Demo 4 (Hover Effects in Grid)</a></li>
 	<li><a href="https://webcodingplace.com/create-modern-hover-effects-images-captions-wordpress/">Modern Effects with help to create them</a></li>
-	<li><a href="https://webcodingplace.com/create-modern-hover-effects-images-captions-wordpress/image-hover-effects-in-slider-carousel/">Image Hover Effects in Slider Carousel</a></li>
 	<li><a href="https://youtu.be/k928qX_DEtI">How to Use (Short Video)</a></li>
 	<li><a href="http://webcodingplace.com/how-to-use-image-caption-hover-wordpress-plugin/">How to Use (Step by Step Tutorial)</a></li>
-	<li><a href="http://webcodingplace.com/image-caption-hover-wordpress-plugin/">Help and Support</a></li>
+	<li><a href="https://webcodingplace.com/image-caption-hover-pro-wordpress-plugin/">Help and Support</a></li>
 	<li><a href="http://webcodingplace.com/image-caption-hover-pro-wordpress-plugin/">Upgrade to Pro</a></li>
 </ul>
+
+<h3>Pro Version Demos</h3>
+<ul>
+	<li><a href="https://demos.webcodingplace.com/image-caption-hover-demo-with-hover-effects/">Pro Features</a></li>
+	<li><a href="https://demos.webcodingplace.com/image-caption-hover-slider-carousel/">Slider Carousel</a></li>
+	<li><a href="https://demos.webcodingplace.com/image-caption-hover-image-pieces-slices-effects/">Image Slices Effects</a></li>
+	<li><a href="https://demos.webcodingplace.com/image-caption-hover-video-popup-flip-effects/">Video Popup and Image Flip Effects</a></li>
+	<li><a href="https://demos.webcodingplace.com/image-caption-hover-masonry-justified-grid/">Justified Grid - Masonry</a></li>
+
+</ul>
+
+
 
 <h3>Features</h3>
 <ul>
@@ -42,6 +58,7 @@ Your suggestions will make this plugin even better, so <a href="http://webcoding
 	<li>200+ CSS Hover Effects</li>
 	<li>Play Audio or Music on Hover</li>
 	<li>Shortcodes Supported</li>
+	<li>Masonry Grid</li>
 	<li>Light Box for Images and Videos</li>
 	<li>Rich Text Editor for Captions</li>
 	<li>External Links for Images</li>
@@ -96,6 +113,56 @@ Your suggestions will make this plugin even better, so <a href="http://webcoding
 1. Simple Settings
 2. Using shortcode
 3. Preview
+
+== Changelog ==
+
+= 10.3.6 - 19th December 2017 =
+* Bug Fixed: Add image won't work when adding second image
+
+= 10.3.5 - 17th December 2017 =
+* Bug Fixed: Add image not working with Avada
+
+= 10.3.4 - 26th November 2017 =
+* Bug Fixed: Colors are not applying when creating large amount of images
+
+= 10.3.3 - 20th November 2017 =
+* Feature Added: Compatible with WordPress 4.9
+* Bug Fixed: Color options not working with WP 4.9
+
+= 10.3.2 - 20th September 2017 =
+* Bug Fixed: Old Shortcodes not working properly
+
+= 10.3.1 - 16th September 2017 =
+* Feature Added: Duplicate Option for Image Settings
+* Feature Added: Better Visuals for Admin Settings
+* Feature Added: Title background color for Square and Circle effects
+* Bug Fixed: Page breaks with site origin page builder
+* Bug Fixed: The extension image-caption-hover/index.php has been disabled due to an error
+
+= 10.3.0 - 12th September 2017 =
+* Feature Added: Links updated
+* Bug Fixed: Colors not applying
+
+= 10.2.1 - 5th July 2017 =
+* Bug Fixed: Caption Editor sometimes won't work is fixed now
+
+= 10.2 - 24th June 2017 =
+* Bug Fixed: Warning: Illegal string offset 'columns'
+
+= 10.1 - 29th May 2017 =
+* Bug Fixed: CSS code displays under image in some themes
+
+= 10.0 - 19th May 2017 =
+* Feature Added: Font Size option for Title
+* Feature Added: Color option for Title
+* Bug Fixed: Caption Color not changing
+
+= 9.9 - 27th April 2017 =
+* Bug Fixed: Notice Deprecated: Methods with the same name as their class will not be constructors in a future version of PHP, is removed
+
+= 9.8 - 9th April 2017 =
+* Bug Fixed: Divi Theme, page builder doesn't work issue is fixed now
+* Bug Fixed: wcp_all_settings is not defined is fixed
 
 == Changelog ==
 

@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name: Image Caption Hover
- * Plugin URI: http://webcodingplace.com/wordpress-free-plugins/image-caption-hover-wordpress-plugin/
- * Description: A collection of more than 200 hover effects that works on all modern browsers and devices.
- * Version: 9.7
- * Author: Rameez
+ * Plugin URI: https://webcodingplace.com/image-caption-hover-pro-wordpress-plugin
+ * Description: A collection of more than 200 hover effects for images and captions that works on all modern browsers and devices.
+ * Version: 10.3.6
+ * Author: WebCodingPlace
  * Author URI: http://webcodingplace.com/
  * License: GNU General Public License version 3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -12,7 +12,7 @@
  */
 
 /*
-  Copyright (C) 2015  Rameez  rameez.iqbal@live.com
+  Copyright (C) 2015  WebCodingPlace  help@webcodingplace.com
 */
 require_once('widget.php');
 

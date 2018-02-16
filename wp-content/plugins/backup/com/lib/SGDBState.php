@@ -9,6 +9,7 @@ class SGDBState extends SGState
 	private $numberOfEntries = 0;
 	private $lineSize = 0;
 	private $backedUpTables = array();
+	private $tablesToBackup = array();
 
 	function __construct()
 	{
@@ -23,6 +24,14 @@ class SGDBState extends SGState
 	public function getBackedUpTables()
 	{
 		return $this->backedUpTables;
+	}
+
+	public function getTablesToBackup(){
+		return $this->tablesToBackup;
+	}
+
+	public function setTablesToBackup($tablesToBackup){
+		$this->tablesToBackup = $tablesToBackup;
 	}
 
 	public function setLineSize($lineSize)
@@ -82,6 +91,7 @@ class SGDBState extends SGState
 		$this->warningsFound = $stateJson['warningsFound'];
 		$this->pendingStorageUploads = $stateJson['pendingStorageUploads'];
 		$this->backedUpTables = $stateJson['backedUpTables'];
+		$this->tablesToBackup = $stateJson['tablesToBackup'];
 
 		return $this;
 	}
@@ -105,7 +115,8 @@ class SGDBState extends SGState
 			'progress' => $this->progress,
 			'warningsFound' => $this->warningsFound,
 			'pendingStorageUploads' => $this->pendingStorageUploads,
-			'backedUpTables' => $this->backedUpTables
+			'backedUpTables' => $this->backedUpTables,
+			'tablesToBackup' => $this->tablesToBackup
 		)));
 	}
 }

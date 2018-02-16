@@ -21,11 +21,13 @@ class SGArchive
 	private $cdrFileHandle = null;
 	private $cdrFilesCount = 0;
 	private $cdr = array();
-	private $fileOffset = null;
+	private $fileOffset = 0;
 	private $delegate;
 	private $ranges = array();
 	private $state = null;
 	private $rangeCursor = 0;
+
+	private $cdrOffset = 0;
 
 	public function __construct($filePath, $mode, $cdrSize = 0)
 	{
@@ -223,7 +225,8 @@ class SGArchive
 			'method' => SGConfig::get('SG_BACKUP_TYPE'),
 			'multisitePath' => $multisitePath,
 			'multisiteDomain' => $multisiteDomain,
-			'selectivRestoreable' => true
+			'selectivRestoreable' => true,
+			'phpVersion' => phpversion()
 		));
 
 		//extra size
@@ -292,8 +295,28 @@ class SGArchive
 		$this->cdrFilesCount++;
 	}
 
+	private function isEnoughFreeSpaceOnDisk($dataSize)
+	{
+		$freeSpace = @disk_free_space(SG_APP_ROOT_DIRECTORY);
+
+		if ($freeSpace === false || $freeSpace === null) {
+			return true;
+		}
+
+		if ($freeSpace < $dataSize) {
+			return false;
+		}
+
+		return true;
+	}
+
 	private function write($data)
 	{
+		$isEnoughFreeSpaceOnDisk = $this->isEnoughFreeSpaceOnDisk(strlen($data));
+		if (!$isEnoughFreeSpaceOnDisk) {
+			throw new SGExceptionIO('Failed to write in the archive due to not sufficient disk free space.');
+		}
+
 		$result = fwrite($this->fileHandle, $data);
 		if ($result === FALSE) {
 			throw new SGExceptionIO('Failed to write in archive');
@@ -330,6 +353,58 @@ class SGArchive
 		return $low.$high;
 	}
 
+	public function getArchiveHeaders()
+	{
+		return $this->extractHeaders();
+	}
+
+	public function getFilesList()
+	{
+		$list = array();
+		$cdrSize = hexdec($this->unpackLittleEndian($this->read(4), 4));
+		$this->cdrOffset = ftell($this->fileHandle);
+
+		for($i = 0; $i < $cdrSize; $i++) {
+			$el = $this->getNextCdrElement($this->cdrOffset);
+			array_push($list, $el[0]);
+		}
+		return $list;
+	}
+
+	public function getTreefromList($list, $limit = "")
+	{
+		$tree = array();
+		if(end($list) == "./sql") {
+			array_pop($list);
+		}
+		for($i=0; $i < count($list); $i++) {
+			if(!backupGuardStringStartsWith($list[$i], $limit)) {
+				continue;
+			}
+			$path = substr($list[$i], strlen($limit));
+			$path = explode(DIRECTORY_SEPARATOR, $path);
+			$exists = false;
+			foreach($tree as $el) {
+				if ($path[0] == $el->name) {
+					$exists = true;
+					break;
+				}
+			}
+			if(!$exists) {
+				$node = new stdClass();
+				$node->name = $path[0];
+				if(count($path) > 1){
+					$node->type = "folder";
+				}else{
+					$node->type = "file";
+				}
+				array_push($tree,$node);
+			}
+
+		}
+		return $tree;
+	}
+
 	public function extractTo($destinationPath, $state = null)
 	{
 		$this->state = $state;
@@ -343,7 +418,7 @@ class SGArchive
 		}
 	}
 
-	private function extract($destinationPath)
+	private function extractHeaders()
 	{
 		//read offset
 		fseek($this->fileHandle, -4, SEEK_END);
@@ -365,16 +440,30 @@ class SGArchive
 
 			SGConfig::set('SG_OLD_SITE_URL', $extra['siteUrl']);
 			SGConfig::set('SG_OLD_DB_PREFIX', $extra['dbPrefix']);
+
+			if (isset($extra['phpVersion'])) {
+				SGConfig::set('SG_OLD_PHP_VERSION', $extra['phpVersion']);
+			}
+
 			SGConfig::set('SG_BACKUPED_TABLES', $extra['tables']);
 			SGConfig::set('SG_BACKUP_TYPE', $extra['method']);
 
-			SGConfig::set('SG_MULTISITE_OLD_PATH', $extra['multisitePath']);
+			SGConfig::set('SG_MULTISITE_OLD_PATH',  $extra['multisitePath']);
 			SGConfig::set('SG_MULTISITE_OLD_DOMAIN', $extra['multisiteDomain']);
 		}
 
+		$extra['version'] = $version;
+		return $extra;
+	}
+
+	private function extract($destinationPath)
+	{
+		$extra = $this->extractHeaders();
+		$version = $extra['version'];
+
 		$this->delegate->didExtractArchiveMeta($extra);
 
-		$isMultisite = defined('BG_IS_MULTISITE') ? BG_IS_MULTISITE : false;
+		$isMultisite = backupGuardIsMultisite();
 		$archiveIsMultisite = $extra['multisitePath'] != '' || $extra['multisiteDomain'] != '';
 
 		if (SG_ENV_ADAPTER == SG_ENV_WORDPRESS) {
@@ -408,192 +497,270 @@ class SGArchive
 		}
 
 		//read cdr size
-		$cdrSize = hexdec($this->unpackLittleEndian($this->read(4), 4));
+		$this->cdrFilesCount = hexdec($this->unpackLittleEndian($this->read(4), 4));
 
 		$this->delegate->didStartRestoreFiles();
-		$this->delegate->didCountFilesInsideArchive($cdrSize);
+		$this->delegate->didCountFilesInsideArchive($this->cdrFilesCount);
 
-		$this->extractCdr($cdrSize, $destinationPath);
+		// $this->extractCdr($cdrSize, $destinationPath);
+		$this->cdrOffset = ftell($this->fileHandle);
 		$this->extractFiles($destinationPath);
 	}
 
 	private function continueExtract($destinationPath)
 	{
-		fseek($this->fileHandle, $this->state->getOffset());
-		$this->cdr = json_decode($this->state->getCdr(), true);
+		$this->fileOffset = $this->state->getOffset();
+		fseek($this->fileHandle, $this->fileOffset);
 		$this->extractFiles($destinationPath);
 	}
 
-	private function extractCdr($cdrSize, $destinationPath)
+	private function getNextCdrElement($offset)
 	{
-		while ($cdrSize)
-		{
-			//read crc (not used in this version)
-			$this->read(4);
+		fseek($this->fileHandle, $this->cdrOffset);
+		//read crc (not used in this version)
+		$this->read(4);
 
-			//read filename
-			$filenameLen = hexdec($this->unpackLittleEndian($this->read(2), 2));
-			$filename = $this->read($filenameLen);
-			$filename = $this->delegate->getCorrectCdrFilename($filename);
+		//read filename
+		$filenameLen = hexdec($this->unpackLittleEndian($this->read(2), 2));
+		$filename = $this->read($filenameLen);
+		$filename = $this->delegate->getCorrectCdrFilename($filename);
 
-			//read file offset
-			$fileOffsetInArchive = $this->unpackLittleEndian($this->read(8), 8);
-			$fileOffsetInArchive = hexdec($fileOffsetInArchive);
+		//read file offset
+		$fileOffsetInArchive = $this->unpackLittleEndian($this->read(8), 8);
+		$fileOffsetInArchive = hexdec($fileOffsetInArchive);
 
-			//read compressed length
-			$zlen = $this->unpackLittleEndian($this->read(8), 8);
-			$zlen = hexdec($zlen);
+		//read compressed length
+		$zlen = $this->unpackLittleEndian($this->read(8), 8);
+		$zlen = hexdec($zlen);
 
-			//read uncompressed length (not used in this version)
-			$this->read(8);
+		//read uncompressed length (not used in this version)
+		$this->read(8);
 
-			$rangeLen = hexdec($this->unpackLittleEndian($this->read(4), 4));
+		$rangeLen = hexdec($this->unpackLittleEndian($this->read(4), 4));
 
-			$ranges = array();
-			for ($i=0; $i < $rangeLen; $i++) {
-				$start = $this->unpackLittleEndian($this->read(8), 8);
-				$start = hexdec($start);
+		$ranges = array();
+		for ($i=0; $i < $rangeLen; $i++) {
+			$start = $this->unpackLittleEndian($this->read(8), 8);
+			$start = hexdec($start);
 
-				$size = $this->unpackLittleEndian($this->read(8), 8);
-				$size = hexdec($size);
+			$size = $this->unpackLittleEndian($this->read(8), 8);
+			$size = hexdec($size);
 
-				$ranges[] = array(
-					'start' => $start,
-					'size' => $size
-				);
-			}
-
-			$cdrSize--;
-
-			$this->cdr[] = array($filename, $zlen, $ranges, $fileOffsetInArchive);
+			$ranges[] = array(
+				'start' => $start,
+				'size' => $size
+			);
 		}
+
+		$this->cdrOffset = ftell($this->fileHandle);
+		return array($filename, $zlen, $ranges, $fileOffsetInArchive);
 	}
 
 	private function extractFiles($destinationPath)
 	{
 		$action = $this->state->getAction();
 		if ($action == SG_STATE_ACTION_PREPARING_STATE_FILE) {
-			$cdrIndex = 0;
 			$inprogress = false;
 			fseek($this->fileHandle, 0, SEEK_SET);
 		}
 		else {
 			$inprogress = $this->state->getInprogress();
-			$cdrIndex = $this->state->getCursor();
+			$this->cdrFilesCount = $this->state->getCdrSize();
+			$this->cdrOffset = $this->state->getCdrCursor();
 		}
 
-		for ($index = $cdrIndex; $index<count($this->cdr); $index++) {
-			$row = $this->cdr[$index];
+		$sqlFileEnding = $this->state->getBackupFileName().'/'.$this->state->getBackupFileName().'.sql';
+		$restoreMode = $this->state->getRestoreMode();
+		$restoreFiles = $this->state->getRestoreFiles();
 
-			if (!$inprogress) {
+		while ($this->cdrFilesCount) {
+
+			$warningFoundDuringExtract = false;
+
+			if ($inprogress) {
+				$row = $this->state->getCdr();
+			}
+			else {
+				$row = $this->getNextCdrElement($this->cdrOffset);
+
+				fseek($this->fileHandle, $this->fileOffset);
+
 				//read extra (not used in this version)
 				$this->read(4);
 			}
 
-			$path = $destinationPath.$row[0];
+			$path = $destinationPath . $row[0];
 			$path = str_replace('\\', '/', $path);
+			$restoreCurrentFile = false;
 
-			if ($path[strlen($path)-1] != '/') {//it's not an empty directory
-				$path = dirname($path);
-			}
-
-			if (!$inprogress) {
-				if (!$this->createPath($path)) {
-					$ranges = $row[2];
-
-					//get last range of file
-					$range = end($ranges);
-					$offset = $range['start'] + $range['size'];
-
-					// skip file and continue
-					fseek($this->fileHandle, $offset, SEEK_CUR);
-					$this->delegate->didFindExtractError('Could not create directory: '.dirname($path));
-					continue;
+			if ($restoreMode == SG_RESTORE_MODE_FILES && $restoreFiles != NULL && count($restoreFiles) > 0) {
+				for ($j = 0; $j < count($restoreFiles); $j++) {
+					if ($restoreFiles[$j] == "/" || backupGuardStringStartsWith($row[0], $restoreFiles[$j])) {
+						$restoreCurrentFile = true;
+						break;
+					}
 				}
 			}
 
-			$path = $destinationPath.$row[0];
+			// check if file should be restored according restore mode selected by user
+			if($restoreMode == SG_RESTORE_MODE_FULL || ($restoreMode == SG_RESTORE_MODE_DB && backupGuardStringEndsWith($path,$sqlFileEnding)) || ($restoreMode == SG_RESTORE_MODE_FILES && !backupGuardStringEndsWith($path,$sqlFileEnding) && $restoreCurrentFile)) {
 
-			if (!$inprogress) {
-				$this->delegate->didStartExtractFile($path);
-
-				if (!is_writable(dirname($path))) {
-					$this->delegate->didFindExtractError('Destination path is not writable: '.dirname($path));
-				}
-			}
-
-			if (!$inprogress) {
-				$fp = @fopen($path, 'wb');
-			}
-			else {
-				$fp = @fopen($path, 'ab');
-			}
-
-			$zlen = $row[1];
-			SGPing::update();
-			$ranges = $row[2];
-
-			if ($inprogress) {
-				$this->rangeCursor = $this->state->getRangeCursor();
-			}
-			else {
-				$this->rangeCursor = 0;
-			}
-
-			for ($i = $this->rangeCursor; $i<count($ranges); $i++) {
-				$start = $ranges[$i]['start'];
-				$size = $ranges[$i]['size'];
-
-				$data = $this->read($size);
-				$data = gzinflate($data);
-
-				$inprogress = true;
-				$cdrindex = $index;
-				if (($i+1) == count($ranges)) {
-					$inprogress = false;
-					$cdrindex = $index + 1;
+				if ($path[strlen($path) - 1] != '/') {//it's not an empty directory
+					$path = dirname($path);
 				}
 
-				if (is_resource($fp)) {
-					fwrite($fp, $data);
-					fflush($fp);
+				if (!$inprogress) {
+					if (!$this->createPath($path)) {
+						$ranges = $row[2];
 
-					$shouldReload = $this->delegate->shouldReload();
+						//get last range of file
+						$range = end($ranges);
+						$offset = $range['start'] + $range['size'];
 
-					//restore with reloads will only work in external mode
-					if ($shouldReload && SGExternalRestore::isEnabled()) {
-						$token = $this->delegate->getToken();
-						$progress = $this->delegate->getProgress();
+						// skip file and continue
+						fseek($this->fileHandle, $offset, SEEK_CUR);
+						$this->delegate->didFindExtractError('Could not create directory: ' . dirname($path));
+						continue;
+					}
+				}
 
-						$offset = ftell($this->fileHandle);
-						$this->state->setCdr(json_encode($this->cdr));
-						$this->state->setOffset($offset);
-						$this->state->setInprogress($inprogress);
-						$this->state->setCdrSize(count($this->cdr));
-						$this->state->setToken($token);
-						$this->state->setProgress($progress);
-						$this->state->setAction(SG_STATE_ACTION_RESTORING_FILES);
+				$path = $destinationPath . $row[0];
+				$tmpPath = $path . ".sgbpTmpFile";
 
-						$this->state->setCursor($cdrindex);
-						$this->state->setRangeCursor($i+1);
-						$this->state->save();
+				if (!$inprogress) {
+					$this->delegate->didStartExtractFile($path);
+
+					if (!is_writable(dirname($tmpPath))) {
+						$this->delegate->didFindExtractError('Destination path is not writable: ' . dirname($path));
+					}
+				}
+
+				if (!$inprogress) {
+					$tmpFp = @fopen($tmpPath, 'wb');
+				}
+				else {
+					$tmpFp = @fopen($tmpPath, 'ab');
+				}
+
+				$zlen = $row[1];
+				SGPing::update();
+				$ranges = $row[2];
+
+				if ($inprogress) {
+					$this->rangeCursor = $this->state->getRangeCursor();
+				}
+				else {
+					$this->rangeCursor = 0;
+				}
+
+				for ($i = $this->rangeCursor; $i < count($ranges); $i++) {
+					$start = $ranges[$i]['start'];
+					$size = $ranges[$i]['size'];
+
+					$data = $this->read($size);
+					$data = gzinflate($data);
+
+					//If gzinflate() failed to uncompress, skip the current file and continue extraction
+					if (!$data) {
+						$warningFoundDuringExtract = true;
+						$this->delegate->didFindExtractError('Failed to extract path: ' . $path);
+
+						//Assume we've extracted the current file
+						for ($idx = $i + 1; $idx < count($ranges); $idx++) {
+							$start = $ranges[$idx]['start'];
+							$size = $ranges[$idx]['size'];
+
+							fseek($this->fileHandle, $size, SEEK_CUR);
+						}
+
+						$inprogress = false;
+						@fclose($tmpFp);
 
 						SGPing::update();
 
-						@fclose($fp);
-						@fclose($this->fileHandle);
-
-						$this->delegate->reload();
+						break;
 					}
+					else {
+						$inprogress = true;
+						if (($i + 1) == count($ranges)) {
+							$inprogress = false;
+						}
+						if (is_resource($tmpFp)) {
+							$isEnoughFreeSpaceOnDisk = $this->isEnoughFreeSpaceOnDisk(strlen($data));
+							if (!$isEnoughFreeSpaceOnDisk) {
+								throw new SGExceptionIO('Failed to write in the archive due to not sufficient disk free space.');
+							}
+
+							fwrite($tmpFp, $data);
+							fflush($tmpFp);
+
+							$shouldReload = $this->delegate->shouldReload();
+
+							//restore with reloads will only work in external mode
+							if ($shouldReload && SGExternalRestore::isEnabled()) {
+
+								if (!$inprogress) {
+									$this->cdrFilesCount--;
+								}
+
+								$token = $this->delegate->getToken();
+								$progress = $this->delegate->getProgress();
+
+								$this->fileOffset = ftell($this->fileHandle);
+
+								$this->state->setRestoreMode($restoreMode);
+								$this->state->setOffset($this->fileOffset);
+								$this->state->setInprogress($inprogress);
+								$this->state->setToken($token);
+								$this->state->setProgress($progress);
+								$this->state->setAction(SG_STATE_ACTION_RESTORING_FILES);
+								$this->state->setRangeCursor($i + 1);
+
+								$this->state->setCdr($row);
+								$this->state->setCdrSize($this->cdrFilesCount);
+								$this->state->setCdrCursor($this->cdrOffset);
+								$this->state->save();
+
+								SGPing::update();
+
+								@fclose($tmpFp);
+								@fclose($this->fileHandle);
+
+								$this->delegate->reload();
+							}
+						}
+					}
+					SGPing::update();
 				}
-				SGPing::update();
+
+				if (is_resource($tmpFp)) {
+					@fclose($tmpFp);
+				}
+
+				if (!$warningFoundDuringExtract) {
+					@rename($tmpPath, $path);
+				}
+				else {
+					@unlink($tmpPath);
+				}
+
+				$this->delegate->didExtractFile($path);
+				$this->fileOffset = ftell($this->fileHandle);
+			}
+			else {
+				//if file should not be restored skip it and go to the next file
+				$ranges = $row[2];
+
+				for ($idx = 0; $idx < count($ranges); $idx++) {
+
+					$size = $ranges[$idx]['size'];
+
+					fseek($this->fileHandle, $size, SEEK_CUR);
+				}
+				$this->fileOffset = ftell($this->fileHandle);
 			}
 
-			if (is_resource($fp)) {
-				fclose($fp);
-			}
-
-			$this->delegate->didExtractFile($path);
+			$this->cdrFilesCount--;
 		}
 	}
 

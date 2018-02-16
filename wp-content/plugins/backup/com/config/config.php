@@ -16,6 +16,15 @@ define('SG_LIB_PATH', SG_APP_PATH.'lib/');
 define('SG_MAIL_PATH', SG_CORE_PATH.'mail/');
 define('SG_NOTICE_PATH', SG_CORE_PATH.'notice/');
 define('SG_SCHEDULE_PATH', SG_CORE_PATH.'schedule/');
+define('SG_WIDGET_PATH', SG_CORE_PATH.'widget/');
+
+// Seal themes
+define('SG_SEAL_THEME_DARK', "dark");
+define('SG_SEAL_THEME_GREEN', "green");
+define('SG_SEAL_THEME_WHITE', "white");
+
+// Free days in seconds
+define('SG_PLUGIN_ACTIVE_INTERVAL', 259200);
 
 //Log
 define('SG_LOG_LEVEL_ALL', 0);
@@ -35,6 +44,7 @@ define('SG_RELOAD_METHOD_NONE', 'none');
 define('SG_RELOAD_METHOD_STREAM', 1);
 define('SG_RELOAD_METHOD_CURL', 2);
 define('SG_RELOAD_METHOD_SOCKET', 3);
+define('SG_RELOAD_METHOD_AJAX', 4);
 
 define('SG_SHCEDULE_STATUS_INACTIVE', 0);
 define('SG_SHCEDULE_STATUS_PENDING', 1);
@@ -44,7 +54,6 @@ define('SG_NUMBER_OF_BACKUPS_TO_KEEP', 100);
 
 //Backup timeout in seconds
 define('SG_BACKUP_TIMEOUT', 180);
-
 define('SG_RELOAD_TIMEOUT', 10);
 
 //Ping data update frequency
@@ -84,10 +93,13 @@ define('SG_STATE_ACTION_PREPARING_UPLOAD', 4);
 define('SG_STATE_ACTION_UPLOADING_BACKUP', 5);
 define('SG_STATE_ACTION_RESTORING_FILES', 6);
 define('SG_STATE_ACTION_EXPORTING_SQL', 7);
+define('SG_STATE_ACTION_RESTORING_DATABASE', 8);
+define('SG_STATE_ACTION_MIGRATING_DATABASE', 9);
 
 define('SG_STATE_TYPE_FILE', 1);
 define('SG_STATE_TYPE_DB', 2);
 define('SG_STATE_TYPE_UPLOAD', 3);
+define('SG_STATE_TYPE_MIGRATE', 4);
 
 define('SG_TREE_FILE_NAME', 'tree.json');
 define('SG_STATE_FILE_NAME', 'state.json');
@@ -113,6 +125,9 @@ define('SG_RELOADER_STATUS_RUNNING', 2);
 
 //External restore
 define('SG_EXTERNAL_RESTORE_FILE', 'bg_restore.php');
+
+//License
+define('SG_LICENSE_CHECK_TIMEOUT', 86400); //1 day
 
 //Mail
 define('SG_MAIL_BACKUP_SUCCESS_SUBJECT', 'Backup Succeeded');
@@ -150,3 +165,19 @@ define('SG_BACKUP_UPLOAD_TO_STORAGES', ''); //list of storage ids separated by c
 define('SG_ACTION_TABLE_NAME', SG_ENV_DB_PREFIX.'sg_action');
 define('SG_CONFIG_TABLE_NAME', SG_ENV_DB_PREFIX.'sg_config');
 define('SG_SCHEDULE_TABLE_NAME', SG_ENV_DB_PREFIX.'sg_schedule');
+
+define('SG_SSH_KEY_FILE_FOLDER_NAME', 'sshKeyFolder/');
+
+define('SG_MIGRATION_SERVICE_URL', 'https://backup-guard.com/services/migrate-wordpress');
+
+define('SG_RESTORE_MODE_FULL', 'full');
+define('SG_RESTORE_MODE_FILES', 'files');
+define('SG_RESTORE_MODE_DB', 'db');
+
+define('SG_BADGE_SILVER_PLUS_TEXT', "Silver +");
+define('SG_BADGE_GOLD_PLUS_TEXT', "Gold +");
+define('SG_BADGE_PLATINUM_TEXT', "Platinum");
+
+define('SG_SILVER_TOOLTIP_TEXT', "This is a pro feature and it’s available starting from the Silver version!");
+define('SG_GOLD_TOOLTIP_TEXT', "This is a pro feature and it’s available starting from the Gold version!");
+define('SG_PLATINUM_TOOLTIP_TEXT', "This is a pro feature and it’s available only in Platinum version!");

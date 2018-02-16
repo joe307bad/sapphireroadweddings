@@ -144,6 +144,33 @@ return apply_filters( 'ninja_forms_field_settings', array(
     ),
 
     /*
+    * Checkbox Values
+    */
+    'checkbox_values' => array(
+        'name' => 'checkbox_values',
+        'type' => 'fieldset',
+        'label' => __( 'Checkbox Values', 'ninja-forms' ),
+        'width' => 'full',
+        'group' => 'primary',
+        'settings' => array(
+            array(
+                'name'  => 'checked_value',
+                'type'  => 'textbox',
+                'label' => __( 'Checked Value', 'ninja-forms' ),
+                'value' => __( 'Checked', 'ninja-forms' ),
+                'width' => 'one-half',
+            ),
+            array(
+                'name'  => 'unchecked_value',
+                'type'  => 'textbox',
+                'label' => __( 'Unchecked Value', 'ninja-forms' ),
+                'value' => __( 'Unchecked', 'ninja-forms' ),
+                'width' => 'one-half',
+            ),
+        ),
+    ),
+
+    /*
      * OPTIONS
      */
 
@@ -160,7 +187,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
             array( 'label'  => __( 'Three', 'ninja-forms' ), 'value' => __( 'three', 'ninja-forms' ), 'calc' => '', 'selected' => 0, 'order' => 2 ),
         ),
         'columns'           => array(
-           'label'          => array(
+            'label'          => array(
                 'header'    => __( 'Label', 'ninja-forms' ),
                 'default'   => '',
             ),
@@ -213,6 +240,10 @@ return apply_filters( 'ninja_forms_field_settings', array(
             array(
                 'label' => __( 'Date', 'ninja-forms' ),
                 'value' => '99/99/9999',
+            ),
+            array(
+                'label' => __( 'Currency', 'ninja-forms' ),
+                'value' => 'currency',
             ),
             array(
                 'label' => __( 'Custom', 'ninja-forms' ),
@@ -283,7 +314,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
                 'name' => 'input_limit_msg',
                 'type' => 'textbox',
                 'label' => __( 'Text to Appear After Counter', 'ninja-forms' ),
-                'placeholder' => __( 'Character(s) left' ),
+                'placeholder' => __( 'Character(s) left', 'ninja-forms' ),
                 'width' => 'full',
                 'value' => __( 'Character(s) left', 'ninja-forms' )
             )
@@ -300,6 +331,21 @@ return apply_filters( 'ninja_forms_field_settings', array(
     | These settings should only be used for specific reasons.
     |
     */
+
+    /*
+     * Custom Name Attribute
+     */
+
+    'custom_name_attribute' => array(
+        'name' => 'custom_name_attribute',
+        'type' => 'textbox',
+        'label' => __( 'Custom Name Attribute', 'ninja-forms' ),
+        'width' => 'full',
+        'group' => 'advanced',
+        'value' => '',
+        'help' => __( 'This value will be used as the HTML input "name" attribute.', 'ninja-forms' ),
+        'use_merge_tags' => FALSE,
+    ),
 
     /*
      * INPUT PLACEHOLDER
@@ -321,19 +367,19 @@ return apply_filters( 'ninja_forms_field_settings', array(
      * DEFAULT VALUE
      */
 
-     'default' => array(
-         'name' => 'default',
-         'label' => __( 'Default Value', 'ninja-forms' ),
-         'type' => 'textbox',
-         'width' => 'full',
-         'value' => '',
-         'group' => 'advanced',
-         'use_merge_tags' => array(
-             'exclude' => array(
-                 'fields'
-             )
-         ),
-     ),
+    'default' => array(
+        'name' => 'default',
+        'label' => __( 'Default Value', 'ninja-forms' ),
+        'type' => 'textbox',
+        'width' => 'full',
+        'value' => '',
+        'group' => 'advanced',
+        'use_merge_tags' => array(
+            'exclude' => array(
+                'fields'
+            )
+        ),
+    ),
 
     /*
     * CLASSES
@@ -380,6 +426,10 @@ return apply_filters( 'ninja_forms_field_settings', array(
         'group'         => 'primary',
         'options'       => array(
             array(
+                'label' => __( 'Default', 'ninja-forms' ),
+                'value' => 'default',
+            ),
+            array(
                 'label' => __( 'DD/MM/YYYY', 'ninja-forms' ),
                 'value' => 'DD/MM/YYYY',
             ),
@@ -420,7 +470,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
                 'value' => 'dddd, MMMM D YYYY',
             ),
         ),
-        'value'         => 'DD/MM/YYYY',
+        'value'         => '',
     ),
 
     /*
@@ -604,6 +654,22 @@ return apply_filters( 'ninja_forms_field_settings', array(
     ),
 
     /*
+     |--------------------------------------------------------------------------
+     | Display Settings
+     |--------------------------------------------------------------------------
+     */
+
+    // Multi-Select List Only
+    'multi_size' => array(
+        'name' => 'multi_size',
+        'type' => 'number',
+        'label' => __( 'Multi-Select Box Size', 'ninja-forms'),
+        'width' => 'one-half',
+        'group' => 'primary',
+        'value' => 5,
+    ),
+
+    /*
     |--------------------------------------------------------------------------
     | Un-Grouped Settings
     |--------------------------------------------------------------------------
@@ -618,84 +684,84 @@ return apply_filters( 'ninja_forms_field_settings', array(
         'value' => FALSE,
     ),
 
-   /*
-    * Timed Submit Label
-    */
+    /*
+     * Timed Submit Label
+     */
 
-   // 'timed_submit' => array(
-   //      'name' => 'timed_submit',
-   //      'type' => 'fieldset',
-   //      'label' => __( 'Timed Submit', 'ninja-forms' ),
-   //      'width' => 'full',
-   //      'group' => 'advanced',
-   //      'settings' => array(
-   //          array(
-   //              'name' => 'timed_submit_countdown',
-   //              'type' => 'number',
-   //              'label' => __( 'Countdown', 'ninja-forms' ),
-   //              'value' => 10,
-   //              'placeholder' => '',
-   //              'width' => 'one-half',
-   //
-   //          ),
-   //          array(
-   //              'name' => 'timed_submit_label',
-   //              'type' => 'textbox',
-   //              'placeholder' => '',
-   //              'label' => __( 'Timer Label', 'ninja-forms' ),
-   //              'value' => __( 'Please wait %n seconds', 'ninja-forms' ),
-   //              'width' => 'one-half'
-   //
-   //          ),
-   //      ),
-   //  ),
+    // 'timed_submit' => array(
+    //      'name' => 'timed_submit',
+    //      'type' => 'fieldset',
+    //      'label' => __( 'Timed Submit', 'ninja-forms' ),
+    //      'width' => 'full',
+    //      'group' => 'advanced',
+    //      'settings' => array(
+    //          array(
+    //              'name' => 'timed_submit_countdown',
+    //              'type' => 'number',
+    //              'label' => __( 'Countdown', 'ninja-forms' ),
+    //              'value' => 10,
+    //              'placeholder' => '',
+    //              'width' => 'one-half',
+    //
+    //          ),
+    //          array(
+    //              'name' => 'timed_submit_label',
+    //              'type' => 'textbox',
+    //              'placeholder' => '',
+    //              'label' => __( 'Timer Label', 'ninja-forms' ),
+    //              'value' => __( 'Please wait %n seconds', 'ninja-forms' ),
+    //              'width' => 'one-half'
+    //
+    //          ),
+    //      ),
+    //  ),
 
-                'timed_submit_label' => array(
-                    'name' => 'timed_submit_label',
-                    'type' => 'textbox',
-                    'label' => __( 'Label', 'ninja-forms' ),
-                    //The following text appears below the element
-                    //'Submit button text after timer expires'
-                    'width' => '',
-                    'group' => '',
-                    'value' => '',
-                    'use_merge_tags' => TRUE,
-                ),
+    'timed_submit_label' => array(
+        'name' => 'timed_submit_label',
+        'type' => 'textbox',
+        'label' => __( 'Label', 'ninja-forms' ),
+        //The following text appears below the element
+        //'Submit button text after timer expires'
+        'width' => '',
+        'group' => '',
+        'value' => '',
+        'use_merge_tags' => TRUE,
+    ),
 
-               /*
-                * Timed Submit Timer
-                */
+    /*
+     * Timed Submit Timer
+     */
 
-                'timed_submit_timer' => array(
-                    'name' => 'timed_submit_timer',
-                    'type' => 'textbox',
-                    'label' => __( 'Label' , 'ninja-forms' ),
-                    // This text was located below the element '%n will be used to signfify the number of seconds'
-                    'value' => __( 'Please wait %n seconds', 'ninja-forms' ),
-                    'width' => '',
-                    'group' => '',
+    'timed_submit_timer' => array(
+        'name' => 'timed_submit_timer',
+        'type' => 'textbox',
+        'label' => __( 'Label' , 'ninja-forms' ),
+        // This text was located below the element '%n will be used to signfify the number of seconds'
+        'value' => __( 'Please wait %n seconds', 'ninja-forms' ),
+        'width' => '',
+        'group' => '',
 
-                ),
+    ),
 
-               /*
-                * Timed Submit Countdown
-                */
+    /*
+     * Timed Submit Countdown
+     */
 
-                'timed_submit_countdown' => array (
-                    'name' => 'timed_submit_countdown',
-                    'type' => 'number',
-                    'label' => __( 'Number of seconds for the countdown', 'ninja-forms' ),
-                    //The following text appears to the right of the element
-                    //"This is how long the user must waitin to submit the form"
-                    'value' => 10,
-                    'width' => '',
-                    'group' => '',
+    'timed_submit_countdown' => array (
+        'name' => 'timed_submit_countdown',
+        'type' => 'number',
+        'label' => __( 'Number of seconds for the countdown', 'ninja-forms' ),
+        //The following text appears to the right of the element
+        //"This is how long the user must waitin to submit the form"
+        'value' => 10,
+        'width' => '',
+        'group' => '',
 
-                ),
+    ),
 
-   /*
-    * Password Registration checkbox
-    */
+    /*
+     * Password Registration checkbox
+     */
 
     'password_registration_checkbox' => array(
         'name' => 'password_registration_checkbox',
@@ -709,9 +775,9 @@ return apply_filters( 'ninja_forms_field_settings', array(
     ),
 
 
-   /*
-    * Number of Stars Textbox
-    */
+    /*
+     * Number of Stars Textbox
+     */
 
     'number_of_stars' => array(
         'name' => 'number_of_stars',
@@ -723,9 +789,9 @@ return apply_filters( 'ninja_forms_field_settings', array(
 
     ),
 
-   /*
-    * Disable Browser Autocomplete
-    */
+    /*
+     * Disable Browser Autocomplete
+     */
 
     'disable_browser_autocomplete' => array(
         'name' => 'disable_browser_autocomplete',
@@ -748,9 +814,9 @@ return apply_filters( 'ninja_forms_field_settings', array(
     ),
 
     //TODO: Ask about the list of states and countries.
-   /*
-    *  Country - Use Custom First Option
-    */
+    /*
+     *  Country - Use Custom First Option
+     */
 
     'use_custom_first_option' => array(
         'name' => 'use_custom_first_option',
@@ -762,9 +828,9 @@ return apply_filters( 'ninja_forms_field_settings', array(
 
     ),
 
-   /*
-    * Country - Custom first option
-    */
+    /*
+     * Country - Custom first option
+     */
 
     'custom_first_option' => array(
         'name' => 'custom_first_option',
@@ -922,7 +988,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
     'product_use_quantity' => array(
         'name' => 'product_use_quantity',
         'type' => 'toggle',
-        'label' => __( 'Use Quantity', 'ninja-forms' ),
+        'label' => __( 'Use Inline Quantity', 'ninja-forms' ),
         'width' => 'one-half',
         'group' => 'primary',
         'value' => TRUE,
@@ -993,7 +1059,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
             array( 'label'  => __( 'Two', 'ninja-forms' ), 'value' => '2.00', 'order' => 1 ),
             array( 'label'  => __( 'Three', 'ninja-forms' ), 'value' => '3.00', 'order' => 2 ),
         ),
-         'columns'          => array(
+        'columns'          => array(
             'label'         => array(
                 'header'    => __( 'Label', 'ninja-forms' ),
                 'default'   => '',

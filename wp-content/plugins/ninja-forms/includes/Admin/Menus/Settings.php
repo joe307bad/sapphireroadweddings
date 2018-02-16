@@ -17,6 +17,48 @@ final class NF_Admin_Menus_Settings extends NF_Abstracts_Submenu
         if( isset( $_POST[ 'update_ninja_forms_settings' ] ) ) {
             add_action( 'admin_init', array( $this, 'update_settings' ) );
         }
+
+        add_action( 'admin_body_class', array( $this, 'body_class' ) );
+
+        // Catch Contact Form 7 reCAPTCHA conflict.
+        add_filter( 'nf_admin_notices', array( $this, 'ninja_forms_cf7_notice' ) );
+    }
+
+    public function body_class( $classes )
+    {
+        // Add class for the builder.
+        if( isset( $_GET['page'] ) && $_GET['page'] == $this->menu_slug ) {
+            $classes = "$classes ninja-forms-settings";
+        }
+
+        return $classes;
+    }
+    
+    /**
+     * Function to notify users of CF7 conflict
+     * 
+     * Since 3.0
+     *
+     * @param (array) $notices
+     * @return (array) $notices
+     */
+    public function ninja_forms_cf7_notice( $notices )
+    {
+        // If we don't have recaptcha keys, bail.
+        $recaptcha_site_key = Ninja_Forms()->get_settings();
+        if ( $recaptcha_site_key[ 'recaptcha_site_key' ] === '' ) {
+            return $notices;
+        }
+        // If we can detect Contact Form 7...
+        include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        if ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
+            $notices[ 'cf7' ] = array(
+                'title' => __( 'Contact Form 7 is currently activated.', 'ninja-forms' ),
+                'msg' => sprintf( __( 'Please be aware that there is an issue with Contact Form 7 that breaks reCAPTCHA in other plugins.%sIf you need to use reCAPTCHA on any of your Ninja Forms, you will need to disable Contact Form 7.', 'ninja-forms' ), '<br />' ),
+                'int' => 0
+            );
+        }
+        return $notices;
     }
 
     public function get_page_title()
@@ -87,20 +129,21 @@ final class NF_Admin_Menus_Settings extends NF_Abstracts_Submenu
             $grouped_settings[ 'saved_fields'][] = array(
                 'id' => '',
                 'type' => 'html',
-                'html' => '<a class="js-delete-saved-field button button-secondary" data-id="' . $saved_field_id . '">' . __( 'Delete' ) . '</a>',
+                'html' => '<a class="js-delete-saved-field button button-secondary" data-id="' . $saved_field_id . '">' . __( 'Delete', 'ninja-forms' ) . '</a>',
                 'label' => $saved_field->get_setting( 'label' ),
 
             );
         }
 
-        if( $saved_fields ){
-            wp_register_script( 'ninja_forms_admin_menu_settings', Ninja_Forms::$url . 'assets/js/admin-settings.js', array( 'jquery' ), FALSE, TRUE );
-            wp_localize_script( 'ninja_forms_admin_menu_settings', 'nf_settings', array(
-                'ajax_url' => admin_url( 'admin-ajax.php' ),
-                'nonce'    => wp_create_nonce( "ninja_forms_settings_nonce" )
-            ));
-            wp_enqueue_script( 'ninja_forms_admin_menu_settings' );
-        }
+        wp_register_script( 'ninja_forms_admin_menu_settings', Ninja_Forms::$url . 'assets/js/admin-settings.js', array( 'jquery' ), FALSE, TRUE );
+        wp_localize_script( 'ninja_forms_admin_menu_settings', 'nf_settings', array(
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'nonce'    => wp_create_nonce( "ninja_forms_settings_nonce" ),
+            'i18n'     => array(
+                'rollbackConfirm' => __( 'Are you sure you want to rollback?', 'ninja-forms' )
+            )
+        ));
+        wp_enqueue_script( 'ninja_forms_admin_menu_settings' );
 
         Ninja_Forms::template( 'admin-menu-settings.html.php', compact( 'tabs', 'active_tab', 'groups', 'grouped_settings', 'save_button_text', 'errors' ) );
 

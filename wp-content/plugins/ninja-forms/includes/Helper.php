@@ -28,8 +28,10 @@ final class WPN_Helper
     public static function utf8_encode( $input ){
         if ( is_array( $input ) )    {
             return array_map( array( 'self', 'utf8_encode' ), $input );
-        }else{
+        } elseif ( function_exists( 'utf8_encode' ) ) {
             return utf8_encode( $input );
+        } else {
+            return $input;
         }
     }
 
@@ -40,9 +42,27 @@ final class WPN_Helper
     public static function utf8_decode( $input ){
         if ( is_array( $input ) )    {
             return array_map( array( 'self', 'utf8_decode' ), $input );
-        }else{
+        } elseif ( function_exists( 'utf8_decode' ) ) {
             return utf8_decode( $input );
+        } else {
+            return $input;
         }
+    }
+    
+    /**
+     * Function to clean json data before json_decode.
+     * @since 3.2
+     * @param $input String
+     * @return String
+     */
+    public static function json_cleanup( $input ) {
+
+        /*
+         * Remove any unwated (corrupted?) characters from either side of our object.
+         */
+        $l_trim = strpos( $input, '{' );
+        $r_trim = strrpos( $input, '}' ) - $l_trim + 1;
+        return substr( $input, $l_trim, $r_trim );
     }
 
     /**
@@ -198,7 +218,7 @@ final class WPN_Helper
 
         $value = self::htmlspecialchars( $_GET[ $key ] );
 
-        if( is_array( $value ) ) $value = $value[ 0 ];
+        if( is_array( $value ) ) $value = reset( $value );
 
         return $value;
     }

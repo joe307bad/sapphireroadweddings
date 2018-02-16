@@ -394,7 +394,7 @@ class Soliloquy_Shortcode_Lite {
                         onSliderLoad: function(currentIndex){
                             soliloquy_container_<?php echo $data['id']; ?>.find('.soliloquy-active-slide').removeClass('soliloquy-active-slide').attr('aria-hidden','true');
                             soliloquy_container_<?php echo $data['id']; ?>.css({'height':'auto','background-image':'none'});
-                            if ( soliloquy_container_<?php echo $data['id']; ?>.find('.soliloquy-slider li').size() > 1 ) {
+                            if ( soliloquy_container_<?php echo $data['id']; ?>.find('.soliloquy-slider li').length > 1 ) {
                                 soliloquy_container_<?php echo $data['id']; ?>.find('.soliloquy-controls').fadeTo(300, 1);
                             }
                             soliloquy_<?php echo $data['id']; ?>.find('.soliloquy-item:not(.soliloquy-clone):eq(' + currentIndex + ')').addClass('soliloquy-active-slide').attr('aria-hidden','false');

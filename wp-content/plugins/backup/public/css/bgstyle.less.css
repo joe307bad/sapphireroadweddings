@@ -1,3 +1,266 @@
+.sg-feature-alert-text {
+  color: gray;
+  font-size: 13px;
+  font-style: italic;
+  text-align: center;
+}
+
+#sg-product-name-div {
+  position: absolute;
+  font-size: 10px;
+  color: orange;
+  bottom: 15px;
+  text-align: center;
+  width: 100%;
+  margin-left: -20px;
+}
+
+.sg-badge-warning {
+  background-color: #ff7518 !important;
+  border-color: #ff4309 !important;
+  border-radius: 2px !important;
+  color: #ffffff !important;
+}
+
+.sg-margin-left-20 {
+  margin-left: 20px;
+}
+
+.sg-service-container {
+  width: 100%;
+  margin: 0;
+}
+
+.sg-service-container h3 {
+  margin-top: 0px !important;
+}
+
+.sg-service-container .plugin-card-top {
+  margin-bottom: 20px;
+}
+
+#sg-migration-service-price {
+  font-size: 22px;
+  text-align: center;
+}
+
+#sg-banner {
+  margin-top: 10px;
+  width: calc(100% - 20px) !important;
+  height: 185px;
+  background-color: #333;
+  color: #FFFFFF;
+  font-size: 12px;
+  min-width: 650px;
+}
+
+#sg-left-column {
+  width: 18%;
+  float: left;
+  display: inline-block;
+}
+
+#sg-left-column ul {
+  display: inline-block;
+}
+
+#sg-center-column {
+  width: 60%;
+  padding-top: 17px;
+  text-align: center;
+  display: inline-block;
+}
+
+#sg-right-column {
+  width: 22%;
+  float: right;
+  display: inline-block;
+}
+
+.sg-banner-social-button {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 3px;
+}
+
+#sg-banner p {
+  width: 100%;
+  text-align: center;
+  font-size: 13px !important;
+}
+
+#sg-banner a {
+  vertical-align: middle;
+  text-decoration: none;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+#sg-banner ul {
+  list-style-type: none;
+}
+
+#sg-banner li {
+  vertical-align: middle;
+  margin-bottom: 5px;
+  height: 32px;
+}
+
+#sg-right-column ul {
+  float: right;
+  padding-right: 16px;
+  padding-top: 10px;
+}
+
+#sg-right-column li {
+  vertical-align: middle;
+}
+
+#sg-left-column li {
+  padding-left: 20px;
+}
+
+#sg-left-column ul {
+  padding-top: 10px;
+}
+
+.sg-img-class {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+#sg-logo {
+  display: inline-block;
+  width: 140px;
+  height: 30px;
+  background-size: 140px 30px;
+  background-repeat: no-repeat;
+  background-image: url("../img/logo-horizontal.png");
+}
+
+#sg-facebook {
+  background: url('../img/fb.png') no-repeat;
+}
+
+#sg-facebook:hover {
+  background-color: #3C5A96;
+}
+
+#sg-twitter {
+  background: url("../img/TW.png") no-repeat;
+}
+
+#sg-twitter:hover {
+  background-color: #2AA3EF;
+}
+
+#sg-google-plus {
+  background: url("../img/G+.png") no-repeat;
+}
+
+#sg-google-plus:hover {
+  background-color: #D9453D;
+}
+
+#sg-youtube {
+  background: url("../img/youtube.png") no-repeat;
+}
+
+#sg-youtube:hover {
+  background-color: #E32424;
+}
+
+.sg-star-class {
+  cursor:pointer;
+  margin-right: 3px;
+}
+
+#rateYo {
+  display: inline-block;
+}
+
+#sg-buy-now {
+  background-color: #951b17;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  vertical-align: middle;
+  cursor: pointer;
+  display: inline-block;
+  padding: 6px 15px;
+}
+
+#sg-buy-now:hover {
+  background-color: #2f8912;
+}
+
+#sg-buy-now-text {
+  vertical-align: middle;
+}
+
+#sg-banner-clarification {
+  font-size: 10px;
+}
+
+#sg-rate-us {
+  height: 32px;
+  position: relative;
+}
+
+#sg-banner-test {
+  position: absolute;
+  top:50%;
+  width: 100%;
+  margin-top: -15px;
+}
+
+.sg-banner-rate-us-in {
+  display: inline-block;
+  height: 30px;
+}
+
+/* Bounce In */
+.hvr-bounce-in {
+  /*display: inline-block;*/
+  vertical-align: middle;
+  -webkit-transition-duration: 0.04s;
+  transition-duration: 0.04s;
+  cursor: pointer;
+}
+.hvr-bounce-in:hover, .hvr-bounce-in:focus, .hvr-bounce-in:active {
+  -ms-transform: translate(4px, 0);
+  -webkit-transform: translate(4px, 0);
+  transform: translate(4px, 0);
+}
+
+@media (max-width: 835px) {
+  #sg-banner {
+      font-size: 8px;
+  }
+
+  #sg-banner p {
+      font-size: 8px !important;
+  }
+
+  #sg-center-column {
+      width: 50%;
+  }
+
+  #sg-left-column {
+      width: 23%;
+  }
+
+  #sg-right-column {
+      width: 27%;
+  }
+}
+
+/**************************************/
+
 #sg-backup-with-migration {
   margin-left: 12px;
 }
@@ -13,7 +276,7 @@
 }
 
 .sg-wrap-container {
-  height: 540px;
+  height: 650px;
   width: 100%;
 }
 
@@ -1418,7 +1681,7 @@
   font-size: 13px;
 }
 .sg-wrapper-less p {
-  margin: 0 0 10.5px;
+  margin: 0 0 9.5px;
 }
 .sg-wrapper-less .lead {
   margin-bottom: 21px;
@@ -6998,10 +7261,10 @@
   width: calc(100% - 210px);
   /*Same as sidebar*/
   border-left: 1px #333333 solid;
-  min-height: 540px;
+  min-height: 640px;
   background-color: #ffffff;
 }
-.sg-wrapper-less #sg-content-wrapper .container-fluid {
+.sg-wrapper-less .container-fluid {
   min-height: 380px;
   margin-top: 15px;
 }
@@ -7430,6 +7693,8 @@
 .sg-wrapper-less .sg-close,
 .sg-wrapper-less .sg-custom-backup,
 .sg-wrapper-less .sg-custom-backup-files,
+.sg-wrapper-less .sg-custom-backup-tables,
+.sg-wrapper-less .sg-backup-db-options,
 .sg-wrapper-less .sg-custom-backup-cloud,
 .sg-wrapper-less .sg-schedule-settings-closed {
   display: none;
@@ -7469,6 +7734,12 @@
   .sg-wrapper-less .sg-status-icon {
     background-image: url('../img/backup-icons@2x.png');
   }
+}
+.sg-wrapper-less .sg-status-35 {
+  background-position: -100px -20px;
+}
+.sg-wrapper-less .sg-status-35.active {
+  background-position: -100px 0px;
 }
 .sg-wrapper-less .sg-status-34 {
   background-position: -80px -20px;
@@ -7538,6 +7809,9 @@
   max-height: calc(100vh - 210px);
   overflow-y: auto;
 }
+#sg-modal-inport-from {
+  height: 245px;
+}
 .sg-wrapper-less .sg-justify {
   text-align: justify;
 }
@@ -7545,12 +7819,13 @@
   margin-left: 5px;
   display: none;
 }
+
 .sg-wrapper-less .sg-alert-pro {
   color: white;
-  padding: 20px;
+  margin: 20px;
   text-align: center;
-  margin-top: 20px;
 }
+
 .sg-wrapper-less .sg-star {
   color: gold;
   font-size: 24px;
@@ -7571,4 +7846,38 @@
   border-color: #777;
 }
 
+.sg-custom-backup-tables .sg-disableText {
+	color: #bbb;
+	font-size: 12px;
+}
 
+.sg-backup-db-options .checkbox .sg-backup-db-mode,
+.sg-restore-files-options .checkbox .sg-restore-files-mode {
+	padding-left: 15px;
+}
+.sg-backup-db-options .checkbox .sg-backup-db-mode:first-child,
+.sg-restore-files-options .checkbox .sg-restore-files-mode:first-child {
+	padding-left: 0px;
+}
+
+.sg-backup-db-options .checkbox .sg-backup-db-mode input,
+.sg-restore-files-options .checkbox .sg-restore-files-mode input {
+	margin: 0px;
+}
+
+.sg-restore-files-options {
+  display: none;
+}
+
+.sg-custom-backup-schedule .col-md-8 {
+  width: 100%;
+  margin-left: 0px;
+}
+
+.sg-file-selective-restore {
+  display: none;
+}
+.form-group-google,
+.form-group-custom {
+  display: none;
+}

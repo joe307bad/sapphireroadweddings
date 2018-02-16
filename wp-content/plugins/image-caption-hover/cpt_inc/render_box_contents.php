@@ -15,7 +15,7 @@
             $column = $column + 1;
         }
     } else {
-        $key = 1;
+        $key = 0;
         $options = array();
         include 'settings.php';
     }
@@ -23,6 +23,7 @@
 </div>
 <br>
 <button class="add button button-primary"><?php _e('Add New Image', 'image-caption-hover'); ?></button>
+<button class="duplicate button button-secondary"><?php _e('Duplicate Last Image', 'image-caption-hover'); ?></button>
 </div>
 
 <div class="ich-rich-editor-wrap">

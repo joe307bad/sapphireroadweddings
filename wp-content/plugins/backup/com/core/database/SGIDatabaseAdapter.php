@@ -40,4 +40,9 @@ interface SGIDatabaseAdapter
 		Kill cached query results.
 	*/
     public function flush();
+
+    /*
+    	Escape value for sql query
+    */
+    public function escapeSql($value);
 }

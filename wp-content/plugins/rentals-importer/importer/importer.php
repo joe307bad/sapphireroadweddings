@@ -89,7 +89,7 @@ class RentalImporter
 
         $photoId = $uploadedPhoto["attachment_id"];//"958";
         $this->newPhotoId = $photoId;
-        $photoName = $uploadedPhoto["fileName"];;
+        $photoName = $uploadedPhoto["fileName"];
 
         $encodedAttachments = get_post_meta($postId, 'attachments', true);
         $attachments = json_decode($encodedAttachments);
@@ -194,6 +194,8 @@ class RentalImporter
         return ($wpdb->get_var($query) > 0);
     }
 }
+
+
 
 $rentalImporter = new RentalImporter($_POST['categories'], $_POST['rentals']);
 $rentalImporter->run();

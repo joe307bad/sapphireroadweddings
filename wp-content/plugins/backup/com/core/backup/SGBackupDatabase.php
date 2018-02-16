@@ -185,14 +185,28 @@ class SGBackupDatabase implements SGIMysqldumpDelegate
 
 	public function restore($filePath)
 	{
-		SGBackupLog::writeAction('restore database', SG_BACKUP_LOG_POS_START);
+		$this->reloadStartTs = time();
 		$this->backupFilePath = $filePath;
 
-		//prepare for restore (reset variables)
-		$this->resetRestoreProgress();
+		$sgDBState = $this->getState();
+		if ($sgDBState && $sgDBState->getType() == SG_STATE_TYPE_DB) {
+			if ($sgDBState->getAction() != SG_STATE_ACTION_RESTORING_DATABASE) {
+				SGBackupLog::writeAction('restore database', SG_BACKUP_LOG_POS_START);
+				//prepare for restore (reset variables)
+				$this->resetRestoreProgress();
+			}
+			//import all db tables
+			$this->import();
+		}
 
-		//import all db tables
-		$this->import();
+		//run migration logic
+		if ($this->isMigrationAvailable()) {
+			if ($sgDBState->getAction() != SG_STATE_ACTION_MIGRATING_DATABASE) {
+				$this->delegate->prepareMigrateStateFile();
+			}
+
+			$this->processMigration();
+		}
 
 		//external restore file doesn't have the wordpress functions
 		//so we cannot do anything here
@@ -206,9 +220,13 @@ class SGBackupDatabase implements SGIMysqldumpDelegate
 
 	private function processMigration()
 	{
-		SGBackupLog::writeAction('migration', SG_BACKUP_LOG_POS_START);
+		$sgMigrateState = $this->getState();
+		if ($sgMigrateState && $sgMigrateState->getAction() != SG_STATE_ACTION_MIGRATING_DATABASE) {
+			SGBackupLog::writeAction('migration', SG_BACKUP_LOG_POS_START);
+		}
 
 		$sgMigrate = new SGMigrate($this->sgdb);
+		$sgMigrate->setDelegate($this);
 
 		$tables = $this->getTables();
 
@@ -217,31 +235,18 @@ class SGBackupDatabase implements SGIMysqldumpDelegate
 		// Find and replace old urls with new ones
 		$sgMigrate->migrate($oldSiteUrl, SG_SITE_URL, $tables);
 
-		$oldDbPrefix = $this->getOldDbPrefix();
-		$sgMiscMigratableValues = explode(',', SG_MISC_MIGRATABLE_VALUES);
-		$dgMiscMigratebleTables = explode(',', SG_MISC_MIGRATABLE_TABLES);
+		// Find and replace old db prefixes with new ones
+		$sgMigrate->migrateDBPrefix();
 
-		foreach ($sgMiscMigratableValues as $sgMiscMigratableValue) {
-			$oldValue = $oldDbPrefix.$sgMiscMigratableValue;
-			$newValue = SG_ENV_DB_PREFIX.$sgMiscMigratableValue;
-
-			if ($newValue == $oldValue) {
-				continue;
-			}
-
-			$sgMigrate->migrate($oldValue, $newValue, $dgMiscMigratebleTables);
-		}
-
-		if (is_multisite()) {
+		$isMultisite = backupGuardIsMultisite();
+		if ($isMultisite) {
 			$tables = explode(',', SG_MULTISITE_TABLES_TO_MIGRATE);
 
 			$oldPath = SGConfig::get('SG_MULTISITE_OLD_PATH');
 			$newPath = PATH_CURRENT_SITE;
-			$oldDomain = SGConfig::get('SG_MULTISITE_OLD_DOMAIN');
 			$newDomain = DOMAIN_CURRENT_SITE;
 
-			$sgMigrate->migrateMultisite($oldPath, $newPath, $tables);
-			$sgMigrate->migrateMultisite($oldDomain, $newDomain, $tables);
+			$sgMigrate->migrateMultisite($newDomain, $newPath, $oldPath, $tables);
 		}
 
 		SGBackupLog::writeAction('migration', SG_BACKUP_LOG_POS_END);
@@ -253,11 +258,6 @@ class SGBackupDatabase implements SGIMysqldumpDelegate
 			return;
 		}
 
-		//run migration logic
-		if ($this->isMigrationAvailable()) {
-			$this->processMigration();
-		}
-
 		//recreate current user (to be able to login with it)
 		$this->restoreCurrentUser();
 
@@ -266,11 +266,8 @@ class SGBackupDatabase implements SGIMysqldumpDelegate
 		update_option('db_version', $wp_db_version);
 		update_option('db_upgraded', true);
 
-		$upload_dir = wp_upload_dir();
-		$wpUploads = $upload_dir['basedir'];
-		if (!is_writable($wpUploads)) {
-			update_option("upload_path", ""); //To fix invalid path inserted in db
-		}
+		//fix invalid upload path inserted in db
+		update_option("upload_path", "");
 	}
 
 	private function export()
@@ -281,10 +278,13 @@ class SGBackupDatabase implements SGIMysqldumpDelegate
 			}
 		}
 
-		$tablesToExclude = explode(',', SGConfig::get('SG_BACKUP_DATABASE_EXCLUDE'));
+		$customTablesToExclude = str_replace(' ', '', SGConfig::get('SG_TABLES_TO_EXCLUDE'));
+		$tablesToExclude = explode(',', SGConfig::get('SG_BACKUP_DATABASE_EXCLUDE').','.$customTablesToExclude);
 
+		$tablesToBackup = $this->state->getTablesToBackup() ? explode(',', $this->state->getTablesToBackup()) : array();
 		$dump = new SGMysqldump($this->sgdb, SG_DB_NAME, 'mysql', array(
 			'exclude-tables'=>$tablesToExclude,
+			'include-tables'=>$tablesToBackup,
 			'skip-dump-date'=>true,
 			'skip-comments'=>true,
 			'skip-tz-utz'=>true,
@@ -334,6 +334,18 @@ class SGBackupDatabase implements SGIMysqldumpDelegate
 		return preg_replace('/\x00/', '', $str);;
 	}
 
+	private function getDatabaseHeaders()
+	{
+		return "/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;/*SGEnd*/".PHP_EOL.
+		"/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;/*SGEnd*/".PHP_EOL.
+		"/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;/*SGEnd*/".PHP_EOL.
+		"/*!40101 SET NAMES ".SG_DB_CHARSET." */;/*SGEnd*/".PHP_EOL.
+		"/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;/*SGEnd*/".PHP_EOL.
+		"/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;/*SGEnd*/".PHP_EOL.
+		"/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;/*SGEnd*/".PHP_EOL.
+		"/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;/*SGEnd*/".PHP_EOL;
+	}
+
 	private function import()
 	{
 		$fileHandle = @fopen($this->backupFilePath, 'r');
@@ -342,6 +354,17 @@ class SGBackupDatabase implements SGIMysqldumpDelegate
 		}
 
 		$importQuery = '';
+		$sgDBState = $this->getState();
+		if ($sgDBState && $sgDBState->getAction() == SG_STATE_ACTION_RESTORING_DATABASE) {
+			$offset = $sgDBState->getOffset();
+			fseek($fileHandle, $offset);
+
+			$this->totalRowCount = $sgDBState->getNumberOfEntries();
+			$this->currentRowCount = $sgDBState->getProgressCursor();
+			$this->nextProgressUpdate = $sgDBState->getProgress();
+			$this->warningsFound = $sgDBState->getWarningsFound();
+		}
+
 		while (($row = @fgets($fileHandle)) !== false) {
 			$importQuery .= $row;
 			$trimmedRow = trim($row);
@@ -356,22 +379,56 @@ class SGBackupDatabase implements SGIMysqldumpDelegate
 			}
 
 			if ($trimmedRow && substr($trimmedRow, -9) == "/*SGEnd*/") {
-				$importQuery = $this->prepareQueryToExec($importQuery);
-
-				$res = $this->sgdb->execRaw($importQuery);
-				if ($res===false) {
-					//continue restoring database if any query fails
-					//we will just show a warning inside the log
-
-					if (isset($tableName)) {
-						$this->warn('Could not import table: '.$tableName);
+				$queries = explode("/*SGEnd*/".PHP_EOL, $this->getDatabaseHeaders().$importQuery);
+				foreach ($queries as $query) {
+					if (!$query) {
+						continue;
 					}
 
-					$this->warn('Error: '.$this->sgdb->getLastError());
+					$importQuery = $this->prepareQueryToExec($query);
+
+					SGPing::update();
+					$res = $this->sgdb->execRaw($importQuery);
+					if ($res === false) {
+						//continue restoring database if any query fails
+						//we will just show a warning inside the log
+
+						if (isset($tableName)) {
+							$this->warn('Could not import table: '.$tableName);
+						}
+
+						$this->warn('Error: '.$this->sgdb->getLastError());
+					}
+
+					$shouldReload = $this->shouldReload();
+					$isReloadEnabled = backupGuardIsReloadEnabled();
+					if ($shouldReload && $isReloadEnabled && SGExternalRestore::isEnabled()) {
+						$offset = ftell($fileHandle);
+						$token = $this->delegate->getToken();
+
+						$sgDBState = $this->getState();
+
+						$sgDBState->setToken($token);
+						$sgDBState->setOffset($offset);
+						$sgDBState->setProgress($this->nextProgressUpdate);
+						$sgDBState->setWarningsFound($this->warningsFound);
+						$sgDBState->setNumberOfEntries($this->totalRowCount);
+						$sgDBState->setProgressCursor($this->currentRowCount);
+						$sgDBState->setActionId($this->delegate->getActionId());
+						$sgDBState->setAction(SG_STATE_ACTION_RESTORING_DATABASE);
+
+						$sgDBState->save();
+
+						SGPing::update();
+						@fclose($fileHandle);
+
+						$this->reload();
+					}
 				}
 
 				$importQuery = '';
 			}
+
 			$this->currentRowCount++;
 			SGPing::update();
 			$this->updateProgress();
@@ -423,9 +480,16 @@ class SGBackupDatabase implements SGIMysqldumpDelegate
 
 		//remove its role of subscriber
 		$newUser->remove_role('subscriber');
+		$isMultisite = backupGuardIsMultisite();
 
-		//add admin role
-		$newUser->add_role('administrator');
+		if ($isMultisite) {
+			// add super adminn role
+			grant_super_admin($id);
+		}
+		else {
+			//add admin role
+			$newUser->add_role('administrator');
+		}
 
 		//update password to set the correct (old) password
 		$this->sgdb->query(
