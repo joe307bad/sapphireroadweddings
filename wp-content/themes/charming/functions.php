@@ -205,7 +205,7 @@ function custom_footer_creds_text() {
     echo '<div class="creds"><p>';
     echo 'Copyright &copy; ';
     echo date('Y');
-    echo ' &middot;  Designed by <a target="_blank" href="http://www.meghanalonsodesigns.com">Meghan Alonso Designs</a>';
+    echo '';
     echo '</p></div>';
 
 }
