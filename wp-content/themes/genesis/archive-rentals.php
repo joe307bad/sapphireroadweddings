@@ -19,11 +19,11 @@ do_action('genesis_before_content_sidebar_wrap');
 
 ?>
 <div><img class="aligncenter wp-image-198 size-full"
-          src="http://sapphireroadweddings.com/wp-content/uploads/2016/04/inventory.jpg" width="1600" height="600"/>
+          src="https://srw.jbad.io/wp-content/uploads/2016/04/inventory.jpg" width="1600" height="600"/>
     <img class="aligncenter wp-image-314"
-         src="http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-300x47.jpg" alt="n_inventory"
+         src="https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-300x47.jpg" alt="n_inventory"
          width="598" height="93"
-         srcset="http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-300x47.jpg 300w, http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-768x119.jpg 768w, http://sapphireroadweddings.com/wp-content/uploads/2016/02/n_inventory-1024x159.jpg 1024w"
+         srcset="https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-300x47.jpg 300w, https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-768x119.jpg 768w, https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-1024x159.jpg 1024w"
          sizes="(max-width: 598px) 100vw, 598px">
     In addition to wedding and event planning services, Sapphire Road offers furniture and decor rentals to complete
     your wedding, event or photoshoot with personality and style.  From modern loveseats to vintage Victorian sofas,

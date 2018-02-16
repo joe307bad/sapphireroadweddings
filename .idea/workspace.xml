@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77e618b5-23a3-4fab-80c0-b51f1e3a384a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/charming/functions.php" afterPath="$PROJECT_DIR$/wp-content/themes/charming/functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php" afterPath="$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,14 +29,14 @@
       <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="39" column="18" lean-forward="true" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+            <state relative-caret-position="810">
+              <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/charming/functions.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="529">
@@ -61,8 +61,38 @@
       <file leaf-file-name="wp-config.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1053">
-              <caret line="56" column="38" lean-forward="true" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
+            <state relative-caret-position="1188">
+              <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="site-branding.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/twentyseventeen/template-parts/header/site-branding.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="783">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="xhtml.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/lib/structure/xhtml.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1107">
+              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="archive-rentals.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="648">
+              <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -98,26 +128,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rentals.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/scripts/app/Rentals.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="25" column="49" lean-forward="false" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -129,10 +139,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>\\</find>
-      <find>\</find>
-      <find>filt</find>
-      <find>rental</find>
       <find>posts</find>
       <find>rental_categories</find>
       <find>categories</find>
@@ -149,7 +155,6 @@
       <find>srheader</find>
       <find>srheadern</find>
       <find>srheadernew</find>
-      <find>s</find>
       <find>sapphir</find>
       <find>sapphire</find>
       <find>sapphireroa</find>
@@ -157,8 +162,13 @@
       <find>sapphireroadw</find>
       <find>sapphireroadwedd</find>
       <find>header</find>
-      <find>sapphireroadwedding</find>
       <find>CHILD_THEME_VERSION</find>
+      <find>site-title</find>
+      <find>title-area</find>
+      <find>s</find>
+      <find>sapphireroadweddi</find>
+      <find>sapphireroadwedding</find>
+      <find>sapphireroadweddings</find>
     </findStrings>
     <replaceStrings>
       <replace>/</replace>
@@ -183,7 +193,6 @@
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/genesis/lib/attachments.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/genesis/archive-rental_category.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/genesis/taxonomy-rental_category.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/rentals-importer/importer/importer.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/genesis/functions.php" />
@@ -191,6 +200,7 @@
         <option value="$PROJECT_DIR$/wp-content/themes/genesis/single-rentals.php" />
         <option value="$PROJECT_DIR$/wp-config.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/charming/functions.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php" />
       </list>
     </option>
   </component>
@@ -477,12 +487,12 @@
       <workItem from="1518563915249" duration="10434000" />
       <workItem from="1518734778107" duration="7523000" />
       <workItem from="1518757080211" duration="6620000" />
-      <workItem from="1518796446400" duration="2822000" />
+      <workItem from="1518796446400" duration="3485000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107376000" />
+    <option name="totallyTimeSpent" value="108039000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -541,20 +551,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="30" column="6" lean-forward="false" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/css/app/Rentals.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1075">
@@ -845,14 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/rentals-importer/rentals-importer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
@@ -909,22 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/single-rentals.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="984">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1053">
-          <caret line="56" column="38" lean-forward="true" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/taxonomy-rental_category.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -943,8 +915,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="39" column="18" lean-forward="true" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+        <state relative-caret-position="810">
+          <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -956,6 +928,46 @@
           <folding>
             <marker date="1518811622384" expanded="true" signature="6584:6592" ph="·" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/single-rentals.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="984">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1188">
+          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/twentyseventeen/template-parts/header/site-branding.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/lib/structure/xhtml.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1107">
+          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/genesis/archive-rentals.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
