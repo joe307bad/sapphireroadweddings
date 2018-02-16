@@ -23,7 +23,7 @@ function charming_enqueue_scripts_styles() {
 	wp_enqueue_script( 'charming-responsive-menu', get_bloginfo( 'stylesheet_directory' ) . '/js/responsive-menu.js', array( 'jquery' ), '1.0.0' );
 
 	wp_enqueue_style( 'dashicons' );
-	wp_enqueue_style( 'charming-google-fonts', '//fonts.googleapis.com/css?family=Lato:400,300italic,300,700,400italic,700italic|Open+Sans:400,300italic,300,400italic,600,700,700italic|Roboto+Condensed:400,300,300italic,400italic,700,700italic', array(), CHILD_THEME_VERSION );
+	//wp_enqueue_style( 'charming-google-fonts', '//fonts.googleapis.com/css?family=Lato:400,300italic,300,700,400italic,700italic|Open+Sans:400,300italic,300,400italic,600,700,700italic|Roboto+Condensed:400,300,300italic,400italic,700,700italic', array(), CHILD_THEME_VERSION );
 
 }
 
