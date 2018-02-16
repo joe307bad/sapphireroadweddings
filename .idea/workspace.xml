@@ -39,10 +39,10 @@
       <file leaf-file-name="functions.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/charming/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1177">
-              <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+            <state relative-caret-position="529">
+              <caret line="25" column="253" lean-forward="false" selection-start-line="25" selection-start-column="253" selection-end-line="25" selection-end-column="253" />
               <folding>
-                <marker date="1518811366431" expanded="true" signature="6607:6615" ph="·" />
+                <marker date="1518811622384" expanded="true" signature="6584:6592" ph="·" />
               </folding>
             </state>
           </provider>
@@ -477,12 +477,12 @@
       <workItem from="1518563915249" duration="10434000" />
       <workItem from="1518734778107" duration="7523000" />
       <workItem from="1518757080211" duration="6620000" />
-      <workItem from="1518796446400" duration="2578000" />
+      <workItem from="1518796446400" duration="2822000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107132000" />
+    <option name="totallyTimeSpent" value="107376000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -951,10 +951,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/charming/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1177">
-          <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+        <state relative-caret-position="529">
+          <caret line="25" column="253" lean-forward="false" selection-start-line="25" selection-start-column="253" selection-end-line="25" selection-end-column="253" />
           <folding>
-            <marker date="1518811366431" expanded="true" signature="6607:6615" ph="·" />
+            <marker date="1518811622384" expanded="true" signature="6584:6592" ph="·" />
           </folding>
         </state>
       </provider>
