@@ -19,6 +19,8 @@
  * the framework so it can use the framework
  * components immediately.
  */
+remove_filter('template_redirect', 'redirect_canonical');
+
 require_once(dirname(__FILE__) . '/lib/init.php');
 
 require_once(dirname(__FILE__) . '/lib/attachments.php');
