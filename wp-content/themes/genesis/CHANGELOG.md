@@ -1,8 +1,87 @@
 # Genesis Framework Change Log
 
-http://my.studiopress.com/themes/genesis/
+https://my.studiopress.com/themes/genesis/
 
 This project does not follow semantic versioning. It follows the WordPress policy where updates of _x_ and _y_ in an _x.y.z_ version number means a major release, and updates to _z_ means a patch release.
+
+## [2.5.3] - 2017-09-27
+### Fixed
+- Prevent global scripts being slashed if they are unchanged.
+
+## [2.5.2] - 2017-06-09
+### Fixed
+- Alternate method for preventing attribute filter on closing tags.
+
+## [2.5.1] - 2017-06-08
+### Added
+- Add logic to detect post-upgrade redirect type.
+
+### Changed
+- Updated docblock for `genesis_post_meta()`.
+
+### Fixed
+- Fix issue with script loading logic.
+- Fix issue with Layout API fallback logic.
+- Fix issue with Layout API type priority determination.
+- Fix issue with posts not being excluded in Featured Posts widget.
+- Fix issue with `entry` attribute filter being applied to closing tag.
+- Fix issue with use of `require` by switching back to `require_once`.
+
+## [2.5.0] - 2017-04-20
+_Requires WordPress 4.7.0.__
+### Added
+- Add instances of markup API use in several locations where it was previously not used.
+- Add any missed XHTML markup to the XHTML markup filter.
+- Add `Genesis_Contributors` and `Genesis_Contributor` classes.
+- Add `views` directory and extracted output to organized view files.
+- Add full support for WordPress's new title tag.
+- Add slashing for user script input fields.
+- Add primary category support when Yoast SEO is on, but breadcrumb feature is off.
+- Add support for multiple layout types depending on context.
+- Add script loader class.
+- Add ability to specify location of entry scripts via a second option.
+- Add filter for capability required to use CPT archive settings.
+- Add filter to disable layout settings on CPT archive settings page.
+- Add sanitizer for layout settings on CPT archive settings page.
+- Add a posts page check to `genesis_do_blog_template_heading()`.
+- Add filter for entry content display options in the customizer.
+- Add terms back to terms array in our terms filter.
+- Add `genesis_strip_p_tags()` function.
+- Add center alignment option to featured image alignment setting.
+- Add more filters to breadcrumb class.
+
+### Changed
+- Split featured post and page widget entry header markup, gave markup API context for each.
+- Restored adding `tabindex` via JavaScript when `genesis-accessibility` is supported.
+- Prevent smushed offscreen accessible text.
+- Reorganized `init.php`.
+- Strip paragraph tags from filtered credits text to avoid paragraph nesting.
+- Standardize the context naming in widget markup.
+- Flag entry markup as `is_widget` via the params array so it can be modified without affecting other entries.
+- Restored new line between admin screen buttons.
+- Improvements to composer, PHPCS, and unit tests.
+- Switch all schema.org URLs to `https`.
+- Formally deprecate `genesis_get_additional_image_sizes()`.
+- Formally deprecate `genesis_contributors()`.
+- Formally deprecate `genesis_register_scripts()`.
+- Formally deprecate `genesis_load_scripts()`.
+- Formally deprecate `genesis_load_admin_scripts()`.
+- Formally deprecate `genesis_load_admin_js()`.
+- CSS improvements.
+- Code optimization and documentation improvements.
+- Ensure skip links filter returns an array.
+- Improve randomness of search form ID.
+- Fix potential issue with footer scripts filter.
+- Move `aria-label` to the anchor element so screen readers will announce it.
+- Add capability check to CPT archive settings link in the toolbar.
+- Refactor and improve archive headings.
+- Fix typo in comments feed setting.
+
+### Removed
+- Remove semantic headings SEO option, with fallback for backward compatibility.
+- Disable `backtotop` output if HTML5 is on.
+- Remove output buffering on search form.
+- Remove unnecessary heading on skip links.
 
 ## [2.4.2] - 2016-10-04
 ### Fixed
@@ -856,7 +935,10 @@ _Requires WordPress 3.1.0._
 - Fix CSS conflict with admin bar.
 
 
-[Unreleased]: https://github.com/copyblogger/genesis/compare/2.4.2...HEAD
+[2.5.3]: https://github.com/copyblogger/genesis/compare/2.5.2...2.5.3
+[2.5.2]: https://github.com/copyblogger/genesis/compare/2.5.1...2.5.2
+[2.5.1]: https://github.com/copyblogger/genesis/compare/2.5.0...2.5.1
+[2.5.0]: https://github.com/copyblogger/genesis/compare/2.4.2...2.5.0
 [2.4.2]: https://github.com/copyblogger/genesis/compare/2.4.1...2.4.2
 [2.4.1]: https://github.com/copyblogger/genesis/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/copyblogger/genesis/compare/2.3.1...2.4.0

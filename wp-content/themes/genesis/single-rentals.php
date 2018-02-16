@@ -17,7 +17,9 @@ get_header();
 $post = get_post();
 do_action('genesis_before_content_sidebar_wrap');
 
-$encodedAttachments = get_post_meta($post->ID, 'attachments', true);
+$attributes = get_post_meta($post->ID, "rentals-attributes-list", true);
+
+$encodedAttachments = get_post_meta($post->ID, "attachments", true);
 $attachments = json_decode($encodedAttachments);
 $attachmentsExist = $attachments->my_attachments !== null;
 
@@ -43,19 +45,21 @@ $attachmentsExist = $attachments->my_attachments !== null;
 <div class="rental-details">
     <h1><?php echo $post->post_title ?></h1>
     <div id="rental-content">
+        <?php echo do_shortcode("[addthis tool=\"addthis_inline_share_toolbox_rys6\"]"); ?>
         <?php the_content(); ?>
     </div>
     <table>
         <?php
-        if( have_rows('rental_attributes') ):
-            while ( have_rows('rental_attributes') ) : the_row();
+        if( $attributes ):
+            foreach($attributes as $attribute) :
+                $attribute = explode("|", $attribute['rental-attribute']);
         ?>
                 <tr>
-                    <td><?php the_sub_field('attribute_name'); ?></td>
-                    <td><?php the_sub_field('attribute_value'); ?></td>
+                    <td><?php echo $attribute[0] ?></td>
+                    <td><?php echo $attribute[1] ?></td>
                 </tr>
         <?php
-            endwhile;
+            endforeach;
         else :
         endif;
         ?>
