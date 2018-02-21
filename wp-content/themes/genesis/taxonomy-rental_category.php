@@ -27,9 +27,11 @@ do_action('genesis_before_content_sidebar_wrap');
         $post = get_post();
         $attachments = get_post_meta($post->ID, 'attachments', true);
         $firstAttachmentId = $attachments !== null ? json_decode($attachments)->my_attachments[0]->id : 0;
+
         ?>
         <a href="<?php echo get_permalink( $post->ID ); ?>" class='rental hvr-grow'>
             <div class="thumbnail-container">
+                <div class="thumbnail-overlay"></div>
                 <img src="<?php echo wp_get_attachment_url($firstAttachmentId); ?>"/>
             </div>
             <h3><?php echo $post->post_title; ?></h3>
