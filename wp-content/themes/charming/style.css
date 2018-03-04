@@ -102,7 +102,7 @@ HTML5 Reset
     font-style: normal;
 }
 
-h1 {
+h1.storybook {
     font-family: 'storybookregular', sans-serif !important;
     font-size: 109px !important;
     color: #2c3b50 !important;
