@@ -19,6 +19,10 @@
  * the framework so it can use the framework
  * components immediately.
  */
+@ini_set( 'upload_max_size' , '64M' );
+@ini_set( 'post_max_size', '64M');
+@ini_set( 'max_execution_time', '300' );
+
 remove_filter('template_redirect', 'redirect_canonical');
 
 require_once(dirname(__FILE__) . '/lib/init.php');
@@ -97,7 +101,7 @@ function rental_taxonomies() {
     $args = array(
         'rewrite' => array( 'slug' => 'rentals', 'with_front' => false ),
         'labels'                     => $labels,
-        'hierarchical'               => false,
+        'hierarchical'               => true,
         'public'                     => true,
         'show_ui'                    => true,
         'show_admin_column'          => true,

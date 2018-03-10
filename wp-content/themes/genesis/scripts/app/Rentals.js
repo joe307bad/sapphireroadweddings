@@ -8,15 +8,28 @@
 
         },
         BuildRentalsMasonryGrid: function () {
-            $('#rental-container').masonry({
-                // options
-                itemSelector: '.rental',
-                columnWidth: 200,
-                fitWidth: true,
-                gutter: 20
+            var $container = $('#rental-container');
+
+            $container.on( 'layoutComplete', function( event, laidOutItems ) {
+                $container.css("opacity", "100");
+            } );
+
+            // layout Masonry after each image loads
+            $container.imagesLoaded().progress(function () {
+                $container.masonry({
+                    // options
+                    itemSelector: '.rental, .single-rental',
+                    columnWidth: 200,
+                    fitWidth: true,
+                    gutter: 20
+                }).on( 'layoutComplete', function( event, laidOutItems ) {
+                    $container.css("opacity", "100");
+                } );
             });
+
+
         },
-        BuildRentalSlider: function(){
+        BuildRentalSlider: function () {
 
             var swiper = new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination',

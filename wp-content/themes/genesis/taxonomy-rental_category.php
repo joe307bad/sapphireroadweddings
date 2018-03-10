@@ -18,8 +18,12 @@ get_header();
 do_action('genesis_before_content_sidebar_wrap');
 
 ?>
-<img class="aligncenter wp-image-198 size-full" src="https://srw.jbad.io/wp-content/uploads/2016/04/inventory.jpg" width="1600" height="600" />
-<img class="aligncenter wp-image-314" src="https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-300x47.jpg" alt="n_inventory" width="598" height="93" srcset="https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-300x47.jpg 300w, https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-768x119.jpg 768w, https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-1024x159.jpg 1024w" sizes="(max-width: 598px) 100vw, 598px">
+<img class="aligncenter wp-image-198 size-full" src="https://srw.jbad.io/wp-content/uploads/2016/04/inventory.jpg"
+     width="1600" height="600"/>
+<img class="aligncenter wp-image-314" src="https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-300x47.jpg"
+     alt="n_inventory" width="598" height="93"
+     srcset="https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-300x47.jpg 300w, https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-768x119.jpg 768w, https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-1024x159.jpg 1024w"
+     sizes="(max-width: 598px) 100vw, 598px">
 <h1 style="text-align: center; color: #555;  font-size:30px;"><?php single_term_title(); ?></h1>
 <div><?php the_archive_description(); ?></div>
 <div id="rental-container">
@@ -27,15 +31,14 @@ do_action('genesis_before_content_sidebar_wrap');
         $post = get_post();
         $attachments = get_post_meta($post->ID, 'attachments', true);
         $firstAttachmentId = $attachments !== null ? json_decode($attachments)->my_attachments[0]->id : 0;
-
         ?>
-        <a href="<?php echo get_permalink( $post->ID ); ?>" class='rental hvr-grow'>
-            <div class="thumbnail-container">
-                <div class="thumbnail-overlay"></div>
-                <img src="<?php echo wp_get_attachment_url($firstAttachmentId); ?>"/>
-            </div>
-            <h3><?php echo $post->post_title; ?></h3>
-        </a>
+        <div class="single-rental-container" style="height:177px;width:200px;">
+            <a style="display:block;margin-bottom:20px;" class="single-rental hvr-glow"
+               href="<?php echo get_permalink($post->ID); ?>">
+                <img width="200" src="<?php echo wp_get_attachment_url($firstAttachmentId); ?>"/>
+                <h3><?php echo $post->post_title; ?></h3>
+            </a>
+        </div>
     <?php endwhile; ?>
 </div>
 <?php
