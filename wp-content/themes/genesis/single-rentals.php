@@ -45,7 +45,7 @@ $attachmentsExist = $attachments->my_attachments !== null;
 <div class="rental-details">
     <h1><?php echo $post->post_title ?></h1>
     <div id="rental-content">
-        <?php echo do_shortcode("[addthis tool=\"addthis_inline_share_toolbox_rys6\"]"); ?>
+        <?php /* echo do_shortcode("[addthis tool=\"addthis_inline_share_toolbox_rys6\"]"); */ ?>
         <?php the_content(); ?>
     </div>
     <table>

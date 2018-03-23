@@ -41,7 +41,7 @@ do_action('genesis_before_content_sidebar_wrap');
             $attachment_id = $taxonomy_images[$category->term_id]; // Image ID
             $image = wp_get_attachment_image( $attachment_id );
             ?>
-            <a href="<?php echo get_term_link($category->term_id); ?>" class='rental hvr-grow'>
+            <a href="<?php echo get_term_link($category->term_id); ?>" class='rental'>
                 <div class="thumbnail-container">
                     <div class="thumbnail-overlay"></div>
                     <img src="<?php echo $image; ?>" />
