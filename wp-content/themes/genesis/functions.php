@@ -123,3 +123,65 @@ function wpa_rental_permalinks($post_link, $post)
     }
     return $post_link;
 }
+
+function ln_custom_fonts_init( $init ) {
+    $custom_fonts = 'Andale Mono=andale mono,times;'
+    .'Arial=arial,helvetica,sans-serif;'.
+    'Arial Black=arial black,avant garde;'.
+        'Book Antiqua=book antiqua,palatino;'.
+    'Comic Sans MS=comic sans ms,sans-serif;'.
+    'Courier New=courier new,courier;'.
+    'Georgia=georgia,palatino;'.
+    'Helvetica=helvetica;'.
+    'Impact=impact,chicago;'.
+    'Symbol=symbol;'.
+    'Tahoma=tahoma,arial,helvetica,sans-serif;'.
+    'Terminal=terminal,monaco;'.
+    'Times New Roman=times new roman,times;'.
+    'Trebuchet MS=trebuchet ms,geneva;'.
+    'Verdana=verdana,geneva;'.
+    'Webdings=webdings;'.
+    'Wingdings=wingdings,zapf dingbats';
+    $init['font_formats'] = $custom_fonts;
+    return $init;
+}
+add_filter( 'tiny_mce_before_init', 'ln_custom_fonts_init' );
+
+function admin_style() {
+    wp_enqueue_style('admin-styles', get_template_directory_uri().'/css/app/fonts.css');
+}
+add_action('admin_enqueue_scripts', 'admin_style');
+
+// Customize mce editor font sizes
+if ( ! function_exists( 'wpex_mce_text_sizes' ) ) {
+    function wpex_mce_text_sizes( $initArray ){
+        $initArray['fontsize_formats'] = "9px 10px 12px 13px 14px 16px 18px 21px 24px 28px 32px 36px 50px 100px 109px";
+        return $initArray;
+    }
+}
+add_filter( 'tiny_mce_before_init', 'wpex_mce_text_sizes' );
+
+/**
+ * Add custom styles to the mce formats dropdown
+ *
+ * @url https://codex.wordpress.org/TinyMCE_Custom_Styles
+ *
+ */
+function myprefix_add_format_styles( $init_array ) {
+    $style_formats = array(
+        // Each array child is a format with it's own settings - add as many as you want
+        array(
+            'title'    => __( 'Bodoni', 'text-domain' ), // Title for dropdown
+            'selector' => 'span', // Element to target in editor
+            'classes'  => 'bodoni-font' // Class name used for CSS
+        ),
+        array(
+            'title'    => __( 'Storybook', 'text-domain' ), // Title for dropdown
+            'inline'   => 'span', // Wrap a span around the selected content
+            'classes'  => 'storybook-font' // Class name used for CSS
+        ),
+    );
+    $init_array['style_formats'] = json_encode( $style_formats );
+    return $init_array;
+}
+add_filter( 'tiny_mce_before_init', 'myprefix_add_format_styles' );

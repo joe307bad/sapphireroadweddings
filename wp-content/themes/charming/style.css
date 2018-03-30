@@ -1236,7 +1236,7 @@ Site Navigation
     color: #555;
     display: block;
     font-family: 'Lato', sans-serif;
-    padding: 27px 20px;
+    padding: 40px;
 }
 
 .genesis-nav-menu a:hover,
@@ -2224,7 +2224,7 @@ Media Queries
     }
 
     .genesis-nav-menu a {
-        padding: 10px;
+        padding: 40px;
     }
 
     .charming-home .site-inner {

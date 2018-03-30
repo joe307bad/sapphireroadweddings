@@ -205,7 +205,7 @@ function custom_footer_creds_text() {
     echo '<div class="creds"><p>';
     echo 'Copyright &copy; ';
     echo date('Y');
-    echo '';
+    echo ' Sapphire Road Weddings & Events, LLC';
     echo '</p></div>';
 
 }

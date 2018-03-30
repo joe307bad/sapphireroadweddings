@@ -19,12 +19,45 @@ wp_head(); // We need this for plugins.
 ?>
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'bodoni';
+            src: url('<?php echo get_template_directory_uri(); ?>/css/fonts/bodoni_seventytwo_itc_book-webfont.woff') format('woff2'),
+            url('<?php echo get_template_directory_uri(); ?>/css/fonts/bodoni_seventytwo_itc_book-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
+        @font-face {
+            font-family: 'storybookregular';
+            src: url('<?php echo get_template_directory_uri(); ?>/css/fonts/storybook-webfont.woff2') format('woff2'),
+            url('<?php echo get_template_directory_uri(); ?>/css/fonts/storybook-webfont.woff') format('woff');
+            font-weight: normal;
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body{
+            font-family: 'Bodoni', sans-serif;
+        }
+
+        .bodoni-font {
+            font-family:'bodoni', sans-serif !important;
+        }
+
+        .storybook-font{
+            font-family:'storybookregular', sans-serif !important;
+            font-weight:900 !important;
+        }
+    </style>
     <link rel="stylesheet" type='text/css' href="<?php echo get_template_directory_uri(); ?>/css/app/Rentals.css">
     <link rel="stylesheet" type='text/css' href="<?php echo get_template_directory_uri(); ?>/css/lib/animate.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.min.js"></script>
+
     </head>
 <?php
 genesis_markup(array(
