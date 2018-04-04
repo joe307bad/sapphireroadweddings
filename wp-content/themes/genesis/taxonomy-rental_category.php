@@ -18,12 +18,6 @@ get_header();
 do_action('genesis_before_content_sidebar_wrap');
 
 ?>
-<img class="aligncenter wp-image-198 size-full" src="https://srw.jbad.io/wp-content/uploads/2016/04/inventory.jpg"
-     width="1600" height="600"/>
-<img class="aligncenter wp-image-314" src="https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-300x47.jpg"
-     alt="n_inventory" width="598" height="93"
-     srcset="https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-300x47.jpg 300w, https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-768x119.jpg 768w, https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-1024x159.jpg 1024w"
-     sizes="(max-width: 598px) 100vw, 598px">
 <h1 style="text-align: center; color: #555;  font-size:30px;"><?php single_term_title(); ?></h1>
 <div><?php the_archive_description(); ?></div>
 <div id="rental-container">

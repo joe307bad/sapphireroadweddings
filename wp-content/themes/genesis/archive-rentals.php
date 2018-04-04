@@ -18,19 +18,9 @@ get_header();
 do_action('genesis_before_content_sidebar_wrap');
 
 ?>
-<div><img class="aligncenter wp-image-198 size-full"
-          src="https://srw.jbad.io/wp-content/uploads/2016/04/inventory.jpg" width="1600" height="600"/>
-    <img class="aligncenter wp-image-314"
-         src="https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-300x47.jpg" alt="n_inventory"
-         width="598" height="93"
-         srcset="https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-300x47.jpg 300w, https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-768x119.jpg 768w, https://srw.jbad.io/wp-content/uploads/2016/02/n_inventory-1024x159.jpg 1024w"
-         sizes="(max-width: 598px) 100vw, 598px">
-    In addition to wedding and event planning services, Sapphire Road offers furniture and decor rentals to complete
-    your wedding, event or photoshoot with personality and style.  From modern loveseats to vintage Victorian sofas,
-    or custom built bars to tabletop decor, our rental inventory can be tailored to any venue or theme and will
-    transform your day into a one-of-a-kind affair.
+<div style="text-align: center;">
+    <h1 style="font-family:'bodoni', sans-serif; text-align: center; color: #555;  font-size:30px;">Rentals</h1>
 </div>
-<div style="text-align: center;"><strong>   </strong></div>
 <div id="rental-container">
     <?php
     $categories = get_terms("rental_category", array("hide_empty" => 0));
