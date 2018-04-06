@@ -20,6 +20,9 @@ do_action('genesis_before_content_sidebar_wrap');
 ?>
 <div style="text-align: center;">
     <h1 style="font-family:'bodoni', sans-serif; text-align: center; color: #555;  font-size:30px;">Rentals</h1>
+    <p>
+        Coming soon!
+    </p>
 </div>
 <div id="rental-container">
     <?php
