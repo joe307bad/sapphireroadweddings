@@ -25,11 +25,12 @@ do_action('genesis_before_content_sidebar_wrap');
         $post = get_post();
         $attachments = get_post_meta($post->ID, 'attachments', true);
         $firstAttachmentId = $attachments !== null ? json_decode($attachments)->my_attachments[0]->id : 0;
+        $image = wp_get_attachment_image( $firstAttachmentId, 'small');
         ?>
-        <div class="single-rental-container" style="height:177px;width:200px;">
+        <div class="single-rental-container">
             <a style="display:block;margin-bottom:20px;" class="single-rental hvr-reveal"
                href="<?php echo get_permalink($post->ID); ?>">
-                <img width="200" src="<?php echo wp_get_attachment_url($firstAttachmentId); ?>"/>
+                <?php echo $image ?>
                 <h3><?php echo $post->post_title; ?></h3>
             </a>
         </div>

@@ -212,3 +212,6 @@
 .post-type-archive-rentals {
     font-family: 'bodoni', sans-serif;
 }
+.single-rental-container{
+    display:inline-block;
+}

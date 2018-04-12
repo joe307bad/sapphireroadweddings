@@ -29,7 +29,7 @@ do_action('genesis_before_content_sidebar_wrap');
         foreach ($categories as $category) :// Get the array of Term ID/Image ID pairs
 
             $attachment_id = $taxonomy_images[$category->term_id]; // Image ID
-            $image = wp_get_attachment_image( $attachment_id );
+            $image = wp_get_attachment_image( $attachment_id, 'small');
             ?>
             <a href="<?php echo get_term_link($category->term_id); ?>" class='rental'>
                 <div class="thumbnail-container">
@@ -47,3 +47,4 @@ do_action('genesis_before_content_sidebar_wrap');
 do_action('genesis_after_content_sidebar_wrap');
 get_footer();
 ?>
+

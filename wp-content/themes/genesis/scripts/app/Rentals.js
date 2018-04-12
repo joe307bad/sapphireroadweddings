@@ -15,17 +15,17 @@
             } );
 
             // layout Masonry after each image loads
-            $container.imagesLoaded().progress(function () {
-                $container.masonry({
-                    // options
-                    itemSelector: '.rental, .single-rental',
-                    columnWidth: 200,
-                    fitWidth: true,
-                    gutter: 20
-                }).on( 'layoutComplete', function( event, laidOutItems ) {
-                    $container.css("opacity", "100");
-                } );
-            });
+            // $container.imagesLoaded().progress(function () {
+            //     $container.masonry({
+            //         // options
+            //         itemSelector: '.rental, .single-rental',
+            //         columnWidth: 200,
+            //         fitWidth: true,
+            //         gutter: 20
+            //     }).on( 'layoutComplete', function( event, laidOutItems ) {
+            //         //$container.css("opacity", "100");
+            //     } );
+            // });
 
 
         },
