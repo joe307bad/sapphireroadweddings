@@ -9,10 +9,16 @@
     transition: opacity .5s ease-in-out;
 }
 
+#rental-container-archive.rental-container{
+    max-width: 851px;
+}
+
 #rental-container .rental {
-    margin: 0 auto;
     width: 200px;
-    display: block;
+    height: 200px;
+    display: inline-block;
+    position: relative;
+    margin-right:10px;
 }
 
 #rental-container .rental:hover {
@@ -89,8 +95,8 @@
 #rental-container .thumbnail-container {
     overflow: hidden;
     margin-bottom: 10px;
-    height: 200px;
-    width: 200px;
+    height: 100%;
+    width:100%;
     position: relative;
     border-radius: 50%;
     color: white;
@@ -98,8 +104,8 @@
 
 .thumbnail-overlay {
     margin-bottom: 10px;
-    height: 200px;
-    width: 200px;
+    height: 100%;
+    width: 100%;
     background-color: #0000008a;
     border-radius: 50%;
     z-index: 1;
@@ -213,5 +219,5 @@
     font-family: 'bodoni', sans-serif;
 }
 .single-rental-container{
-    display:inline-block;
+    display:inline-block
 }

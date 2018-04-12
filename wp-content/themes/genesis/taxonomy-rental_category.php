@@ -20,7 +20,7 @@ do_action('genesis_before_content_sidebar_wrap');
 ?>
 <h1 style="text-align: center; color: #555;  font-size:30px;"><?php single_term_title(); ?></h1>
 <div><?php the_archive_description(); ?></div>
-<div id="rental-container">
+<div id="rental-container" class="rental-container-archive">
     <?php while (have_posts()) : the_post();
         $post = get_post();
         $attachments = get_post_meta($post->ID, 'attachments', true);

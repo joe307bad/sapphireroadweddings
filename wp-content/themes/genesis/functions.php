@@ -185,3 +185,5 @@ function myprefix_add_format_styles( $init_array ) {
     return $init_array;
 }
 add_filter( 'tiny_mce_before_init', 'myprefix_add_format_styles' );
+
+add_image_size("small", 200, 180);
