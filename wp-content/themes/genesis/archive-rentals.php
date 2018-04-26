@@ -34,7 +34,7 @@ do_action('genesis_before_content_sidebar_wrap');
             <a href="<?php echo get_term_link($category->term_id); ?>" class='rental'>
                 <div class="thumbnail-container">
                     <div class="thumbnail-overlay"></div>
-                    <img src="<?php echo $image; ?>" />
+                    <?php echo $image; ?>
                 </div>
                 <h3><?php echo $category->name; ?></h3>
             </a>
