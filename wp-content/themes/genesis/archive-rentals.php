@@ -16,11 +16,17 @@
 get_header();
 
 do_action('genesis_before_content_sidebar_wrap');
+$page = get_posts( array(
+    'name'      => 'rentals',
+    'post_type' => 'page') );
 
+if ( $page )
+{
+    echo $page[0]->post_content;
+}
 ?>
-<div style="text-align: center;">
-    <h1 style="font-family:'bodoni', sans-serif; text-align: center; color: #555;  font-size:30px;">Rentals</h1>
-</div>
+<br />
+<br />
 <div id="rental-container">
     <?php
     $categories = get_terms("rental_category", array("hide_empty" => 0));
