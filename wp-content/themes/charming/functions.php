@@ -34,7 +34,7 @@ add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list'
 add_theme_support( 'genesis-responsive-viewport' );
 
 //* Add support for 3-column footer widgets
-add_theme_support( 'genesis-footer-widgets', 3 );
+add_theme_support( 'genesis-footer-widgets', 4 );
 
 //* Add new image sizes
 add_image_size( 'featured-home-vertical', 365, 500, TRUE );
@@ -226,11 +226,7 @@ genesis_register_sidebar( array(
 	'name'        => __( 'Home Section 3', 'charming' ),
 	'description' => __( 'This is the home section 3 section.', 'charming' ),
 ) );
-genesis_register_sidebar( array(
-	'id'          => 'home-section-4',
-	'name'        => __( 'Home Section 4', 'charming' ),
-	'description' => __( 'This is the home section 4 section.', 'charming' ),
-) );
+
 genesis_register_sidebar( array(
 	'id'          => 'after-entry',
 	'name'        => __( 'After Entry', 'charming' ),

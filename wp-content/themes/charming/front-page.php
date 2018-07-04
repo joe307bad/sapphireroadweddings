@@ -11,7 +11,7 @@ add_action( 'genesis_meta', 'charming_home_genesis_meta' );
  */
 function charming_home_genesis_meta() {
 
-	if ( is_active_sidebar( 'home-section-3' ) || is_active_sidebar( 'home-section-4' ) ) {
+	if ( is_active_sidebar( 'home-section-3' ) || true ) {
 
 		//* Enqueue charming script
 		add_action( 'wp_enqueue_scripts', 'charming_enqueue_charming_script' );
@@ -60,12 +60,6 @@ function charming_homepage_widgets() {
 		'before' => '<div class="home-section-3 widget-area"><div class="wrap">',
 		'after'  => '</div></div>',
 	) );
-
-	genesis_widget_area( 'home-section-4', array(
-		'before' => '<div class="home-section-4 widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-	) );
-
 }
 
 genesis();

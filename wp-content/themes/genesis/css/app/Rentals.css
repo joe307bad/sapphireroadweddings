@@ -1,225 +1,236 @@
-
-
 #rental-container {
-    margin: 0 auto;
-    text-align: center;
-    -webkit-transition: opacity .5s ease-in-out;
-    -moz-transition: opacity .5s ease-in-out;
-    -o-transition: opacity .5s ease-in-out;
-    transition: opacity .5s ease-in-out;
+	margin: 0 auto;
+	text-align: center;
+	-webkit-transition: opacity .5s ease-in-out;
+	-moz-transition: opacity .5s ease-in-out;
+	-o-transition: opacity .5s ease-in-out;
+	transition: opacity .5s ease-in-out;
 }
 
-#rental-container-archive.rental-container{
-    max-width: 851px;
+#rental-container-archive.rental-container {
+	max-width: 851px;
 }
 
 #rental-container .rental {
-    width: 200px;
-    height: 200px;
-    display: inline-block;
-    position: relative;
-    margin-right:10px;
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+	position: relative;
+	margin-right: 10px;
 }
 
 #rental-container .rental:hover {
-    /*-webkit-animation: bounce 1s;
+	/*-webkit-animation: bounce 1s;
     animation: bounce 1s;*/
-
+	
 }
 
-.rental-details{
-    font-family:'bodoni', sans-serif;
+.rental-details {
+	font-family: 'bodoni', sans-serif;
 }
 
-.rental-details h1{
-    font-family:'bodoni', sans-serif;
+.rental-details h1 {
+	font-family: 'bodoni', sans-serif;
 }
 
 .rental-details #rental-content {
-    padding-bottom: 10px;
+	padding-bottom: 10px;
 }
 
 .rental-details #rental-content p {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 #rental-container .rental:hover img {
-    /*height: 110%;*/
-
+	/*height: 110%;*/
+	
 }
 
 #rental-container .rental img {
-    -webkit-transition: all .5s ease-in-out;
-    -moz-transition: all .5s ease-in-out;
-    -o-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
-    height: 100%;
-    width: auto;
-    max-width: none;
-    margin: 0 auto;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -100px;
-    margin-top: -100px;
-    /* -webkit-transform: translateY(-50%) translateX(-50%); */
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+	height: 100%;
+	width: auto;
+	max-width: none;
+	margin: 0 auto;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -100px;
+	margin-top: -100px;
+	/* -webkit-transform: translateY(-50%) translateX(-50%); */
 
-    /*-webkit-filter: blur(5px);
+	/*-webkit-filter: blur(5px);
     filter: blur(5px);*/
 }
 
 #rental-container .rental:hover img {
-
+	
 }
 
 #rental-container .rental h3 {
-    font-family: 'bodoni', sans-serif;
-    font-size: 20px;
-    position: absolute;
-    top: 50%;
-    text-transform:uppercase;
-    margin-top: -10px;
-    text-align: center;
-    width: 100%;
-    color: white;
-    z-index: 99;
+	font-family: 'bodoni', sans-serif;
+	font-size: 20px;
+	position: absolute;
+	top: 50%;
+	text-transform: uppercase;
+	margin-top: -10px;
+	text-align: center;
+	width: 100%;
+	color: white;
+	z-index: 99;
 }
 
-#rental-container .thumbnail-container, .thumbnail-overlay, h3, .rental img {
-    -webkit-transition: all .5s ease-in-out;
-    -moz-transition: all .5s ease-in-out;
-    -o-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
+#rental-container .thumbnail-container, .thumbnail-overlay, h3, .rental img
+	{
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
 }
 
 #rental-container .thumbnail-container {
-    overflow: hidden;
-    margin-bottom: 10px;
-    height: 100%;
-    width:100%;
-    position: relative;
-    border-radius: 50%;
-    color: white;
+	overflow: hidden;
+	margin-bottom: 10px;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	border-radius: 50%;
+	color: white;
 }
 
 .thumbnail-overlay {
-    margin-bottom: 10px;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    z-index: 1;
-    position: relative;
-
-    background-color:black;
-    opacity:.5;
+	margin-bottom: 10px;
+	height: 100%;
+	width: 100%;
+	border-radius: 50%;
+	z-index: 1;
+	position: relative;
+	background-color: black;
+	opacity: .5;
 }
 
 .rental:hover .thumbnail-overlay {
-    opacity: 0;
+	opacity: 0;
 }
 
 .rental:hover h3 {
-    opacity: 0;
+	opacity: 0;
 }
 
 .swiper-container {
-    width: 100%;
-    height: 300px;
-    float: left;
+	width: 100%;
+	height: 300px;
+	float: left;
 }
 
 .swiper-pagination {
-    background-color: white;
-    bottom: 0 !important;
+	background-color: white;
+	bottom: 0 !important;
 }
 
 .swiper {
-    display: block;
-    margin: 0 auto;
+	display: block;
+	margin: 0 auto;
 }
 
 .swiper-slide {
-    height: 300px;
+	height: 300px;
 }
 
 .swiper-slide img {
-    margin: 0 auto;
-    display: block;
-    width: 100%;
+	margin: 0 auto;
+	display: block;
+	width: 100%;
 }
 
 .rental-details {
-    float: right;
-    width: 100%;
+	float: right;
+	width: 100%;
 }
 
 .site-inner {
-    padding: 20px 10px 0px 10px !important;
+	padding: 20px 10px 0px 10px !important;
 }
 
 .swiper-pagination-bullet-active {
-    opacity: 1;
-    background: #2c3b50 !important;
+	opacity: 1;
+	background: #2c3b50 !important;
 }
 
 .swiper-button-next {
-    background-image: url("/wp-content/themes/genesis/images/nav-arrow.png") !important;
-    right: 0px !important;
+	background: rgba(0, 0, 0, 0.3)
+		url(/wp-content/themes/genesis/images/nav-arrow.png) no-repeat scroll
+		50% 50% !important;
+	right: 0px !important;
+	height: 10px;
+	background: rgba(0, 0, 0, 0.7);
 }
 
 .swiper-button-prev {
-    background-image: url("/wp-content/themes/genesis/images/prev-nav-arrow.png") !important;
-    left: 0px !important;
+	background: rgba(0, 0, 0, 0.3)
+		url(/wp-content/themes/genesis/images/prev-nav-arrow.png) no-repeat
+		scroll 50% 50% !important;
+	/*background-image: url("/wp-content/themes/genesis/images/prev-nav-arrow.png") !important;*/
+	left: 0px !important;
+	height: 10px;
 }
 
-@media (min-width: 850px) {
-    .site-inner {
-        padding: 0px 40px 40px 40px !important;
-    }
-
-    .rental-details {
-        float: right;
-        width: calc(50% - 60px);
-        padding-left: 60px;
-    }
-
-    .swiper-container {
-        width: 50%;
-    / / height: 300 px;
-        float: left;
-    }
-
+@media ( min-width : 850px) {
+	.site-inner {
+		padding: 0px 40px 40px 40px !important;
+	}
+	.rental-details {
+		float: right;
+		width: calc(50% - 60px);
+		padding-left: 60px;
+	}
+	.swiper-container {
+		width: 50%; / /
+		height: 300 px;
+		float: left;
+	}
 }
 
 .tax-rental_category h1 {
-    font-family: 'bodoni', sans-serif;
+	font-family: 'bodoni', sans-serif;
 }
 
 .single-rental {
-    padding: 10px;
-    min-height: 220px;
+	padding: 10px;
+	min-height: 220px;
 }
 
 .single-rental h3 {
-    font-family: 'bodoni', sans-serif;
-    font-size: 22px;
-    position: absolute;
-    bottom: 0;
-    left: 0px;
-    width: 100%;
+	font-family: 'bodoni', sans-serif;
+	font-size: 22px;
+	position: absolute;
+	bottom: 0;
+	left: 0px;
+	width: 100%;
 }
 
 .hvr-reveal:before {
-    border-color: grey !important;
+	border-color: grey !important;
 }
 
-.hvr-reveal:active:before, .hvr-reveal:focus:before, .hvr-reveal:hover:before {
-    border-width: 1px !important;
+.hvr-reveal:active:before, .hvr-reveal:focus:before, .hvr-reveal:hover:before
+	{
+	border-width: 1px !important;
 }
 
 .post-type-archive-rentals {
-    font-family: 'bodoni', sans-serif;
+	font-family: 'bodoni', sans-serif;
 }
-.single-rental-container{
-    display:inline-block
+
+.single-rental-container {
+	display: inline-block
+}
+
+.footer-widgets-4{
+	
+      float: left;
+    width: 100%;
 }
