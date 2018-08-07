@@ -187,3 +187,29 @@ function myprefix_add_format_styles( $init_array ) {
 add_filter( 'tiny_mce_before_init', 'myprefix_add_format_styles' );
 
 add_image_size("small", 200, 180);
+
+function wpb_change_search_url() {
+    if ( is_search() && ! empty( $_GET['s'] ) ) {
+        wp_redirect( home_url( "/rentals/search/?s=" ) . urlencode( get_query_var( 's' ) ) );
+        exit();
+    }
+}
+add_action( 'template_redirect', 'wpb_change_search_url' );
+
+add_action('wp', function() {
+    $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+    
+    
+//     if ( ! empty( $_GET['s'] ) ) {
+//         wp_redirect( home_url( "/rentals/search/?s=" ) . urlencode( get_query_var( 's' ) ) );
+//         exit();
+//     }
+    
+    if ( $url_path === 'rentals/search' ) {
+        // load the file if exists
+        $load = locate_template('page_search.php', true);
+        if ($load) {
+            exit(); // just exit if template was found and loaded
+        }
+    }
+});
