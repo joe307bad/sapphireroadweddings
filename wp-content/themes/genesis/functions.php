@@ -48,6 +48,7 @@ function register_rental_pt()
             'rewrite' => array('slug' => 'rentals/%rental_category%', 'with_front' => false),
             'has_archive' => 'rentals',
             'menu_position' => 21,
+            'taxonomies' => array('post_tag'),
             'show_in_menu' => true,
             'labels' => array(
                 'name' => __('Collective'),
@@ -187,3 +188,45 @@ function myprefix_add_format_styles( $init_array ) {
 add_filter( 'tiny_mce_before_init', 'myprefix_add_format_styles' );
 
 add_image_size("small", 200, 180);
+
+function wpb_change_search_url() {
+    if ( is_search() && ! empty( $_GET['s'] ) ) {
+        wp_redirect( home_url( "/rentals/search/?s=" ) . urlencode( get_query_var( 's' ) ) );
+        exit();
+    }
+}
+add_action( 'template_redirect', 'wpb_change_search_url' );
+
+add_action('wp', function() {
+    $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+    
+    
+//     if ( ! empty( $_GET['s'] ) ) {
+//         wp_redirect( home_url( "/rentals/search/?s=" ) . urlencode( get_query_var( 's' ) ) );
+//         exit();
+//     }
+    
+    if ( $url_path === 'rentals/search' ) {
+        
+        global $wp_query;
+        $wp_query->is_404 = false;
+        header("HTTP/1.1 200 OK");
+        // load the file if exists
+        $load = locate_template('page_search.php', true);
+        if ($load) {
+            exit(); // just exit if template was found and loaded
+        }
+    }
+});
+
+    function wpse62415_filter_wp_title( $title ) {
+        // Return a custom document title for
+        // the boat details custom page template
+        $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+        if ( $url_path === 'rentals/search'  ) {
+            return $_GET['s'] . 'Search Rentals - Sapphire Road Weddings';
+        }
+        // Otherwise, don't modify the document title
+        return $title;
+    }
+    add_filter( 'wp_title', 'wpse62415_filter_wp_title' );
