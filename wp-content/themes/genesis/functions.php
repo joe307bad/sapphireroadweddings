@@ -48,6 +48,7 @@ function register_rental_pt()
             'rewrite' => array('slug' => 'rentals/%rental_category%', 'with_front' => false),
             'has_archive' => 'rentals',
             'menu_position' => 21,
+            'taxonomies' => array('post_tag'),
             'show_in_menu' => true,
             'labels' => array(
                 'name' => __('Collective'),
@@ -206,6 +207,10 @@ add_action('wp', function() {
 //     }
     
     if ( $url_path === 'rentals/search' ) {
+        
+        global $wp_query;
+        $wp_query->is_404 = false;
+        header("HTTP/1.1 200 OK");
         // load the file if exists
         $load = locate_template('page_search.php', true);
         if ($load) {
@@ -213,3 +218,15 @@ add_action('wp', function() {
         }
     }
 });
+
+    function wpse62415_filter_wp_title( $title ) {
+        // Return a custom document title for
+        // the boat details custom page template
+        $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+        if ( $url_path === 'rentals/search'  ) {
+            return $_GET['s'] . 'Search Rentals - Sapphire Road Weddings';
+        }
+        // Otherwise, don't modify the document title
+        return $title;
+    }
+    add_filter( 'wp_title', 'wpse62415_filter_wp_title' );

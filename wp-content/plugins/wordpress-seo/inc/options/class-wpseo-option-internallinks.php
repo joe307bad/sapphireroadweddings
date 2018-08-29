@@ -69,7 +69,7 @@ class WPSEO_Option_InternalLinks extends WPSEO_Option {
 		$this->defaults['breadcrumbs-404crumb']      = __( 'Error 404: Page not found', 'wordpress-seo' );
 		$this->defaults['breadcrumbs-archiveprefix'] = __( 'Archives for', 'wordpress-seo' );
 		$this->defaults['breadcrumbs-home']          = __( 'Home', 'wordpress-seo' );
-		$this->defaults['breadcrumbs-searchprefix']  = __( 'You searched for', 'wordpress-seo' );
+		$this->defaults['breadcrumbs-searchprefix']  = __( '', 'wordpress-seo' );
 	}
 
 
