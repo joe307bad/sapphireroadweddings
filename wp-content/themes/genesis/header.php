@@ -10,65 +10,86 @@
  * @license GPL-2.0+
  * @link    http://my.studiopress.com/themes/genesis/
  */
-
 do_action('genesis_doctype');
 do_action('genesis_title');
 do_action('genesis_meta');
 
+$searchTerm =  $_GET['s'];
+$siteUrl = get_site_url();
+
 wp_head(); // We need this for plugins.
 ?>
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-    <style>
-        @font-face {
-            font-family: 'bodoni';
-            src: url('<?php echo get_template_directory_uri(); ?>/css/fonts/bodoni_seventytwo_itc_book-webfont.woff') format('woff2'),
-            url('<?php echo get_template_directory_uri(); ?>/css/fonts/bodoni_seventytwo_itc_book-webfont.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
+<script
+	src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<style>
+@font-face {
+	font-family: 'bodoni';
+	src:
+		url('<?php echo get_template_directory_uri(); ?>/css/fonts/bodoni_seventytwo_itc_book-webfont.woff')
+		format('woff2'),
+		url('<?php echo get_template_directory_uri(); ?>/css/fonts/bodoni_seventytwo_itc_book-webfont.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 
+@font-face {
+	font-family: 'storybookregular';
+	src:
+		url('<?php echo get_template_directory_uri(); ?>/css/fonts/storybook-webfont.woff2')
+		format('woff2'),
+		url('<?php echo get_template_directory_uri(); ?>/css/fonts/storybook-webfont.woff')
+		format('woff');
+	font-weight: normal;
+	font-weight: normal;
+	font-style: normal;
+}
 
-        @font-face {
-            font-family: 'storybookregular';
-            src: url('<?php echo get_template_directory_uri(); ?>/css/fonts/storybook-webfont.woff2') format('woff2'),
-            url('<?php echo get_template_directory_uri(); ?>/css/fonts/storybook-webfont.woff') format('woff');
-            font-weight: normal;
-            font-weight: normal;
-            font-style: normal;
-        }
+body {
+	font-family: 'Bodoni', sans-serif;
+}
 
-        body{
-            font-family: 'Bodoni', sans-serif;
-        }
+.bodoni-font {
+	font-family: 'bodoni', sans-serif !important;
+}
 
-        .bodoni-font {
-            font-family:'bodoni', sans-serif !important;
-        }
+.storybook-font {
+	font-family: 'storybookregular', sans-serif !important;
+	font-weight: 900 !important;
+}
+</style>
+<link rel="stylesheet" type='text/css'
+	href="<?php echo get_template_directory_uri(); ?>/css/app/Rentals.css">
+<link rel="stylesheet" type='text/css'
+	href="<?php echo get_template_directory_uri(); ?>/css/lib/animate.min.css">
 
-        .storybook-font{
-            font-family:'storybookregular', sans-serif !important;
-            font-weight:900 !important;
-        }
-    </style>
-    <link rel="stylesheet" type='text/css' href="<?php echo get_template_directory_uri(); ?>/css/app/Rentals.css">
-    <link rel="stylesheet" type='text/css' href="<?php echo get_template_directory_uri(); ?>/css/lib/animate.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.min.js"></script>
-
-    </head>
+</head>
 <?php
 genesis_markup(array(
     'open' => '<body %s>',
-    'context' => 'body',
+    'context' => 'body'
 ));
 do_action('genesis_before');
 
+
 genesis_markup(array(
-    'open' => '<div %s>',
-    'context' => 'site-container',
+    'open' => "<div %s>
+<div id='global-search-box'>
+<form class='search-form' itemprop='potentialAction' itemscope='' itemtype='https://schema.org/SearchAction' method='get' action='/rentals/search/' role='search'>
+	<meta itemprop='target' content='{$siteUrl}/?s={s}'>
+	<input itemprop='query-input' type='search' name='s' placeholder='Search Rentals' value='{$searchTerm}'>
+</form>
+</div>
+",
+    'context' => 'site-container'
 ));
 
 do_action('genesis_before_header');
@@ -77,6 +98,9 @@ do_action('genesis_after_header');
 
 genesis_markup(array(
     'open' => '<div %s>',
-    'context' => 'site-inner',
+    'context' => 'site-inner'
 ));
 genesis_structural_wrap('site-inner');
+?>
+
+
