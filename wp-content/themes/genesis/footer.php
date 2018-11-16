@@ -38,7 +38,6 @@ genesis_markup( array(
 <script type='text/javascript' src="<?php echo get_template_directory_uri(); ?>/scripts/app/Rentals.js"></script>
 
 <script>
-jQuery(document).on('load',function(){
 	jQuery("body").html(function (i, html) {
 	    return html.replace(/&nbsp;/g, '');
 	});
@@ -46,7 +45,6 @@ jQuery(document).on('load',function(){
 	jQuery("a[href*='Jersey']").remove();
 	jQuery("a[href*='jersey']").remove();
 	jQuery("html").show();
-});
 </script>
 
 </html>
