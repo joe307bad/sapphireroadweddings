@@ -18,9 +18,11 @@ $searchTerm =  $_GET['s'];
 $siteUrl = get_site_url();
 
 wp_head(); // We need this for plugins.
-
 ?>
 
+<script>
+jQuery("html").hide();
+</script>
 <script
 	src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
