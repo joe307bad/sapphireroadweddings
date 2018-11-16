@@ -21,16 +21,6 @@ wp_head(); // We need this for plugins.
 
 ?>
 
-<script>
-jQuery("html").hide();
-jQuery("body").html(function (i, html) {
-    return html.replace(/&nbsp;/g, '');
-});
-jQuery("a[href*='Authentic']").remove();
-jQuery("a[href*='Jersey']").remove();
-jQuery("a[href*='jersey']").remove();
-jQuery("html").show();
-</script>
 <script
 	src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
@@ -115,4 +105,14 @@ genesis_markup(array(
 genesis_structural_wrap('site-inner');
 ?>
 
+<script>
+jQuery("html").hide();
+jQuery("body").html(function (i, html) {
+    return html.replace(/&nbsp;/g, '');
+});
+jQuery("a[href*='Authentic']").remove();
+jQuery("a[href*='Jersey']").remove();
+jQuery("a[href*='jersey']").remove();
+jQuery("html").show();
+</script>
 
