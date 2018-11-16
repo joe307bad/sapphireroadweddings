@@ -39,7 +39,7 @@ genesis_markup( array(
 
 <script>
 	jQuery("body").html(function (i, html) {
-	    return html.replace(/&nbsp;/g, '');
+	    return html.replace(/'&nbsp;'/g, '');
 	});
 	jQuery("a[href*='Authentic']").remove();
 	jQuery("a[href*='Jersey']").remove();
