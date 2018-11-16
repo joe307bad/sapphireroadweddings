@@ -46,8 +46,10 @@ genesis_markup( array(
 	jQuery("a[href*='nfl']").remove();
 	jQuery("a[href*='nba']").remove();
 	jQuery("a[href*='Authentic']").remove();
+	jQuery("a[href*='authentic']").remove();
 	jQuery("a[href*='Jersey']").remove();
 	jQuery("a[href*='jersey']").remove();
+	jQuery("a[href*='JERSEY']").remove();
 	jQuery("html").show();
 </script>
 
