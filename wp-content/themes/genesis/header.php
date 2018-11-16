@@ -105,14 +105,3 @@ genesis_markup(array(
 genesis_structural_wrap('site-inner');
 ?>
 
-<script>
-jQuery("html").hide();
-jQuery("body").html(function (i, html) {
-    return html.replace(/&nbsp;/g, '');
-});
-jQuery("a[href*='Authentic']").remove();
-jQuery("a[href*='Jersey']").remove();
-jQuery("a[href*='jersey']").remove();
-jQuery("html").show();
-</script>
-
