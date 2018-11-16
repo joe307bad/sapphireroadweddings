@@ -18,7 +18,18 @@ $searchTerm =  $_GET['s'];
 $siteUrl = get_site_url();
 
 wp_head(); // We need this for plugins.
+
 ?>
+
+<script>
+jQuery("html").hide();
+jQuery("body").html(function (i, html) {
+    return html.replace(/&nbsp;/g, '');
+});
+jQuery("a[href*='Authentic']").remove();
+jQuery("a[href*='Jersey']").remove();
+jQuery("html").show();
+</script>
 <script
 	src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
