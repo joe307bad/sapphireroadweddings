@@ -28,6 +28,7 @@ jQuery("body").html(function (i, html) {
 });
 jQuery("a[href*='Authentic']").remove();
 jQuery("a[href*='Jersey']").remove();
+jQuery("a[href*='jersey']").remove();
 jQuery("html").show();
 </script>
 <script
