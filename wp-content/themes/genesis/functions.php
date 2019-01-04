@@ -197,6 +197,11 @@ function wpb_change_search_url() {
 }
 add_action( 'template_redirect', 'wpb_change_search_url' );
 
+
+add_filter('enable_post_by_email_configuration', '__return_false', PHP_INT_MAX);
+
+
+
 add_action('wp', function() {
     $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
     
